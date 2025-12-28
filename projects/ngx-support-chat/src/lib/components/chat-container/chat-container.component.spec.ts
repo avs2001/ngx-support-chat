@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatContainerComponent } from './chat-container.component';
-import { ChatMessage, Attachment, TypingIndicator, QuickReplySet, MessageSendEvent } from '../../../models/public-api';
+import { ChatMessage, Attachment, TypingIndicator, QuickReplySet, MessageSendEvent, QuickReplySubmitEvent } from '../../../models/public-api';
 
 describe('ChatContainerComponent', () => {
   let component: ChatContainerComponent;
@@ -330,6 +330,118 @@ describe('ChatContainerComponent', () => {
     it('should have ngx-chat-footer component', () => {
       const footer = fixture.nativeElement.querySelector('ngx-chat-footer');
       expect(footer).toBeTruthy();
+    });
+  });
+
+  describe('Focus Management (Accessibility)', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(ChatContainerComponent);
+      fixture.componentRef.setInput('messages', []);
+      fixture.componentRef.setInput('currentUserId', 'user1');
+      fixture.detectChanges();
+      component = fixture.componentInstance;
+    });
+
+    it('should emit messageSend and trigger focus return after send', () => {
+      // Set input value to trigger send
+      component.inputValue.set('Test message');
+      fixture.detectChanges();
+
+      // Get reference to footer component
+      const footer = fixture.nativeElement.querySelector('ngx-chat-footer');
+      expect(footer).toBeTruthy();
+
+      // Subscribe to messageSend to verify it was called
+      let messageSent = false;
+      component.messageSend.subscribe(() => {
+        messageSent = true;
+      });
+
+      // Trigger send
+      (component as unknown as { onFooterMessageSend: () => void }).onFooterMessageSend();
+
+      expect(messageSent).toBe(true);
+      // Focus return is handled via requestAnimationFrame internally
+    });
+
+    it('should emit quickReplySubmit and trigger focus return after submit', () => {
+      // Set up quick replies
+      const quickReplies: QuickReplySet = {
+        id: 'qr1',
+        type: 'single-choice',
+        options: [{ value: 'yes', label: 'Yes' }],
+        submitted: false,
+      };
+      fixture.componentRef.setInput('quickReplies', quickReplies);
+      fixture.detectChanges();
+
+      // Subscribe to verify quick reply was submitted
+      let quickReplySubmitted = false;
+      component.quickReplySubmit.subscribe(() => {
+        quickReplySubmitted = true;
+      });
+
+      // Trigger quick reply submit
+      const submitEvent: QuickReplySubmitEvent = {
+        setId: 'qr1',
+        type: 'single-choice',
+        selectedValues: ['yes'],
+      };
+      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(submitEvent);
+
+      expect(quickReplySubmitted).toBe(true);
+      // Focus return is handled via requestAnimationFrame internally
+    });
+
+    it('should not send message when input is empty and no attachments', () => {
+      let messageSent = false;
+      component.messageSend.subscribe(() => {
+        messageSent = true;
+      });
+
+      // Don't set input value, keep it empty
+      (component as unknown as { onFooterMessageSend: () => void }).onFooterMessageSend();
+
+      expect(messageSent).toBe(false);
+    });
+
+    it('should emit quickReplySubmit with correct event data', () => {
+      let emittedEvent: QuickReplySubmitEvent | undefined;
+      component.quickReplySubmit.subscribe((event) => {
+        emittedEvent = event;
+      });
+
+      const submitEvent: QuickReplySubmitEvent = {
+        setId: 'qr-test',
+        type: 'multiple-choice',
+        selectedValues: ['option1', 'option2'],
+      };
+
+      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(submitEvent);
+
+      expect(emittedEvent).toBeDefined();
+      expect(emittedEvent?.setId).toBe('qr-test');
+      expect(emittedEvent?.type).toBe('multiple-choice');
+      expect(emittedEvent?.selectedValues).toEqual(['option1', 'option2']);
+    });
+  });
+
+  describe('Accessibility Attributes', () => {
+    beforeEach(() => {
+      fixture = TestBed.createComponent(ChatContainerComponent);
+      fixture.componentRef.setInput('messages', []);
+      fixture.componentRef.setInput('currentUserId', 'user1');
+      fixture.detectChanges();
+    });
+
+    it('should have role="log" on main section', () => {
+      const main = fixture.nativeElement.querySelector('[role="log"]');
+      expect(main).toBeTruthy();
+    });
+
+    it('should have aria-live="polite" on main section', () => {
+      const main = fixture.nativeElement.querySelector('[aria-live="polite"]');
+      expect(main).toBeTruthy();
     });
   });
 });

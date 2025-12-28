@@ -377,4 +377,138 @@ describe('ChatMessageAreaComponent', () => {
       expect(items.some(item => item.type === 'group')).toBe(true);
     });
   });
+
+  describe('keyboard navigation', () => {
+    // Helper to dispatch keyboard event on the component element
+    function dispatchKeydown(key: string): KeyboardEvent {
+      const event = new KeyboardEvent('keydown', { key, bubbles: true, cancelable: true });
+      (fixture.nativeElement as HTMLElement).dispatchEvent(event);
+      return event;
+    }
+
+    beforeEach(() => {
+      fixture.componentRef.setInput('messages', []);
+      fixture.componentRef.setInput('currentUserId', 'current-user');
+      fixture.detectChanges();
+    });
+
+    it('should have isInNavigationMode initially false', () => {
+      expect(component.isInNavigationMode()).toBe(false);
+    });
+
+    it('should set isInNavigationMode to true on ArrowDown press', () => {
+      const messages: ChatMessage[] = [
+        createTestMessage({ id: 'msg-1' }),
+        createTestMessage({ id: 'msg-2' })
+      ];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      dispatchKeydown('ArrowDown');
+
+      expect(component.isInNavigationMode()).toBe(true);
+    });
+
+    it('should set isInNavigationMode to true on ArrowUp press', () => {
+      const messages: ChatMessage[] = [
+        createTestMessage({ id: 'msg-1' }),
+        createTestMessage({ id: 'msg-2' })
+      ];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      dispatchKeydown('ArrowUp');
+
+      expect(component.isInNavigationMode()).toBe(true);
+    });
+
+    it('should exit navigation mode on Escape press', () => {
+      const messages: ChatMessage[] = [
+        createTestMessage({ id: 'msg-1' })
+      ];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      // First enter navigation mode
+      dispatchKeydown('ArrowDown');
+      expect(component.isInNavigationMode()).toBe(true);
+
+      // Then exit
+      dispatchKeydown('Escape');
+      expect(component.isInNavigationMode()).toBe(false);
+    });
+
+    it('should handle ArrowDown key within component', () => {
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      // Dispatch event on the component element to trigger the HostListener
+      const event = dispatchKeydown('ArrowDown');
+
+      // Event should have been handled (navigation mode entered)
+      expect(component.isInNavigationMode()).toBe(true);
+    });
+
+    it('should handle ArrowUp key within component', () => {
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      dispatchKeydown('ArrowUp');
+
+      expect(component.isInNavigationMode()).toBe(true);
+    });
+
+    it('should handle Enter key within component', () => {
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      // First navigate to a message
+      dispatchKeydown('ArrowDown');
+
+      // Then press Enter
+      dispatchKeydown('Enter');
+
+      // Should still be in navigation mode (Enter announces, doesn't exit)
+      expect(component.isInNavigationMode()).toBe(true);
+    });
+
+    it('should exit navigation mode with Escape after entering', () => {
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      // Enter navigation mode
+      dispatchKeydown('ArrowDown');
+      expect(component.isInNavigationMode()).toBe(true);
+
+      // Exit with Escape
+      dispatchKeydown('Escape');
+      expect(component.isInNavigationMode()).toBe(false);
+    });
+
+    it('should not enter navigation mode on unhandled keys', () => {
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
+      fixture.componentRef.setInput('messages', messages);
+      fixture.detectChanges();
+
+      dispatchKeydown('Tab');
+
+      expect(component.isInNavigationMode()).toBe(false);
+    });
+  });
+
+  describe('accessibility attributes', () => {
+    it('should have role="list" on viewport content', async () => {
+      fixture.componentRef.setInput('messages', [createTestMessage({ id: 'msg-1' })]);
+      fixture.componentRef.setInput('currentUserId', 'current-user');
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      const listElement = fixture.nativeElement.querySelector('[role="list"]');
+      expect(listElement).toBeTruthy();
+    });
+  });
 });

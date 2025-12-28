@@ -588,6 +588,135 @@ describe('ChatMessageComponent', () => {
       const retryBtn = fixture.nativeElement.querySelector('.message-meta__retry');
       expect(retryBtn.getAttribute('aria-label')).toBe('Retry sending message');
     });
+
+    it('should have role="listitem" on container', () => {
+      fixture.componentRef.setInput('message', createTestMessage());
+      fixture.detectChanges();
+
+      const container = fixture.nativeElement.querySelector('[role="listitem"]');
+      expect(container).toBeTruthy();
+    });
+
+    it('should have tabindex="0" for keyboard focus', () => {
+      fixture.componentRef.setInput('message', createTestMessage());
+      fixture.detectChanges();
+
+      const container = fixture.nativeElement.querySelector('[tabindex="0"]');
+      expect(container).toBeTruthy();
+    });
+
+    describe('ariaLabel computed signal', () => {
+      it('should include sender name, time, and text content for text messages', () => {
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'Alice',
+            timestamp: new Date(2025, 0, 15, 14, 30),
+            type: 'text',
+            content: { text: 'Hello there!' }
+          })
+        );
+        fixture.detectChanges();
+
+        const ariaLabel = component.ariaLabel();
+        expect(ariaLabel).toBe('Alice at 14:30: Hello there!');
+      });
+
+      it('should truncate long text content to 100 characters', () => {
+        const longText = 'A'.repeat(150);
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'Bob',
+            timestamp: new Date(2025, 0, 15, 10, 0),
+            type: 'text',
+            content: { text: longText }
+          })
+        );
+        fixture.detectChanges();
+
+        const ariaLabel = component.ariaLabel();
+        expect(ariaLabel).toContain('Bob at 10:00: ');
+        expect(ariaLabel).toContain('...');
+        expect(ariaLabel.length).toBeLessThan(longText.length + 20);
+      });
+
+      it('should describe image messages with alt text', () => {
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'Charlie',
+            timestamp: new Date(2025, 0, 15, 12, 0),
+            type: 'image',
+            content: { thumbnailUrl: 'thumb.jpg', fullUrl: 'full.jpg', altText: 'A sunset photo' }
+          })
+        );
+        fixture.detectChanges();
+
+        expect(component.ariaLabel()).toBe('Charlie at 12:00: Image: A sunset photo');
+      });
+
+      it('should describe image messages without alt text', () => {
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'Dana',
+            timestamp: new Date(2025, 0, 15, 13, 0),
+            type: 'image',
+            content: { thumbnailUrl: 'thumb.jpg', fullUrl: 'full.jpg' }
+          })
+        );
+        fixture.detectChanges();
+
+        expect(component.ariaLabel()).toBe('Dana at 13:00: Image');
+      });
+
+      it('should describe file messages with file name', () => {
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'Eve',
+            timestamp: new Date(2025, 0, 15, 15, 30),
+            type: 'file',
+            content: { fileName: 'report.pdf', fileType: 'pdf', downloadUrl: 'url' }
+          })
+        );
+        fixture.detectChanges();
+
+        expect(component.ariaLabel()).toBe('Eve at 15:30: File: report.pdf');
+      });
+
+      it('should describe system messages with content text', () => {
+        fixture.componentRef.setInput(
+          'message',
+          createTestMessage({
+            senderName: 'System',
+            timestamp: new Date(2025, 0, 15, 16, 0),
+            type: 'system',
+            content: { text: 'Agent joined the chat' }
+          })
+        );
+        fixture.detectChanges();
+
+        expect(component.ariaLabel()).toBe('System at 16:00: Agent joined the chat');
+      });
+    });
+
+    it('should render aria-label attribute on container element', () => {
+      fixture.componentRef.setInput(
+        'message',
+        createTestMessage({
+          senderName: 'Frank',
+          timestamp: new Date(2025, 0, 15, 17, 0),
+          type: 'text',
+          content: { text: 'Test message' }
+        })
+      );
+      fixture.detectChanges();
+
+      const container = fixture.nativeElement.querySelector('.message-container');
+      expect(container.getAttribute('aria-label')).toBe('Frank at 17:00: Test message');
+    });
   });
 });
 
