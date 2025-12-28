@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 
-import { ChatMessage } from '../../../models/chat-message.model';
+import { ChatMessage } from '../../models/chat-message.model';
 
 import {
   groupMessagesByDate,
@@ -9,8 +9,7 @@ import {
   findMessageIndex,
   flattenGroupedMessages,
   DEFAULT_GROUP_THRESHOLD_MS,
-  GroupedMessages,
-  MessageGroup
+  GroupedMessages
 } from './message-grouping.util';
 
 describe('message-grouping.util', () => {

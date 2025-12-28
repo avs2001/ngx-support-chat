@@ -3,7 +3,7 @@
  * Provides functions to group messages by date and sender.
  */
 
-import { ChatMessage } from '../../../models/chat-message.model';
+import { ChatMessage } from '../../models/chat-message.model';
 
 import { getTimeDifferenceMs, isSameDay, startOfDay } from './date-helpers.util';
 
@@ -81,14 +81,18 @@ export function groupMessagesByDate(
       !previousMessage ||
       !shouldGroupWithPrevious(message, previousMessage, timeThreshold);
 
-    if (shouldStartNewGroup) {
-      currentSenderGroup = {
+    if (shouldStartNewGroup || !currentSenderGroup) {
+      const newGroup: MessageGroup = {
         senderId: message.senderId,
         senderName: message.senderName,
-        senderAvatar: message.senderAvatar,
         isCurrentUser: message.senderId === currentUserId,
         messages: []
       };
+      // Only add senderAvatar if it exists
+      if (message.senderAvatar) {
+        newGroup.senderAvatar = message.senderAvatar;
+      }
+      currentSenderGroup = newGroup;
       currentDateGroup.groups.push(currentSenderGroup);
     }
 

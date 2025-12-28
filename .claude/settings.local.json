@@ -34,7 +34,8 @@
       "Bash(npm run format:*)",
       "mcp__angular-cli__get_best_practices",
       "mcp__angular-cli__list_projects",
-      "Bash(ls:*)"
+      "Bash(ls:*)",
+      "Bash(npx tsc:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

@@ -1,0 +1,24 @@
+<cdk-virtual-scroll-viewport
+  #viewport
+  [itemSize]="itemSize()"
+  class="message-area"
+>
+  <div
+    *cdkVirtualFor="let item of items(); trackBy: trackByItem"
+    class="message-area__item"
+  >
+    @if (isSeparator(item)) {
+      <ngx-chat-date-separator [date]="item.date" />
+    }
+    @if (isGroup(item)) {
+      <ngx-chat-message-group
+        [group]="item.group"
+        [showAvatar]="showAvatars()"
+        [showSenderName]="showSenderNames()"
+        (messageRetry)="messageRetry.emit($event)"
+        (imagePreview)="imagePreview.emit($event)"
+        (fileDownload)="fileDownload.emit($event)"
+      />
+    }
+  </div>
+</cdk-virtual-scroll-viewport>

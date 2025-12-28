@@ -2,7 +2,7 @@
 
 **Epic:** EPIC-001 - ngx-support-chat Library Implementation
 **Current Task:** TASK-004 - Message Display Components
-**Current Status:** In Progress (~30%)
+**Current Status:** In Progress (~80%)
 
 ---
 
@@ -33,53 +33,65 @@
 - [x] Implement sticky positioning CSS
 - [x] Write unit tests (10 tests)
 
-### Milestone 3: ChatMessageComponent (0%)
+### Milestone 3: ChatMessageComponent (100%) ✅
 
-- [ ] Create component files (ts, html, scss, spec.ts)
-- [ ] Add signal inputs
-- [ ] Add outputs (messageRetry, imagePreview, fileDownload)
-- [ ] Implement message type rendering
-- [ ] Implement status indicators
-- [ ] Style alignment
-- [ ] Write unit tests
+- [x] Create component files (ts, html, scss, spec.ts)
+- [x] Add signal inputs (message, isCurrentUser, showAvatar, showSenderName, isFirstInGroup, isLastInGroup)
+- [x] Add outputs (messageRetry, imagePreview, fileDownload)
+- [x] Implement message type rendering (text, image, file, system)
+- [x] Implement status indicators (sending, sent, delivered, read, failed)
+- [x] Style alignment (user right, other left, system center)
+- [x] Write unit tests (57 tests)
 
-### Milestone 4: ChatMessageGroupComponent (0%)
+### Milestone 4: ChatMessageGroupComponent (100%) ✅
 
-- [ ] Create component files
-- [ ] Implement grouping logic
-- [ ] Write unit tests
+- [x] Create component files (ts, html, scss, spec.ts)
+- [x] Implement grouping logic with MessageGroup interface
+- [x] Forward events from child ChatMessageComponents
+- [x] Write unit tests (17 tests)
 
-### Milestone 5: ChatMessageAreaComponent (0%)
+### Milestone 5: ChatMessageAreaComponent (100%) ✅
 
-- [ ] Create component files
-- [ ] Implement CDK virtual scrolling
-- [ ] Write unit tests
+- [x] Create component files (ts, html, scss, spec.ts)
+- [x] Implement CDK virtual scrolling
+- [x] Implement message grouping by date and sender
+- [x] Add scroll-to-bottom functionality
+- [x] Write unit tests (24 tests)
 
-### Milestone 6: Exports & Verification (0%)
+### Milestone 6: Exports & Verification (100%) ✅
 
-- [ ] Export all components from public-api.ts
-- [ ] Build verification
-- [ ] Lint verification
+- [x] Export all components from public-api.ts
+- [x] Export utilities from public-api.ts
+- [x] Build verification (npm run build:lib)
+- [x] Lint verification (npm run lint)
+- [x] Test verification (246 tests passing)
 
 ---
 
 ## Session History
+
+### Session 8 (2025-12-28) - Message Display Components Complete
+- Created ChatMessageComponent with all message types and statuses
+- Created ChatMessageGroupComponent for sender grouping
+- Created ChatMessageAreaComponent with CDK virtual scrolling
+- Fixed all lint and build errors
+- Exported all components and utilities
+- 246 tests passing
 
 ### Session 7 (2025-12-28) - Utilities & DateSeparator Complete
 - Created date-helpers.util.ts with formatDate fix for token conflicts
 - Created message-grouping.util.ts with grouping algorithms
 - Created ChatDateSeparatorComponent with sticky positioning
 - Added separator tokens to _tokens.scss
-- 148 tests passing
 - Session ended early due to context limit
 
 ---
 
 ## Right Now
 
-**Status:** Session 7 ended - context limit
-**Last Completed:** ChatDateSeparatorComponent
-**Next:** ChatMessageComponent
+**Status:** TASK-004 Milestone 6 complete - ready for task closure
+**Last Completed:** All milestones complete
+**Next:** Close TASK-004, start TASK-005 (Quick Replies Component)
 
 ---
 
@@ -96,7 +108,7 @@ None.
 | TASK-001 | Complete | Project Foundation |
 | TASK-002 | Complete | Data Models |
 | TASK-003 | Complete | Core Container |
-| TASK-004 | In Progress (~30%) | Message Display |
+| TASK-004 | Complete (~100%) | Message Display |
 | TASK-005-011 | Plan Ready | Remaining tasks |
 
-**Progress:** 3/11 tasks complete (27%)
+**Progress:** 4/11 tasks complete (36%)

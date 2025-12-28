@@ -1,0 +1,147 @@
+<div [ngClass]="containerClasses()">
+  <!-- Avatar (shown for non-user, non-system messages) -->
+  @if (showAvatar() && !isCurrentUser() && !isSystem() && isLastInGroup()) {
+    <div class="message-avatar">
+      @if (message().senderAvatar) {
+        <img
+          [src]="message().senderAvatar"
+          [alt]="message().senderName"
+          class="message-avatar__image"
+        />
+      } @else {
+        <div class="message-avatar__placeholder">
+          {{ message().senderName.charAt(0).toUpperCase() }}
+        </div>
+      }
+    </div>
+  } @else if (showAvatar() && !isCurrentUser() && !isSystem()) {
+    <div class="message-avatar message-avatar--spacer"></div>
+  }
+
+  <div class="message-content">
+    <!-- Sender name (shown for non-user messages at group start) -->
+    @if (showSenderName() && !isCurrentUser() && !isSystem() && isFirstInGroup()) {
+      <div class="message-sender">{{ message().senderName }}</div>
+    }
+
+    <!-- Message bubble -->
+    <div [ngClass]="bubbleClasses()">
+      <!-- System message -->
+      @if (isSystem()) {
+        <span class="message-system-text">{{ systemContent() }}</span>
+      }
+
+      <!-- Text message -->
+      @if (isText()) {
+        <span class="message-text">{{ textContent() }}</span>
+      }
+
+      <!-- Image message -->
+      @if (isImage()) {
+        @let img = imageContent();
+        @if (img) {
+          <button
+            type="button"
+            class="message-image"
+            (click)="onImageClick()"
+            [attr.aria-label]="'View image: ' + (img.altText || 'Image')"
+          >
+            <img
+              [src]="img.thumbnailUrl"
+              [alt]="img.altText || 'Image'"
+              class="message-image__thumbnail"
+              [style.max-width.px]="imageMaxWidth()"
+            />
+          </button>
+        }
+      }
+
+      <!-- File message -->
+      @if (isFile()) {
+        @let file = fileContent();
+        @if (file) {
+          <button
+            type="button"
+            class="message-file"
+            (click)="onFileDownloadClick()"
+            [attr.aria-label]="'Download file: ' + file.fileName"
+          >
+            <div class="message-file__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z" />
+                <polyline points="13 2 13 9 20 9" />
+              </svg>
+            </div>
+            <div class="message-file__info">
+              <span class="message-file__name">{{ file.fileName }}</span>
+              @if (file.fileSize !== undefined) {
+                <span class="message-file__size">{{ formatFileSize(file.fileSize) }}</span>
+              }
+            </div>
+            <div class="message-file__download" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+            </div>
+          </button>
+        }
+      }
+    </div>
+
+    <!-- Timestamp and status (shown on last message in group for user messages) -->
+    @if (isLastInGroup() && !isSystem()) {
+      <div class="message-meta" [class.message-meta--user]="isCurrentUser()">
+        <span class="message-meta__time">{{ formattedTime() }}</span>
+        @if (isCurrentUser()) {
+          <span class="message-meta__status" [class]="'message-meta__status--' + message().status">
+            <!-- Status icons -->
+            @switch (statusIcon()) {
+              @case ('clock') {
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Sending">
+                  <circle cx="8" cy="8" r="6" />
+                  <polyline points="8 4 8 8 11 10" />
+                </svg>
+              }
+              @case ('check') {
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Sent">
+                  <polyline points="3 8 6.5 11.5 13 5" />
+                </svg>
+              }
+              @case ('check-double') {
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Delivered">
+                  <polyline points="1 8 4.5 11.5 11 5" />
+                  <polyline points="5 8 8.5 11.5 15 5" />
+                </svg>
+              }
+              @case ('check-double-filled') {
+                <svg viewBox="0 0 16 16" fill="currentColor" aria-label="Read">
+                  <path d="M1 8l3.5 3.5L11 5" stroke="currentColor" stroke-width="1.5" fill="none" />
+                  <path d="M5 8l3.5 3.5L15 5" stroke="currentColor" stroke-width="1.5" fill="none" />
+                </svg>
+              }
+              @case ('x') {
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-label="Failed">
+                  <line x1="4" y1="4" x2="12" y2="12" />
+                  <line x1="12" y1="4" x2="4" y2="12" />
+                </svg>
+              }
+            }
+          </span>
+
+          @if (showRetry()) {
+            <button
+              type="button"
+              class="message-meta__retry"
+              (click)="onRetryClick()"
+              aria-label="Retry sending message"
+            >
+              Retry
+            </button>
+          }
+        }
+      </div>
+    }
+  </div>
+</div>

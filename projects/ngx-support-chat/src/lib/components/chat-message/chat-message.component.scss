@@ -1,0 +1,330 @@
+@use '../../../styles/tokens' as *;
+
+:host {
+  display: block;
+}
+
+// Message container layout
+.message-container {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--_spacing-sm);
+  padding: 0 var(--_spacing-md);
+
+  &--user {
+    flex-direction: row-reverse;
+  }
+
+  &--system {
+    justify-content: center;
+  }
+}
+
+// Avatar styles
+.message-avatar {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+
+  &--spacer {
+    visibility: hidden;
+  }
+
+  &__image {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--_radius-full);
+    object-fit: cover;
+  }
+
+  &__placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: var(--_radius-full);
+    background: var(--_message-other-bg);
+    color: var(--_text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--_font-size-sm);
+    font-weight: var(--_font-weight-medium);
+  }
+}
+
+// Message content wrapper
+.message-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 70%;
+  min-width: 0;
+
+  .message-container--user & {
+    align-items: flex-end;
+  }
+
+  .message-container--other & {
+    align-items: flex-start;
+  }
+
+  .message-container--system & {
+    align-items: center;
+    max-width: 100%;
+  }
+}
+
+// Sender name
+.message-sender {
+  font-size: var(--_font-size-xs);
+  color: var(--_text-secondary);
+  margin-bottom: var(--_spacing-xs);
+  padding-left: var(--_spacing-xs);
+}
+
+// Message bubble base styles
+.message-bubble {
+  position: relative;
+  padding: var(--_message-padding);
+  border-radius: var(--_message-radius);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  line-height: var(--_line-height);
+
+  // User message styling
+  &--user {
+    background: var(--_message-user-bg);
+    color: var(--_message-user-text);
+    border-bottom-right-radius: var(--_message-radius-connected);
+
+    &.message-bubble--first {
+      border-top-right-radius: var(--_message-radius);
+    }
+
+    &.message-bubble--last {
+      border-bottom-right-radius: var(--_message-radius);
+    }
+  }
+
+  // Other user message styling
+  &--other {
+    background: var(--_message-other-bg);
+    color: var(--_message-other-text);
+    border-bottom-left-radius: var(--_message-radius-connected);
+
+    &.message-bubble--first {
+      border-top-left-radius: var(--_message-radius);
+    }
+
+    &.message-bubble--last {
+      border-bottom-left-radius: var(--_message-radius);
+    }
+  }
+
+  // System message styling
+  &--system {
+    background: var(--_message-system-bg);
+    color: var(--_message-system-text);
+    padding: var(--_spacing-xs) var(--_spacing-sm);
+    font-size: var(--_font-size-xs);
+    font-style: italic;
+  }
+
+  // Failed message styling
+  &--failed {
+    opacity: 0.7;
+  }
+}
+
+// Text content
+.message-text,
+.message-system-text {
+  display: inline;
+  font-size: var(--_font-size-sm);
+}
+
+// Image message
+.message-image {
+  display: block;
+  padding: 0;
+  margin: calc(var(--_spacing-sm) * -1) calc(var(--_spacing-md) * -1);
+  border: none;
+  background: none;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: inherit;
+
+  &:focus-visible {
+    outline: 2px solid var(--_focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  &__thumbnail {
+    display: block;
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    border-radius: inherit;
+  }
+}
+
+// File message
+.message-file {
+  display: flex;
+  align-items: center;
+  gap: var(--_spacing-sm);
+  padding: var(--_spacing-sm);
+  margin: calc(var(--_spacing-xs) * -1);
+  border: none;
+  background: var(--_hover-bg);
+  border-radius: var(--_radius-sm);
+  cursor: pointer;
+  text-align: left;
+  transition: background-color var(--_transition-fast);
+
+  &:hover {
+    background: var(--_active-bg);
+  }
+
+  &:focus-visible {
+    outline: 2px solid var(--_focus-ring-color);
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    color: var(--_text-secondary);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__name {
+    font-size: var(--_font-size-sm);
+    font-weight: var(--_font-weight-medium);
+    color: inherit;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__size {
+    font-size: var(--_font-size-xs);
+    color: var(--_text-muted);
+  }
+
+  &__download {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    color: var(--_text-secondary);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+// Message metadata (time and status)
+.message-meta {
+  display: flex;
+  align-items: center;
+  gap: var(--_spacing-xs);
+  margin-top: var(--_spacing-xs);
+  padding: 0 var(--_spacing-xs);
+
+  &--user {
+    flex-direction: row-reverse;
+  }
+
+  &__time {
+    font-size: var(--_font-size-xs);
+    color: var(--_text-muted);
+  }
+
+  &__status {
+    display: flex;
+    align-items: center;
+    width: 16px;
+    height: 16px;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &--sending {
+      color: var(--_status-sending);
+    }
+
+    &--sent {
+      color: var(--_status-sent);
+    }
+
+    &--delivered {
+      color: var(--_status-delivered);
+    }
+
+    &--read {
+      color: var(--_status-read);
+    }
+
+    &--failed {
+      color: var(--_status-failed);
+    }
+  }
+
+  &__retry {
+    padding: var(--_spacing-xs) var(--_spacing-sm);
+    border: none;
+    background: var(--_status-failed);
+    color: white;
+    font-size: var(--_font-size-xs);
+    font-weight: var(--_font-weight-medium);
+    border-radius: var(--_radius-sm);
+    cursor: pointer;
+    transition: opacity var(--_transition-fast);
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--_focus-ring-color);
+      outline-offset: 2px;
+    }
+  }
+}
+
+// Container query adaptations
+@container chat (max-width: 299px) {
+  .message-content {
+    max-width: 85%;
+  }
+
+  .message-avatar {
+    width: 24px;
+    height: 24px;
+  }
+
+  .message-bubble {
+    font-size: var(--_font-size-xs);
+  }
+
+  .message-file {
+    &__icon {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}

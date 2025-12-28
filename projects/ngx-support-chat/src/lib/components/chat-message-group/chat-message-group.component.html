@@ -1,0 +1,15 @@
+<div class="message-group" [class.message-group--user]="group().isCurrentUser">
+  @for (message of group().messages; track trackByMessageId($index, message); let i = $index) {
+    <ngx-chat-message
+      [message]="message"
+      [isCurrentUser]="group().isCurrentUser"
+      [showAvatar]="showAvatar()"
+      [showSenderName]="showSenderName()"
+      [isFirstInGroup]="isFirst(i)"
+      [isLastInGroup]="isLast(i)"
+      (messageRetry)="messageRetry.emit($event)"
+      (imagePreview)="imagePreview.emit($event)"
+      (fileDownload)="fileDownload.emit($event)"
+    />
+  }
+</div>

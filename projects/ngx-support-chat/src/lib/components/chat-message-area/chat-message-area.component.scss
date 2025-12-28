@@ -1,0 +1,48 @@
+@use '../../../styles/tokens' as *;
+
+:host {
+  display: block;
+  height: 100%;
+  overflow: hidden;
+}
+
+.message-area {
+  height: 100%;
+  width: 100%;
+  background: var(--_chat-message-area-bg);
+
+  &__item {
+    padding: var(--_spacing-xs) 0;
+
+    &:first-child {
+      padding-top: var(--_spacing-md);
+    }
+
+    &:last-child {
+      padding-bottom: var(--_spacing-md);
+    }
+  }
+}
+
+// Styling for the virtual scroll content wrapper
+::ng-deep .cdk-virtual-scroll-content-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+// Container query adaptations
+@container chat (max-width: 299px) {
+  .message-area {
+    &__item {
+      padding: var(--_spacing-xs) 0;
+
+      &:first-child {
+        padding-top: var(--_spacing-sm);
+      }
+
+      &:last-child {
+        padding-bottom: var(--_spacing-sm);
+      }
+    }
+  }
+}

@@ -78,7 +78,7 @@ export function formatDate(date: Date, format: string): string {
   const dayOfWeek = date.getDay();
 
   // Build tokens map with unique placeholder keys
-  const tokens: Map<string, string> = new Map([
+  const tokens = new Map<string, string>([
     ['yyyy', String(year)],
     ['MMMM', MONTH_NAMES[month] ?? ''],
     ['MMM', MONTH_NAMES_SHORT[month] ?? ''],
@@ -100,7 +100,7 @@ export function formatDate(date: Date, format: string): string {
 
   for (const token of tokenOrder) {
     if (result.includes(token)) {
-      const placeholder = `\x00${placeholderIndex++}\x00`;
+      const placeholder = `\x00${String(placeholderIndex++)}\x00`;
       placeholders.set(placeholder, tokens.get(token) ?? '');
       result = result.split(token).join(placeholder);
     }
@@ -160,11 +160,11 @@ export function getRelativeTime(date: Date, now: Date = new Date()): string {
   }
 
   if (diffMinutes < 60) {
-    return diffMinutes === 1 ? '1 minute ago' : `${diffMinutes} minutes ago`;
+    return diffMinutes === 1 ? '1 minute ago' : `${String(diffMinutes)} minutes ago`;
   }
 
   if (diffHours < 24) {
-    return diffHours === 1 ? '1 hour ago' : `${diffHours} hours ago`;
+    return diffHours === 1 ? '1 hour ago' : `${String(diffHours)} hours ago`;
   }
 
   // Fallback to time format for older messages
