@@ -1,0 +1,121 @@
+// Internal tokens with public fallbacks
+$_chip-bg: var(--ngx-attachment-chip-bg, #f3f4f6);
+$_chip-border: var(--ngx-attachment-chip-border, #e5e7eb);
+$_chip-text: var(--ngx-attachment-chip-text, #374151);
+$_chip-remove-bg: var(--ngx-attachment-chip-remove-bg, #ef4444);
+$_chip-remove-text: var(--ngx-attachment-chip-remove-text, #ffffff);
+$_progress-bg: var(--ngx-attachment-progress-bg, #e5e7eb);
+$_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
+
+:host {
+  display: block;
+}
+
+.attachment-chips {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+
+  // Webkit scrollbar styling
+  &::-webkit-scrollbar {
+    height: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $_chip-border;
+    border-radius: 2px;
+  }
+}
+
+.chip {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.375rem 0.5rem;
+  background: $_chip-bg;
+  border: 1px solid $_chip-border;
+  border-radius: 0.5rem;
+  flex-shrink: 0;
+  max-width: 200px;
+
+  &__preview {
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    border-radius: 0.25rem;
+    flex-shrink: 0;
+  }
+
+  &__icon {
+    font-size: 1.125rem;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+
+  &__filename {
+    font-size: 0.75rem;
+    color: $_chip-text;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
+  }
+
+  &__progress {
+    width: 40px;
+    height: 4px;
+    border-radius: 2px;
+    overflow: hidden;
+    appearance: none;
+    flex-shrink: 0;
+
+    &::-webkit-progress-bar {
+      background: $_progress-bg;
+      border-radius: 2px;
+    }
+
+    &::-webkit-progress-value {
+      background: $_progress-fill;
+      border-radius: 2px;
+    }
+
+    &::-moz-progress-bar {
+      background: $_progress-fill;
+      border-radius: 2px;
+    }
+  }
+
+  &__remove {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: $_chip-remove-bg;
+    color: $_chip-remove-text;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: opacity 0.15s ease;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $_chip-remove-bg;
+      outline-offset: 1px;
+    }
+  }
+}

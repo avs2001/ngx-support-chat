@@ -1,0 +1,36 @@
+@if (attachments().length > 0) {
+  <div class="attachment-chips">
+    @for (attachment of attachments(); track attachment.id) {
+      <div class="chip">
+        @if (isImage(attachment) && attachment.previewUrl) {
+          <img
+            class="chip__preview"
+            [src]="attachment.previewUrl"
+            [alt]="attachment.file.name"
+          />
+        } @else {
+          <span class="chip__icon">{{ getFileIcon(attachment) }}</span>
+        }
+
+        <span class="chip__filename">{{ truncateFilename(attachment.file.name, 20) }}</span>
+
+        @if (attachment.uploadProgress !== undefined && attachment.uploadProgress < 100) {
+          <progress
+            class="chip__progress"
+            [value]="attachment.uploadProgress"
+            max="100"
+          ></progress>
+        }
+
+        <button
+          type="button"
+          class="chip__remove"
+          (click)="onRemove(attachment)"
+          [attr.aria-label]="'Remove ' + attachment.file.name"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    }
+  </div>
+}

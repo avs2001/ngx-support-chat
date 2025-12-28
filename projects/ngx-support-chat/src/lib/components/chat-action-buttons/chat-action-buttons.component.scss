@@ -1,0 +1,87 @@
+// Internal tokens with public fallbacks
+$_button-bg: var(--ngx-action-button-bg, transparent);
+$_button-text: var(--ngx-action-button-text, #6b7280);
+$_button-hover-bg: var(--ngx-action-button-hover-bg, #f3f4f6);
+$_send-bg: var(--ngx-send-button-bg, #3b82f6);
+$_send-text: var(--ngx-send-button-text, #ffffff);
+$_send-hover-bg: var(--ngx-send-button-hover-bg, #2563eb);
+$_send-disabled-bg: var(--ngx-send-button-disabled-bg, #9ca3af);
+
+:host {
+  display: block;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition:
+    background-color 0.15s ease,
+    opacity 0.15s ease;
+
+  &:focus-visible {
+    outline: 2px solid $_send-bg;
+    outline-offset: 2px;
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+  }
+
+  // Attach button styles
+  &--attach {
+    background: $_button-bg;
+    color: $_button-text;
+
+    &:hover:not(:disabled) {
+      background: $_button-hover-bg;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // Send button styles
+  &--send {
+    background: $_send-bg;
+    color: $_send-text;
+
+    &:hover:not(:disabled) {
+      background: $_send-hover-bg;
+    }
+
+    &:disabled {
+      background: $_send-disabled-bg;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// Visually hidden but accessible to screen readers
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

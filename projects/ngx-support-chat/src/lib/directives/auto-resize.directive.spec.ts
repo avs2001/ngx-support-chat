@@ -16,6 +16,13 @@ class TestHostComponent {
 @Component({
   standalone: true,
   imports: [AutoResizeDirective],
+  template: `<textarea [ngxAutoResize]="50"></textarea>`
+})
+class TestHostSmallMaxComponent {}
+
+@Component({
+  standalone: true,
+  imports: [AutoResizeDirective],
   template: `<textarea ngxAutoResize></textarea>`
 })
 class TestHostDefaultComponent {}
@@ -65,37 +72,6 @@ describe('AutoResizeDirective', () => {
       expect(textarea.style.height).not.toBe('');
     });
 
-    it('should respect max height', () => {
-      // Set a small max height
-      fixture.componentInstance.maxHeight = 50;
-      fixture.detectChanges();
-
-      // Add lots of content
-      textarea.value = 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8';
-      textarea.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      // Height should not exceed max
-      const height = parseInt(textarea.style.height, 10);
-      expect(height).toBeLessThanOrEqual(50);
-    });
-
-    it('should show scrollbar when content exceeds max height', () => {
-      fixture.componentInstance.maxHeight = 50;
-      fixture.detectChanges();
-
-      // Mock scrollHeight to be greater than max
-      Object.defineProperty(textarea, 'scrollHeight', {
-        value: 200,
-        configurable: true
-      });
-
-      textarea.dispatchEvent(new Event('input'));
-      fixture.detectChanges();
-
-      expect(textarea.style.overflowY).toBe('auto');
-    });
-
     it('should hide scrollbar when content fits', () => {
       // Mock scrollHeight to be less than max
       Object.defineProperty(textarea, 'scrollHeight', {
@@ -107,6 +83,46 @@ describe('AutoResizeDirective', () => {
       fixture.detectChanges();
 
       expect(textarea.style.overflowY).toBe('hidden');
+    })
+  });
+
+  describe('small max height behavior', () => {
+    let smallFixture: ComponentFixture<TestHostSmallMaxComponent>;
+    let smallTextarea: HTMLTextAreaElement;
+
+    beforeEach(async () => {
+      TestBed.resetTestingModule();
+      await TestBed.configureTestingModule({
+        imports: [TestHostSmallMaxComponent]
+      }).compileComponents();
+
+      smallFixture = TestBed.createComponent(TestHostSmallMaxComponent);
+      smallFixture.detectChanges();
+      smallTextarea = smallFixture.nativeElement.querySelector('textarea');
+    });
+
+    it('should respect max height', () => {
+      // Add lots of content
+      smallTextarea.value = 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5\nLine 6\nLine 7\nLine 8';
+      smallTextarea.dispatchEvent(new Event('input'));
+      smallFixture.detectChanges();
+
+      // Height should not exceed max
+      const height = parseInt(smallTextarea.style.height, 10);
+      expect(height).toBeLessThanOrEqual(50);
+    });
+
+    it('should show scrollbar when content exceeds max height', () => {
+      // Mock scrollHeight to be greater than max
+      Object.defineProperty(smallTextarea, 'scrollHeight', {
+        value: 200,
+        configurable: true
+      });
+
+      smallTextarea.dispatchEvent(new Event('input'));
+      smallFixture.detectChanges();
+
+      expect(smallTextarea.style.overflowY).toBe('auto');
     });
   });
 
@@ -115,6 +131,7 @@ describe('AutoResizeDirective', () => {
     let defaultTextarea: HTMLTextAreaElement;
 
     beforeEach(async () => {
+      TestBed.resetTestingModule();
       await TestBed.configureTestingModule({
         imports: [TestHostDefaultComponent]
       }).compileComponents();

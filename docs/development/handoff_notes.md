@@ -1,6 +1,6 @@
 # Handoff Notes: TASK-005
 
-**Last Updated:** 2025-12-28 Session 9
+**Last Updated:** 2025-12-28 Session 10
 **Task:** TASK-005 - Interactive Input Components
 **Branch:** main
 
@@ -8,53 +8,66 @@
 
 ## Resume Point
 
-**Location:** `directives/auto-resize.directive.spec.ts`
-**Context:** 3 tests failing due to TestBed reset between describe blocks
+**Location:** Integration phase - need to wire new components into container
+**Context:** All individual components implemented and tested (402 tests passing)
 
 ---
 
 ## Next Three Actions
 
-1. **Fix AutoResizeDirective tests:**
-   - Issue: Nested beforeEach tries to reconfigure TestBed
-   - Solution: Use `TestBed.resetTestingModule()` or separate describe blocks
+1. **Update ChatFooter to use new components:**
+   - Add ChatAttachmentPreviewComponent
+   - Add ChatActionButtonsComponent
+   - Wire attachment and send outputs
 
-2. **Create ChatAttachmentPreviewComponent:**
-   - Horizontal chip row for file previews
-   - Image thumbnails, file icons, remove buttons
-   - `attachmentRemove` output
+2. **Update ChatMessageArea to use new components:**
+   - Add ChatQuickRepliesComponent (already done?)
+   - Add ChatTypingIndicatorComponent (already done?)
+   - Apply AutoScrollDirective
 
-3. **Create ChatActionButtonsComponent:**
-   - Send button (enabled when hasContent)
-   - Attach button (triggers file picker)
-   - Hidden file input pattern
+3. **Run full integration test:**
+   - Verify all outputs flow correctly
+   - Test end-to-end user flow
 
 ---
 
 ## Blockers
 
-None (test fix is minor).
+None.
 
 ---
 
 ## Key Decisions This Session
 
 - Used signal-based APIs consistently (input, output, model, computed)
-- Pure CSS animation for typing indicator (performant)
-- AutoResizeDirective is standalone, used by ChatInputComponent
-- All components use OnPush change detection
+- FileList mock pattern for testing file input (Happy DOM compatibility)
+- AutoScrollDirective uses setTimeout for DOM update timing
+- Threshold-based "at bottom" detection (default 100px)
 
 ---
 
 ## Working State
 
 **Branch:** main
-**Last Commit:** fad3673 (TASK-004 complete)
-**Uncommitted Changes:** All session 9 work (needs commit)
+**Last Commit:** 6f7a249 (session 9)
+**Uncommitted Changes:** All session 10 work (needs commit)
 
 ---
 
 ## Temporary Artifacts
 
-**Folder:** `temp/task_005/session_009/`
+**Folder:** `temp/task_005/session_010/`
 **Contents:** Empty
+
+---
+
+## Components Created This Session
+
+| Component | Tests | Status |
+|-----------|-------|--------|
+| ChatAttachmentPreviewComponent | 32 | Complete |
+| ChatActionButtonsComponent | 27 | Complete |
+| AutoScrollDirective | 18 | Complete |
+| AutoResizeDirective (fix) | 10 | Fixed |
+
+**Total tests:** 402 passing
