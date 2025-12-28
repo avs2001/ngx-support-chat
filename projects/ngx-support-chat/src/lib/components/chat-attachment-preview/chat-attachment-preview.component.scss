@@ -1,11 +1,4 @@
-// Internal tokens with public fallbacks
-$_chip-bg: var(--ngx-attachment-chip-bg, #f3f4f6);
-$_chip-border: var(--ngx-attachment-chip-border, #e5e7eb);
-$_chip-text: var(--ngx-attachment-chip-text, #374151);
-$_chip-remove-bg: var(--ngx-attachment-chip-remove-bg, #ef4444);
-$_chip-remove-text: var(--ngx-attachment-chip-remove-text, #ffffff);
-$_progress-bg: var(--ngx-attachment-progress-bg, #e5e7eb);
-$_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
+@use '../../../styles/tokens' as *;
 
 :host {
   display: block;
@@ -13,8 +6,8 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
 
 .attachment-chips {
   display: flex;
-  gap: 0.5rem;
-  padding: 0.5rem 0;
+  gap: var(--_attachment-gap);
+  padding: var(--_spacing-sm) 0;
   overflow-x: auto;
   scrollbar-width: thin;
 
@@ -28,7 +21,7 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
   }
 
   &::-webkit-scrollbar-thumb {
-    background: $_chip-border;
+    background: var(--_separator-line);
     border-radius: 2px;
   }
 }
@@ -36,19 +29,20 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
 .chip {
   display: flex;
   align-items: center;
-  gap: 0.375rem;
-  padding: 0.375rem 0.5rem;
-  background: $_chip-bg;
-  border: 1px solid $_chip-border;
-  border-radius: 0.5rem;
+  gap: var(--_spacing-xs);
+  padding: var(--_spacing-xs) var(--_spacing-sm);
+  height: var(--_attachment-chip-height);
+  background: var(--_attachment-chip-bg);
+  border: 1px solid var(--_separator-line);
+  border-radius: var(--_attachment-chip-radius);
   flex-shrink: 0;
   max-width: 200px;
 
   &__preview {
-    width: 24px;
-    height: 24px;
+    width: var(--_button-icon-size);
+    height: var(--_button-icon-size);
     object-fit: cover;
-    border-radius: 0.25rem;
+    border-radius: var(--_radius-sm);
     flex-shrink: 0;
   }
 
@@ -56,11 +50,12 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
     font-size: 1.125rem;
     line-height: 1;
     flex-shrink: 0;
+    color: var(--_timestamp-text);
   }
 
   &__filename {
-    font-size: 0.75rem;
-    color: $_chip-text;
+    font-size: var(--_font-size-xs);
+    color: var(--_attachment-chip-text);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -76,17 +71,17 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
     flex-shrink: 0;
 
     &::-webkit-progress-bar {
-      background: $_progress-bg;
+      background: var(--_separator-line);
       border-radius: 2px;
     }
 
     &::-webkit-progress-value {
-      background: $_progress-fill;
+      background: var(--_button-primary-bg);
       border-radius: 2px;
     }
 
     &::-moz-progress-bar {
-      background: $_progress-fill;
+      background: var(--_button-primary-bg);
       border-radius: 2px;
     }
   }
@@ -100,22 +95,49 @@ $_progress-fill: var(--ngx-attachment-progress-fill, #3b82f6);
     padding: 0;
     border: none;
     border-radius: 50%;
-    background: $_chip-remove-bg;
-    color: $_chip-remove-text;
+    background: var(--_status-failed);
+    color: white;
     font-size: 0.875rem;
-    font-weight: 600;
+    font-weight: var(--_font-weight-bold);
     line-height: 1;
     cursor: pointer;
     flex-shrink: 0;
-    transition: opacity 0.15s ease;
+    transition: opacity var(--_transition-duration) var(--_transition-easing);
 
     &:hover {
       opacity: 0.85;
     }
 
     &:focus-visible {
-      outline: 2px solid $_chip-remove-bg;
+      outline: 2px solid var(--_focus-ring-color);
       outline-offset: 1px;
+    }
+  }
+}
+
+// Container query adaptations
+@container chat (max-width: 299px) {
+  .chip {
+    max-width: 150px;
+
+    &__filename {
+      max-width: 60px;
+    }
+  }
+}
+
+@container chat (min-width: 300px) and (max-width: 599px) {
+  .chip {
+    &__filename {
+      max-width: 80px;
+    }
+  }
+}
+
+@container chat (min-width: 600px) {
+  .chip {
+    &__filename {
+      max-width: 150px;
     }
   }
 }

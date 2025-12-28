@@ -5,97 +5,205 @@
  * They reference public tokens (--ngx-*) with fallback defaults.
  *
  * Pattern: --_[token-name]: var(--ngx-[token-name], [default-value])
+ *
+ * Consumers can override any --ngx-* token to customize the appearance.
+ * See tokens.css for the complete list of customizable tokens.
  */
 
 :host {
   // ============================================
-  // Colors
+  // 8.1 COLOR TOKENS
   // ============================================
 
-  // Base backgrounds
+  // --- Container Colors ---
   --_chat-bg: var(--ngx-chat-bg, #ffffff);
-  --_chat-header-bg: var(--ngx-chat-header-bg, var(--_chat-bg));
-  --_chat-footer-bg: var(--ngx-chat-footer-bg, var(--_chat-bg));
-  --_chat-message-area-bg: var(--ngx-chat-message-area-bg, var(--_chat-bg));
+  --_chat-header-bg: var(--ngx-chat-header-bg, #ffffff);
+  --_chat-footer-bg: var(--ngx-chat-footer-bg, #ffffff);
+  --_chat-message-area-bg: var(--ngx-chat-message-area-bg, #f5f5f5);
 
-  // Text colors
-  --_text-primary: var(--ngx-text-primary, #1a1a1a);
-  --_text-secondary: var(--ngx-text-secondary, #666666);
-  --_text-muted: var(--ngx-text-muted, #999999);
+  // --- Bubble Colors ---
+  --_bubble-user-bg: var(--ngx-bubble-user-bg, #0066cc);
+  --_bubble-user-text: var(--ngx-bubble-user-text, #ffffff);
+  --_bubble-agent-bg: var(--ngx-bubble-agent-bg, #e8e8e8);
+  --_bubble-agent-text: var(--ngx-bubble-agent-text, #1a1a1a);
+  --_bubble-system-bg: var(--ngx-bubble-system-bg, transparent);
+  --_bubble-system-text: var(--ngx-bubble-system-text, #666666);
 
-  // Border colors
-  --_border-color: var(--ngx-border-color, #e5e5e5);
-  --_border-color-light: var(--ngx-border-color-light, #f0f0f0);
+  // --- Input Colors ---
+  --_input-bg: var(--ngx-input-bg, #ffffff);
+  --_input-text: var(--ngx-input-text, #1a1a1a);
+  --_input-placeholder: var(--ngx-input-placeholder, #999999);
+  --_input-border: var(--ngx-input-border, #dddddd);
+  --_input-focus-border: var(--ngx-input-focus-border, #0066cc);
 
-  // Message bubble colors
-  --_message-user-bg: var(--ngx-message-user-bg, #0066cc);
-  --_message-user-text: var(--ngx-message-user-text, #ffffff);
-  --_message-other-bg: var(--ngx-message-other-bg, #f0f0f0);
-  --_message-other-text: var(--ngx-message-other-text, var(--_text-primary));
-  --_message-system-bg: var(--ngx-message-system-bg, transparent);
-  --_message-system-text: var(--ngx-message-system-text, var(--_text-muted));
+  // --- Button Colors ---
+  --_button-primary-bg: var(--ngx-button-primary-bg, #0066cc);
+  --_button-primary-text: var(--ngx-button-primary-text, #ffffff);
+  --_button-secondary-bg: var(--ngx-button-secondary-bg, #e8e8e8);
+  --_button-secondary-text: var(--ngx-button-secondary-text, #1a1a1a);
+  --_button-disabled-bg: var(--ngx-button-disabled-bg, #f0f0f0);
+  --_button-disabled-text: var(--ngx-button-disabled-text, #999999);
 
-  // Status colors
+  // --- Separator Colors ---
+  --_separator-text: var(--ngx-separator-text, #666666);
+  --_separator-line: var(--ngx-separator-line, #e0e0e0);
+
+  // --- Status Colors ---
   --_status-sending: var(--ngx-status-sending, #999999);
-  --_status-sent: var(--ngx-status-sent, #999999);
+  --_status-sent: var(--ngx-status-sent, #666666);
   --_status-delivered: var(--ngx-status-delivered, #0066cc);
-  --_status-read: var(--ngx-status-read, #0066cc);
+  --_status-read: var(--ngx-status-read, #00cc66);
   --_status-failed: var(--ngx-status-failed, #cc0000);
 
-  // Interactive colors
+  // --- Quick Reply Colors ---
+  --_quick-reply-bg: var(--ngx-quick-reply-bg, #ffffff);
+  --_quick-reply-text: var(--ngx-quick-reply-text, #0066cc);
+  --_quick-reply-border: var(--ngx-quick-reply-border, #0066cc);
+  --_quick-reply-hover-bg: var(--ngx-quick-reply-hover-bg, #f0f7ff);
+  --_quick-reply-selected-bg: var(--ngx-quick-reply-selected-bg, #0066cc);
+  --_quick-reply-selected-text: var(--ngx-quick-reply-selected-text, #ffffff);
+  --_quick-reply-disabled-bg: var(--ngx-quick-reply-disabled-bg, #f5f5f5);
+  --_quick-reply-disabled-text: var(--ngx-quick-reply-disabled-text, #999999);
+
+  // --- Miscellaneous Colors ---
+  --_typing-indicator-dot: var(--ngx-typing-indicator-dot, #666666);
+  --_link-color: var(--ngx-link-color, #0066cc);
+  --_timestamp-text: var(--ngx-timestamp-text, #999999);
+  --_avatar-bg: var(--ngx-avatar-bg, #e0e0e0);
+  --_attachment-chip-bg: var(--ngx-attachment-chip-bg, #f0f0f0);
+  --_attachment-chip-text: var(--ngx-attachment-chip-text, #1a1a1a);
+  --_scroll-indicator-bg: var(--ngx-scroll-indicator-bg, #0066cc);
+  --_scroll-indicator-text: var(--ngx-scroll-indicator-text, #ffffff);
+
+  // --- Interactive States ---
   --_focus-ring-color: var(--ngx-focus-ring-color, #0066cc);
   --_hover-bg: var(--ngx-hover-bg, rgba(0, 0, 0, 0.05));
   --_active-bg: var(--ngx-active-bg, rgba(0, 0, 0, 0.1));
 
+  // --- Utility Text Colors (for convenience) ---
+  --_text-primary: var(--ngx-bubble-agent-text, #1a1a1a);
+  --_text-muted: var(--ngx-timestamp-text, #999999);
+
+  // --- Utility Border Color (for convenience) ---
+  --_border-color: var(--ngx-separator-line, #e0e0e0);
+
   // ============================================
-  // Spacing
+  // 8.2 SPACING TOKENS
   // ============================================
 
+  // --- Base Spacing Scale ---
   --_spacing-xs: var(--ngx-spacing-xs, 4px);
   --_spacing-sm: var(--ngx-spacing-sm, 8px);
   --_spacing-md: var(--ngx-spacing-md, 16px);
   --_spacing-lg: var(--ngx-spacing-lg, 24px);
   --_spacing-xl: var(--ngx-spacing-xl, 32px);
 
-  // Component-specific spacing
-  --_header-padding: var(--ngx-header-padding, var(--_spacing-md));
-  --_footer-padding: var(--ngx-footer-padding, var(--_spacing-md));
-  --_message-padding: var(--ngx-message-padding, var(--_spacing-sm) var(--_spacing-md));
-  --_message-gap: var(--ngx-message-gap, var(--_spacing-sm));
-  --_message-group-gap: var(--ngx-message-group-gap, var(--_spacing-md));
+  // --- Component-Specific Spacing ---
+  --_message-gap: var(--ngx-message-gap, 8px);
+  --_message-group-gap: var(--ngx-message-group-gap, 4px);
+  --_bubble-padding: var(--ngx-bubble-padding, 12px 16px);
+  --_header-padding: var(--ngx-header-padding, 16px);
+  --_footer-padding: var(--ngx-footer-padding, 12px 16px);
+  --_input-padding: var(--ngx-input-padding, 12px);
+  --_quick-reply-gap: var(--ngx-quick-reply-gap, 8px);
+  --_attachment-gap: var(--ngx-attachment-gap, 8px);
 
   // ============================================
-  // Border Radius
+  // 8.3 BORDER RADIUS TOKENS
   // ============================================
 
+  // --- Base Radius Scale ---
   --_radius-sm: var(--ngx-radius-sm, 4px);
   --_radius-md: var(--ngx-radius-md, 12px);
   --_radius-lg: var(--ngx-radius-lg, 16px);
   --_radius-full: var(--ngx-radius-full, 9999px);
 
-  // Message bubble radius
-  --_message-radius: var(--ngx-message-radius, var(--_radius-md));
-  --_message-radius-connected: var(--ngx-message-radius-connected, var(--_radius-sm));
+  // --- Component-Specific Radius ---
+  --_bubble-radius: var(--ngx-bubble-radius, 16px);
+  --_bubble-radius-grouped: var(--ngx-bubble-radius-grouped, 4px);
+  --_input-radius: var(--ngx-input-radius, 20px);
+  --_button-radius: var(--ngx-button-radius, 20px);
+  --_avatar-radius: var(--ngx-avatar-radius, 50%);
+  --_attachment-chip-radius: var(--ngx-attachment-chip-radius, 16px);
+  --_image-radius: var(--ngx-image-radius, 12px);
+  --_quick-reply-radius: var(--ngx-quick-reply-radius, 16px);
 
   // ============================================
-  // Typography
+  // 8.4 TYPOGRAPHY TOKENS
   // ============================================
 
-  --_font-family: var(--ngx-font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+  // --- Font Family ---
+  --_font-family: var(
+    --ngx-font-family,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    sans-serif
+  );
 
-  --_font-size-xs: var(--ngx-font-size-xs, 0.75rem);
-  --_font-size-sm: var(--ngx-font-size-sm, 0.875rem);
-  --_font-size-md: var(--ngx-font-size-md, 1rem);
-  --_font-size-lg: var(--ngx-font-size-lg, 1.125rem);
+  // --- Font Sizes ---
+  --_font-size-xs: var(--ngx-font-size-xs, 0.75rem); // 12px - timestamps, metadata
+  --_font-size-sm: var(--ngx-font-size-sm, 0.875rem); // 14px - secondary text
+  --_font-size-md: var(--ngx-font-size-md, 1rem); // 16px - message text
+  --_font-size-lg: var(--ngx-font-size-lg, 1.125rem); // 18px - headers, emphasis
 
+  // --- Font Weights ---
   --_font-weight-normal: var(--ngx-font-weight-normal, 400);
   --_font-weight-medium: var(--ngx-font-weight-medium, 500);
   --_font-weight-bold: var(--ngx-font-weight-bold, 600);
 
+  // --- Line Heights ---
   --_line-height: var(--ngx-line-height, 1.5);
+  --_message-line-height: var(--ngx-message-line-height, 1.4);
 
   // ============================================
-  // Shadows
+  // 8.5 DIMENSION TOKENS
+  // ============================================
+
+  // --- Avatar Sizes ---
+  --_avatar-size: var(--ngx-avatar-size, 36px);
+  --_avatar-size-sm: var(--ngx-avatar-size-sm, 24px);
+
+  // --- Bubble Dimensions ---
+  --_max-bubble-width: var(--ngx-max-bubble-width, 70%);
+
+  // --- Image Dimensions ---
+  --_image-thumbnail-max-width: var(--ngx-image-thumbnail-max-width, 240px);
+  --_image-thumbnail-max-height: var(--ngx-image-thumbnail-max-height, 180px);
+
+  // --- Input Dimensions ---
+  --_input-min-height: var(--ngx-input-min-height, 44px);
+  --_input-max-height: var(--ngx-input-max-height, 120px);
+
+  // --- Button Dimensions ---
+  --_button-size: var(--ngx-button-size, 44px);
+  --_button-icon-size: var(--ngx-button-icon-size, 24px);
+
+  // --- Attachment Dimensions ---
+  --_attachment-chip-height: var(--ngx-attachment-chip-height, 32px);
+  --_attachment-thumbnail-size: var(--ngx-attachment-thumbnail-size, 48px);
+
+  // --- Typing Indicator ---
+  --_typing-dot-size: var(--ngx-typing-dot-size, 8px);
+
+  // ============================================
+  // 8.6 ANIMATION TOKENS
+  // ============================================
+
+  // --- Transitions ---
+  --_transition-duration: var(--ngx-transition-duration, 200ms);
+  --_transition-easing: var(--ngx-transition-easing, cubic-bezier(0.4, 0, 0.2, 1));
+
+  // --- Typing Animation ---
+  --_typing-animation-duration: var(--ngx-typing-animation-duration, 1.4s);
+
+  // --- Scroll Animation ---
+  --_scroll-animation-duration: var(--ngx-scroll-animation-duration, 300ms);
+
+  // ============================================
+  // SHADOWS
   // ============================================
 
   --_shadow-sm: var(--ngx-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
@@ -103,26 +211,12 @@
   --_shadow-lg: var(--ngx-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.1));
 
   // ============================================
-  // Transitions
-  // ============================================
-
-  --_transition-fast: var(--ngx-transition-fast, 150ms ease);
-  --_transition-normal: var(--ngx-transition-normal, 200ms ease);
-  --_transition-slow: var(--ngx-transition-slow, 300ms ease);
-
-  // ============================================
-  // Separator
-  // ============================================
-
-  --_separator-text: var(--ngx-separator-text, var(--_text-muted));
-  --_separator-line: var(--ngx-separator-line, var(--_border-color));
-
-  // ============================================
-  // Z-index layers
+  // Z-INDEX LAYERS
   // ============================================
 
   --_z-header: var(--ngx-z-header, 10);
   --_z-footer: var(--ngx-z-footer, 10);
   --_z-sticky-date: var(--ngx-z-sticky-date, 5);
+  --_z-scroll-indicator: var(--ngx-z-scroll-indicator, 15);
   --_z-overlay: var(--ngx-z-overlay, 100);
 }

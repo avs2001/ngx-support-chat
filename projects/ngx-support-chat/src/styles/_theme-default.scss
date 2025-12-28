@@ -1,0 +1,249 @@
+/**
+ * Default Theme
+ *
+ * This file provides mixins for applying default token values.
+ * Consumers can use these mixins to set up base themes or create variants.
+ */
+
+/// Default light theme token values
+/// Apply at :root level for global default styling
+@mixin ngx-chat-default-tokens {
+  // ============================================
+  // COLOR TOKENS
+  // ============================================
+
+  // Container Colors
+  --ngx-chat-bg: #ffffff;
+  --ngx-chat-header-bg: #ffffff;
+  --ngx-chat-footer-bg: #ffffff;
+  --ngx-chat-message-area-bg: #f5f5f5;
+
+  // Bubble Colors
+  --ngx-bubble-user-bg: #0066cc;
+  --ngx-bubble-user-text: #ffffff;
+  --ngx-bubble-agent-bg: #e8e8e8;
+  --ngx-bubble-agent-text: #1a1a1a;
+  --ngx-bubble-system-bg: transparent;
+  --ngx-bubble-system-text: #666666;
+
+  // Input Colors
+  --ngx-input-bg: #ffffff;
+  --ngx-input-text: #1a1a1a;
+  --ngx-input-placeholder: #999999;
+  --ngx-input-border: #dddddd;
+  --ngx-input-focus-border: #0066cc;
+
+  // Button Colors
+  --ngx-button-primary-bg: #0066cc;
+  --ngx-button-primary-text: #ffffff;
+  --ngx-button-secondary-bg: #e8e8e8;
+  --ngx-button-secondary-text: #1a1a1a;
+  --ngx-button-disabled-bg: #f0f0f0;
+  --ngx-button-disabled-text: #999999;
+
+  // Separator Colors
+  --ngx-separator-text: #666666;
+  --ngx-separator-line: #e0e0e0;
+
+  // Status Colors
+  --ngx-status-sending: #999999;
+  --ngx-status-sent: #666666;
+  --ngx-status-delivered: #0066cc;
+  --ngx-status-read: #00cc66;
+  --ngx-status-failed: #cc0000;
+
+  // Quick Reply Colors
+  --ngx-quick-reply-bg: #ffffff;
+  --ngx-quick-reply-text: #0066cc;
+  --ngx-quick-reply-border: #0066cc;
+  --ngx-quick-reply-hover-bg: #f0f7ff;
+  --ngx-quick-reply-selected-bg: #0066cc;
+  --ngx-quick-reply-selected-text: #ffffff;
+  --ngx-quick-reply-disabled-bg: #f5f5f5;
+  --ngx-quick-reply-disabled-text: #999999;
+
+  // Miscellaneous Colors
+  --ngx-typing-indicator-dot: #666666;
+  --ngx-link-color: #0066cc;
+  --ngx-timestamp-text: #999999;
+  --ngx-avatar-bg: #e0e0e0;
+  --ngx-attachment-chip-bg: #f0f0f0;
+  --ngx-attachment-chip-text: #1a1a1a;
+  --ngx-scroll-indicator-bg: #0066cc;
+  --ngx-scroll-indicator-text: #ffffff;
+
+  // Interactive States
+  --ngx-focus-ring-color: #0066cc;
+  --ngx-hover-bg: rgba(0, 0, 0, 0.05);
+  --ngx-active-bg: rgba(0, 0, 0, 0.1);
+
+  // ============================================
+  // SPACING TOKENS
+  // ============================================
+
+  --ngx-spacing-xs: 4px;
+  --ngx-spacing-sm: 8px;
+  --ngx-spacing-md: 16px;
+  --ngx-spacing-lg: 24px;
+  --ngx-spacing-xl: 32px;
+
+  --ngx-message-gap: 8px;
+  --ngx-message-group-gap: 4px;
+  --ngx-bubble-padding: 12px 16px;
+  --ngx-header-padding: 16px;
+  --ngx-footer-padding: 12px 16px;
+  --ngx-input-padding: 12px;
+  --ngx-quick-reply-gap: 8px;
+  --ngx-attachment-gap: 8px;
+
+  // ============================================
+  // BORDER RADIUS TOKENS
+  // ============================================
+
+  --ngx-radius-sm: 4px;
+  --ngx-radius-md: 12px;
+  --ngx-radius-lg: 16px;
+  --ngx-radius-full: 9999px;
+
+  --ngx-bubble-radius: 16px;
+  --ngx-bubble-radius-grouped: 4px;
+  --ngx-input-radius: 20px;
+  --ngx-button-radius: 20px;
+  --ngx-avatar-radius: 50%;
+  --ngx-attachment-chip-radius: 16px;
+  --ngx-image-radius: 12px;
+  --ngx-quick-reply-radius: 16px;
+
+  // ============================================
+  // TYPOGRAPHY TOKENS
+  // ============================================
+
+  --ngx-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --ngx-font-size-xs: 0.75rem;
+  --ngx-font-size-sm: 0.875rem;
+  --ngx-font-size-md: 1rem;
+  --ngx-font-size-lg: 1.125rem;
+  --ngx-font-weight-normal: 400;
+  --ngx-font-weight-medium: 500;
+  --ngx-font-weight-bold: 600;
+  --ngx-line-height: 1.5;
+  --ngx-message-line-height: 1.4;
+
+  // ============================================
+  // DIMENSION TOKENS
+  // ============================================
+
+  --ngx-avatar-size: 36px;
+  --ngx-avatar-size-sm: 24px;
+  --ngx-max-bubble-width: 70%;
+  --ngx-image-thumbnail-max-width: 240px;
+  --ngx-image-thumbnail-max-height: 180px;
+  --ngx-input-min-height: 44px;
+  --ngx-input-max-height: 120px;
+  --ngx-button-size: 44px;
+  --ngx-button-icon-size: 24px;
+  --ngx-attachment-chip-height: 32px;
+  --ngx-attachment-thumbnail-size: 48px;
+  --ngx-typing-dot-size: 8px;
+
+  // ============================================
+  // ANIMATION TOKENS
+  // ============================================
+
+  --ngx-transition-duration: 200ms;
+  --ngx-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+  --ngx-typing-animation-duration: 1.4s;
+  --ngx-scroll-animation-duration: 300ms;
+
+  // ============================================
+  // SHADOWS
+  // ============================================
+
+  --ngx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ngx-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --ngx-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  // ============================================
+  // Z-INDEX
+  // ============================================
+
+  --ngx-z-header: 10;
+  --ngx-z-footer: 10;
+  --ngx-z-sticky-date: 5;
+  --ngx-z-scroll-indicator: 15;
+  --ngx-z-overlay: 100;
+}
+
+/// Dark theme token values
+/// Apply via @media (prefers-color-scheme: dark) or manually
+@mixin ngx-chat-dark-tokens {
+  // Container Colors
+  --ngx-chat-bg: #1a1a1a;
+  --ngx-chat-header-bg: #1a1a1a;
+  --ngx-chat-footer-bg: #1a1a1a;
+  --ngx-chat-message-area-bg: #121212;
+
+  // Bubble Colors
+  --ngx-bubble-user-bg: #0066cc;
+  --ngx-bubble-user-text: #ffffff;
+  --ngx-bubble-agent-bg: #2d2d2d;
+  --ngx-bubble-agent-text: #e0e0e0;
+  --ngx-bubble-system-bg: transparent;
+  --ngx-bubble-system-text: #888888;
+
+  // Input Colors
+  --ngx-input-bg: #2d2d2d;
+  --ngx-input-text: #e0e0e0;
+  --ngx-input-placeholder: #666666;
+  --ngx-input-border: #404040;
+  --ngx-input-focus-border: #3399ff;
+
+  // Button Colors
+  --ngx-button-primary-bg: #3399ff;
+  --ngx-button-primary-text: #ffffff;
+  --ngx-button-secondary-bg: #2d2d2d;
+  --ngx-button-secondary-text: #e0e0e0;
+  --ngx-button-disabled-bg: #1f1f1f;
+  --ngx-button-disabled-text: #666666;
+
+  // Separator Colors
+  --ngx-separator-text: #888888;
+  --ngx-separator-line: #404040;
+
+  // Status Colors
+  --ngx-status-sending: #666666;
+  --ngx-status-sent: #888888;
+  --ngx-status-delivered: #3399ff;
+  --ngx-status-read: #00cc66;
+  --ngx-status-failed: #ff4444;
+
+  // Quick Reply Colors
+  --ngx-quick-reply-bg: #2d2d2d;
+  --ngx-quick-reply-text: #3399ff;
+  --ngx-quick-reply-border: #3399ff;
+  --ngx-quick-reply-hover-bg: #1a3d5c;
+  --ngx-quick-reply-selected-bg: #3399ff;
+  --ngx-quick-reply-selected-text: #ffffff;
+  --ngx-quick-reply-disabled-bg: #1f1f1f;
+  --ngx-quick-reply-disabled-text: #666666;
+
+  // Miscellaneous Colors
+  --ngx-typing-indicator-dot: #888888;
+  --ngx-link-color: #3399ff;
+  --ngx-timestamp-text: #666666;
+  --ngx-avatar-bg: #404040;
+  --ngx-attachment-chip-bg: #2d2d2d;
+  --ngx-attachment-chip-text: #e0e0e0;
+  --ngx-scroll-indicator-bg: #3399ff;
+  --ngx-scroll-indicator-text: #ffffff;
+
+  // Interactive States
+  --ngx-focus-ring-color: #3399ff;
+  --ngx-hover-bg: rgba(255, 255, 255, 0.05);
+  --ngx-active-bg: rgba(255, 255, 255, 0.1);
+
+  // Shadows (darker for dark mode)
+  --ngx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --ngx-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.4);
+  --ngx-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.5);
+}

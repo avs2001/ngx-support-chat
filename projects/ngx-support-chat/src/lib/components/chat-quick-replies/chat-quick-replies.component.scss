@@ -1,27 +1,7 @@
+@use '../../../styles/tokens' as *;
+
 :host {
   display: block;
-
-  // Internal tokens with fallbacks
-  --_quick-reply-bg: var(--ngx-quick-reply-bg, #f0f0f0);
-  --_quick-reply-text: var(--ngx-quick-reply-text, #1a1a1a);
-  --_quick-reply-border: var(--ngx-quick-reply-border, transparent);
-  --_quick-reply-selected-bg: var(--ngx-quick-reply-selected-bg, #0066cc);
-  --_quick-reply-selected-text: var(--ngx-quick-reply-selected-text, #ffffff);
-  --_quick-reply-disabled-bg: var(--ngx-quick-reply-disabled-bg, #e0e0e0);
-  --_quick-reply-disabled-text: var(--ngx-quick-reply-disabled-text, #999999);
-  --_quick-reply-hover-bg: var(--ngx-quick-reply-hover-bg, #e0e0e0);
-
-  --_spacing-xs: var(--ngx-spacing-xs, 4px);
-  --_spacing-sm: var(--ngx-spacing-sm, 8px);
-  --_spacing-md: var(--ngx-spacing-md, 16px);
-
-  --_radius-sm: var(--ngx-radius-sm, 4px);
-  --_radius-md: var(--ngx-radius-md, 12px);
-
-  --_font-size-sm: var(--ngx-font-size-sm, 0.875rem);
-  --_font-size-md: var(--ngx-font-size-md, 1rem);
-
-  --_transition-duration: var(--ngx-transition-duration, 0.2s);
 }
 
 .quick-replies {
@@ -43,7 +23,7 @@
   &__options {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--_spacing-sm);
+    gap: var(--_quick-reply-gap);
 
     &--confirmation {
       justify-content: flex-start;
@@ -66,24 +46,24 @@
   justify-content: center;
   padding: var(--_spacing-sm) var(--_spacing-md);
   border: 1px solid var(--_quick-reply-border);
-  border-radius: var(--_radius-md);
+  border-radius: var(--_quick-reply-radius);
   background-color: var(--_quick-reply-bg);
   color: var(--_quick-reply-text);
   font-size: var(--_font-size-sm);
   font-family: inherit;
   cursor: pointer;
   transition:
-    background-color var(--_transition-duration) ease,
-    color var(--_transition-duration) ease,
-    border-color var(--_transition-duration) ease,
-    opacity var(--_transition-duration) ease;
+    background-color var(--_transition-duration) var(--_transition-easing),
+    color var(--_transition-duration) var(--_transition-easing),
+    border-color var(--_transition-duration) var(--_transition-easing),
+    opacity var(--_transition-duration) var(--_transition-easing);
 
   &:hover:not(:disabled):not(.quick-reply-option--muted) {
     background-color: var(--_quick-reply-hover-bg);
   }
 
   &:focus-visible {
-    outline: 2px solid var(--_quick-reply-selected-bg);
+    outline: 2px solid var(--_focus-ring-color);
     outline-offset: 2px;
   }
 
@@ -118,8 +98,8 @@
   font-size: var(--_font-size-sm);
   cursor: pointer;
   transition:
-    background-color var(--_transition-duration) ease,
-    opacity var(--_transition-duration) ease;
+    background-color var(--_transition-duration) var(--_transition-easing),
+    opacity var(--_transition-duration) var(--_transition-easing);
 
   &:hover:not(.quick-reply-option--disabled):not(.quick-reply-option--muted) {
     background-color: var(--_quick-reply-hover-bg);
@@ -164,8 +144,8 @@
   font-family: inherit;
   cursor: pointer;
   transition:
-    background-color var(--_transition-duration) ease,
-    opacity var(--_transition-duration) ease;
+    background-color var(--_transition-duration) var(--_transition-easing),
+    opacity var(--_transition-duration) var(--_transition-easing);
 
   &:hover:not(:disabled) {
     opacity: 0.9;
@@ -177,7 +157,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid var(--_quick-reply-selected-bg);
+    outline: 2px solid var(--_focus-ring-color);
     outline-offset: 2px;
   }
 }

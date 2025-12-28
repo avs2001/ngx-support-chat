@@ -1,121 +1,201 @@
 /**
  * ngx-support-chat CSS Custom Properties
  *
- * These are the public theming tokens for the ngx-support-chat library.
- * Override these in your application to customize the chat appearance.
+ * This file documents all customizable CSS tokens for the ngx-support-chat library.
+ * Copy the tokens you want to customize into your global styles and modify their values.
  *
  * Usage:
- *   @import 'ngx-support-chat/styles/tokens.css';
+ * 1. Import this file as a reference (optional)
+ * 2. Override tokens in your global styles:
  *
- *   :root {
- *     --ngx-chat-bg: #f5f5f5;
- *     --ngx-message-user-bg: #007bff;
- *   }
+ *    :root {
+ *      --ngx-bubble-user-bg: #7c3aed;
+ *      --ngx-radius-md: 20px;
+ *    }
+ *
+ * The library uses internal tokens (--_*) that reference these public tokens with fallback defaults.
+ * You only need to set the tokens you want to change.
  */
 
 :root {
   /* ============================================
-   * Colors - Base
+   * COLOR TOKENS
    * ============================================ */
 
-  /* Background colors */
+  /* Container Colors */
   --ngx-chat-bg: #ffffff;
   --ngx-chat-header-bg: #ffffff;
   --ngx-chat-footer-bg: #ffffff;
-  --ngx-chat-message-area-bg: #ffffff;
+  --ngx-chat-message-area-bg: #f5f5f5;
 
-  /* Text colors */
-  --ngx-text-primary: #1a1a1a;
-  --ngx-text-secondary: #666666;
-  --ngx-text-muted: #999999;
+  /* Message Bubble Colors */
+  --ngx-bubble-user-bg: #0066cc;
+  --ngx-bubble-user-text: #ffffff;
+  --ngx-bubble-agent-bg: #e8e8e8;
+  --ngx-bubble-agent-text: #1a1a1a;
+  --ngx-bubble-system-bg: transparent;
+  --ngx-bubble-system-text: #666666;
 
-  /* Border colors */
-  --ngx-border-color: #e5e5e5;
-  --ngx-border-color-light: #f0f0f0;
+  /* Input Colors */
+  --ngx-input-bg: #ffffff;
+  --ngx-input-text: #1a1a1a;
+  --ngx-input-placeholder: #999999;
+  --ngx-input-border: #dddddd;
+  --ngx-input-focus-border: #0066cc;
 
-  /* ============================================
-   * Colors - Messages
-   * ============================================ */
+  /* Button Colors */
+  --ngx-button-primary-bg: #0066cc;
+  --ngx-button-primary-text: #ffffff;
+  --ngx-button-secondary-bg: #e8e8e8;
+  --ngx-button-secondary-text: #1a1a1a;
+  --ngx-button-disabled-bg: #f0f0f0;
+  --ngx-button-disabled-text: #999999;
 
-  /* User (current user) messages */
-  --ngx-message-user-bg: #0066cc;
-  --ngx-message-user-text: #ffffff;
+  /* Date Separator Colors */
+  --ngx-separator-text: #666666;
+  --ngx-separator-line: #e0e0e0;
 
-  /* Other participant messages */
-  --ngx-message-other-bg: #f0f0f0;
-  --ngx-message-other-text: #1a1a1a;
-
-  /* System messages */
-  --ngx-message-system-bg: transparent;
-  --ngx-message-system-text: #999999;
-
-  /* ============================================
-   * Colors - Status
-   * ============================================ */
-
+  /* Message Status Colors */
   --ngx-status-sending: #999999;
-  --ngx-status-sent: #999999;
+  --ngx-status-sent: #666666;
   --ngx-status-delivered: #0066cc;
-  --ngx-status-read: #0066cc;
+  --ngx-status-read: #00cc66;
   --ngx-status-failed: #cc0000;
 
-  /* ============================================
-   * Colors - Interactive
-   * ============================================ */
+  /* Quick Reply Colors */
+  --ngx-quick-reply-bg: #ffffff;
+  --ngx-quick-reply-text: #0066cc;
+  --ngx-quick-reply-border: #0066cc;
+  --ngx-quick-reply-hover-bg: #f0f7ff;
+  --ngx-quick-reply-selected-bg: #0066cc;
+  --ngx-quick-reply-selected-text: #ffffff;
+  --ngx-quick-reply-disabled-bg: #f5f5f5;
+  --ngx-quick-reply-disabled-text: #999999;
 
+  /* Miscellaneous Colors */
+  --ngx-typing-indicator-dot: #666666;
+  --ngx-link-color: #0066cc;
+  --ngx-timestamp-text: #999999;
+  --ngx-avatar-bg: #e0e0e0;
+  --ngx-attachment-chip-bg: #f0f0f0;
+  --ngx-attachment-chip-text: #1a1a1a;
+  --ngx-scroll-indicator-bg: #0066cc;
+  --ngx-scroll-indicator-text: #ffffff;
+
+  /* Interactive States */
   --ngx-focus-ring-color: #0066cc;
   --ngx-hover-bg: rgba(0, 0, 0, 0.05);
   --ngx-active-bg: rgba(0, 0, 0, 0.1);
 
   /* ============================================
-   * Spacing
+   * SPACING TOKENS
    * ============================================ */
 
+  /* Base Spacing Scale */
   --ngx-spacing-xs: 4px;
   --ngx-spacing-sm: 8px;
   --ngx-spacing-md: 16px;
   --ngx-spacing-lg: 24px;
   --ngx-spacing-xl: 32px;
 
-  /* Component-specific spacing */
-  --ngx-header-padding: 16px;
-  --ngx-footer-padding: 16px;
-  --ngx-message-padding: 8px 16px;
-  --ngx-message-gap: 8px;
-  --ngx-message-group-gap: 16px;
+  /* Component-Specific Spacing */
+  --ngx-message-gap: 8px; /* Gap between messages */
+  --ngx-message-group-gap: 4px; /* Gap between grouped messages */
+  --ngx-bubble-padding: 12px 16px; /* Message bubble padding */
+  --ngx-header-padding: 16px; /* Header padding */
+  --ngx-footer-padding: 12px 16px; /* Footer padding */
+  --ngx-input-padding: 12px; /* Input field padding */
+  --ngx-quick-reply-gap: 8px; /* Gap between quick reply buttons */
+  --ngx-attachment-gap: 8px; /* Gap between attachment chips */
 
   /* ============================================
-   * Border Radius
+   * BORDER RADIUS TOKENS
    * ============================================ */
 
+  /* Base Radius Scale */
   --ngx-radius-sm: 4px;
   --ngx-radius-md: 12px;
   --ngx-radius-lg: 16px;
   --ngx-radius-full: 9999px;
 
-  /* Message bubble radius */
-  --ngx-message-radius: 12px;
-  --ngx-message-radius-connected: 4px;
+  /* Component-Specific Radius */
+  --ngx-bubble-radius: 16px; /* Message bubble corners */
+  --ngx-bubble-radius-grouped: 4px; /* Grouped message corners */
+  --ngx-input-radius: 20px; /* Text input corners */
+  --ngx-button-radius: 20px; /* Button corners */
+  --ngx-avatar-radius: 50%; /* Avatar corners */
+  --ngx-attachment-chip-radius: 16px; /* Attachment chip corners */
+  --ngx-image-radius: 12px; /* Image message corners */
+  --ngx-quick-reply-radius: 16px; /* Quick reply button corners */
 
   /* ============================================
-   * Typography
+   * TYPOGRAPHY TOKENS
    * ============================================ */
 
+  /* Font Family */
   --ngx-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  --ngx-font-size-xs: 0.75rem;
-  --ngx-font-size-sm: 0.875rem;
-  --ngx-font-size-md: 1rem;
-  --ngx-font-size-lg: 1.125rem;
+  /* Font Sizes */
+  --ngx-font-size-xs: 0.75rem; /* 12px - timestamps, metadata */
+  --ngx-font-size-sm: 0.875rem; /* 14px - secondary text */
+  --ngx-font-size-md: 1rem; /* 16px - message text */
+  --ngx-font-size-lg: 1.125rem; /* 18px - headers */
 
+  /* Font Weights */
   --ngx-font-weight-normal: 400;
   --ngx-font-weight-medium: 500;
   --ngx-font-weight-bold: 600;
 
+  /* Line Heights */
   --ngx-line-height: 1.5;
+  --ngx-message-line-height: 1.4;
 
   /* ============================================
-   * Shadows
+   * DIMENSION TOKENS
+   * ============================================ */
+
+  /* Avatar Sizes */
+  --ngx-avatar-size: 36px;
+  --ngx-avatar-size-sm: 24px; /* Small avatar (compact mode) */
+
+  /* Bubble Dimensions */
+  --ngx-max-bubble-width: 70%; /* Maximum message bubble width */
+
+  /* Image Dimensions */
+  --ngx-image-thumbnail-max-width: 240px;
+  --ngx-image-thumbnail-max-height: 180px;
+
+  /* Input Dimensions */
+  --ngx-input-min-height: 44px;
+  --ngx-input-max-height: 120px;
+
+  /* Button Dimensions */
+  --ngx-button-size: 44px; /* Action button size */
+  --ngx-button-icon-size: 24px;
+
+  /* Attachment Dimensions */
+  --ngx-attachment-chip-height: 32px;
+  --ngx-attachment-thumbnail-size: 48px;
+
+  /* Typing Indicator */
+  --ngx-typing-dot-size: 8px;
+
+  /* ============================================
+   * ANIMATION TOKENS
+   * ============================================ */
+
+  /* Transitions */
+  --ngx-transition-duration: 200ms;
+  --ngx-transition-easing: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Typing Animation */
+  --ngx-typing-animation-duration: 1.4s;
+
+  /* Scroll Animation */
+  --ngx-scroll-animation-duration: 300ms;
+
+  /* ============================================
+   * SHADOW TOKENS
    * ============================================ */
 
   --ngx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -123,19 +203,30 @@
   --ngx-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
 
   /* ============================================
-   * Transitions
-   * ============================================ */
-
-  --ngx-transition-fast: 150ms ease;
-  --ngx-transition-normal: 200ms ease;
-  --ngx-transition-slow: 300ms ease;
-
-  /* ============================================
-   * Z-index Layers
+   * Z-INDEX TOKENS
    * ============================================ */
 
   --ngx-z-header: 10;
   --ngx-z-footer: 10;
   --ngx-z-sticky-date: 5;
+  --ngx-z-scroll-indicator: 15;
   --ngx-z-overlay: 100;
 }
+
+/* ============================================
+ * DARK MODE
+ * ============================================
+ * Uncomment and customize for automatic dark mode support:
+ *
+ * @media (prefers-color-scheme: dark) {
+ *   :root {
+ *     --ngx-chat-bg: #1a1a1a;
+ *     --ngx-chat-message-area-bg: #121212;
+ *     --ngx-bubble-agent-bg: #2d2d2d;
+ *     --ngx-bubble-agent-text: #e0e0e0;
+ *     --ngx-input-bg: #2d2d2d;
+ *     --ngx-input-text: #e0e0e0;
+ *     --ngx-input-border: #404040;
+ *   }
+ * }
+ */

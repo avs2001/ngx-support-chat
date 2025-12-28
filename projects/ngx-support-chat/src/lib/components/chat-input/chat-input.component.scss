@@ -1,27 +1,9 @@
+@use '../../../styles/tokens' as *;
+
 :host {
   display: block;
   flex: 1;
   min-width: 0;
-
-  // Internal tokens with fallbacks
-  --_input-bg: var(--ngx-input-bg, #ffffff);
-  --_input-text: var(--ngx-input-text, #1a1a1a);
-  --_input-placeholder: var(--ngx-input-placeholder, #999999);
-  --_input-border: var(--ngx-input-border, #e0e0e0);
-  --_input-focus-border: var(--ngx-input-focus-border, #0066cc);
-
-  --_spacing-sm: var(--ngx-spacing-sm, 8px);
-  --_spacing-md: var(--ngx-spacing-md, 16px);
-
-  --_radius-md: var(--ngx-radius-md, 12px);
-
-  --_font-family: var(--ngx-font-family, system-ui, -apple-system, sans-serif);
-  --_font-size-md: var(--ngx-font-size-md, 1rem);
-  --_line-height: var(--ngx-line-height, 1.5);
-
-  --_input-min-height: var(--ngx-input-min-height, 40px);
-
-  --_transition-duration: var(--ngx-transition-duration, 0.2s);
 }
 
 .chat-input {
@@ -30,9 +12,10 @@
   &__textarea {
     width: 100%;
     min-height: var(--_input-min-height);
-    padding: var(--_spacing-sm) var(--_spacing-md);
+    max-height: var(--_input-max-height);
+    padding: var(--_input-padding);
     border: 1px solid var(--_input-border);
-    border-radius: var(--_radius-md);
+    border-radius: var(--_input-radius);
     background-color: var(--_input-bg);
     color: var(--_input-text);
     font-family: var(--_font-family);
@@ -40,7 +23,7 @@
     line-height: var(--_line-height);
     resize: none;
     outline: none;
-    transition: border-color var(--_transition-duration) ease;
+    transition: border-color var(--_transition-duration) var(--_transition-easing);
 
     &::placeholder {
       color: var(--_input-placeholder);
@@ -53,7 +36,7 @@
     &:disabled {
       opacity: 0.6;
       cursor: not-allowed;
-      background-color: color-mix(in srgb, var(--_input-bg), #000 5%);
+      background-color: var(--_button-disabled-bg);
     }
   }
 }
@@ -62,6 +45,6 @@
 @container chat (max-width: 299px) {
   .chat-input__textarea {
     padding: var(--_spacing-sm);
-    font-size: 0.875rem;
+    font-size: var(--_font-size-sm);
   }
 }

@@ -23,8 +23,8 @@
 // Avatar styles
 .message-avatar {
   flex-shrink: 0;
-  width: 32px;
-  height: 32px;
+  width: var(--_avatar-size);
+  height: var(--_avatar-size);
 
   &--spacer {
     visibility: hidden;
@@ -33,16 +33,16 @@
   &__image {
     width: 100%;
     height: 100%;
-    border-radius: var(--_radius-full);
+    border-radius: var(--_avatar-radius);
     object-fit: cover;
   }
 
   &__placeholder {
     width: 100%;
     height: 100%;
-    border-radius: var(--_radius-full);
-    background: var(--_message-other-bg);
-    color: var(--_text-secondary);
+    border-radius: var(--_avatar-radius);
+    background: var(--_avatar-bg);
+    color: var(--_bubble-agent-text);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +55,7 @@
 .message-content {
   display: flex;
   flex-direction: column;
-  max-width: 70%;
+  max-width: var(--_max-bubble-width);
   min-width: 0;
 
   .message-container--user & {
@@ -75,7 +75,7 @@
 // Sender name
 .message-sender {
   font-size: var(--_font-size-xs);
-  color: var(--_text-secondary);
+  color: var(--_timestamp-text);
   margin-bottom: var(--_spacing-xs);
   padding-left: var(--_spacing-xs);
 }
@@ -83,46 +83,46 @@
 // Message bubble base styles
 .message-bubble {
   position: relative;
-  padding: var(--_message-padding);
-  border-radius: var(--_message-radius);
+  padding: var(--_bubble-padding);
+  border-radius: var(--_bubble-radius);
   word-wrap: break-word;
   overflow-wrap: break-word;
-  line-height: var(--_line-height);
+  line-height: var(--_message-line-height);
 
   // User message styling
   &--user {
-    background: var(--_message-user-bg);
-    color: var(--_message-user-text);
-    border-bottom-right-radius: var(--_message-radius-connected);
+    background: var(--_bubble-user-bg);
+    color: var(--_bubble-user-text);
+    border-bottom-right-radius: var(--_bubble-radius-grouped);
 
     &.message-bubble--first {
-      border-top-right-radius: var(--_message-radius);
+      border-top-right-radius: var(--_bubble-radius);
     }
 
     &.message-bubble--last {
-      border-bottom-right-radius: var(--_message-radius);
+      border-bottom-right-radius: var(--_bubble-radius);
     }
   }
 
   // Other user message styling
   &--other {
-    background: var(--_message-other-bg);
-    color: var(--_message-other-text);
-    border-bottom-left-radius: var(--_message-radius-connected);
+    background: var(--_bubble-agent-bg);
+    color: var(--_bubble-agent-text);
+    border-bottom-left-radius: var(--_bubble-radius-grouped);
 
     &.message-bubble--first {
-      border-top-left-radius: var(--_message-radius);
+      border-top-left-radius: var(--_bubble-radius);
     }
 
     &.message-bubble--last {
-      border-bottom-left-radius: var(--_message-radius);
+      border-bottom-left-radius: var(--_bubble-radius);
     }
   }
 
   // System message styling
   &--system {
-    background: var(--_message-system-bg);
-    color: var(--_message-system-text);
+    background: var(--_bubble-system-bg);
+    color: var(--_bubble-system-text);
     padding: var(--_spacing-xs) var(--_spacing-sm);
     font-size: var(--_font-size-xs);
     font-style: italic;
@@ -160,9 +160,11 @@
   &__thumbnail {
     display: block;
     width: 100%;
+    max-width: var(--_image-thumbnail-max-width);
+    max-height: var(--_image-thumbnail-max-height);
     height: auto;
     object-fit: contain;
-    border-radius: inherit;
+    border-radius: var(--_image-radius);
   }
 }
 
@@ -178,7 +180,7 @@
   border-radius: var(--_radius-sm);
   cursor: pointer;
   text-align: left;
-  transition: background-color var(--_transition-fast);
+  transition: background-color var(--_transition-duration) var(--_transition-easing);
 
   &:hover {
     background: var(--_active-bg);
@@ -191,9 +193,9 @@
 
   &__icon {
     flex-shrink: 0;
-    width: 32px;
-    height: 32px;
-    color: var(--_text-secondary);
+    width: var(--_button-icon-size);
+    height: var(--_button-icon-size);
+    color: var(--_timestamp-text);
 
     svg {
       width: 100%;
@@ -219,14 +221,14 @@
 
   &__size {
     font-size: var(--_font-size-xs);
-    color: var(--_text-muted);
+    color: var(--_timestamp-text);
   }
 
   &__download {
     flex-shrink: 0;
     width: 20px;
     height: 20px;
-    color: var(--_text-secondary);
+    color: var(--_timestamp-text);
 
     svg {
       width: 100%;
@@ -249,7 +251,7 @@
 
   &__time {
     font-size: var(--_font-size-xs);
-    color: var(--_text-muted);
+    color: var(--_timestamp-text);
   }
 
   &__status {
@@ -293,7 +295,7 @@
     font-weight: var(--_font-weight-medium);
     border-radius: var(--_radius-sm);
     cursor: pointer;
-    transition: opacity var(--_transition-fast);
+    transition: opacity var(--_transition-duration) var(--_transition-easing);
 
     &:hover {
       opacity: 0.9;
@@ -313,8 +315,8 @@
   }
 
   .message-avatar {
-    width: 24px;
-    height: 24px;
+    width: var(--_avatar-size-sm);
+    height: var(--_avatar-size-sm);
   }
 
   .message-bubble {
@@ -323,8 +325,14 @@
 
   .message-file {
     &__icon {
-      width: 24px;
-      height: 24px;
+      width: 20px;
+      height: 20px;
     }
+  }
+}
+
+@container chat (min-width: 600px) {
+  .message-content {
+    max-width: 65%;
   }
 }
