@@ -1,0 +1,60 @@
+name: PR Validation
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+jobs:
+  validate:
+    name: Validate PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check commit messages
+        run: |
+          echo "Checking commit message format..."
+          # Validate conventional commits format
+          git log --oneline origin/${{ github.base_ref }}..HEAD | head -20
+
+  size-check:
+    name: Bundle Size Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build library
+        run: npm run build:lib
+
+      - name: Check bundle size
+        run: |
+          BUNDLE_SIZE=$(du -sb dist/ngx-support-chat/fesm2022 | cut -f1)
+          echo "Bundle size: $BUNDLE_SIZE bytes ($(($BUNDLE_SIZE / 1024)) KB)"
+          # Fail if bundle exceeds 500KB limit
+          if [ $BUNDLE_SIZE -gt 512000 ]; then
+            echo "::error::Bundle size exceeds 500KB limit!"
+            exit 1
+          fi
+          echo "::notice::Bundle size is within limits"

@@ -1,0 +1,11 @@
+# Default owner for everything
+* @avs2001
+
+# Library source
+/projects/ngx-support-chat/ @avs2001
+
+# CI/CD configuration
+/.github/ @avs2001
+
+# Demo application
+/projects/demo/ @avs2001
