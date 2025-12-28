@@ -1,0 +1,78 @@
+@use '../../../styles/tokens';
+
+:host {
+  display: block;
+  flex-shrink: 0;
+  background-color: var(--_chat-footer-bg);
+  border-top: 1px solid var(--_border-color);
+  z-index: var(--_z-footer);
+  font-family: var(--_font-family);
+  font-size: var(--_font-size-md);
+  line-height: var(--_line-height);
+  color: var(--_text-primary);
+}
+
+.footer-container {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--_spacing-sm);
+  padding: var(--_footer-padding);
+}
+
+.footer-prefix {
+  flex-shrink: 0;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.footer-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--_spacing-sm);
+  min-width: 0; // Prevent flex item overflow
+}
+
+.attachment-previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--_spacing-sm);
+}
+
+.input-area {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--_spacing-sm);
+}
+
+.footer-actions {
+  flex-shrink: 0;
+  display: flex;
+  gap: var(--_spacing-xs);
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Container query responsive adjustments
+@container chat (max-width: 299px) {
+  .footer-container {
+    padding: var(--_spacing-sm);
+    gap: var(--_spacing-xs);
+  }
+}
+
+@container chat (min-width: 300px) and (max-width: 599px) {
+  .footer-container {
+    padding: var(--_spacing-sm) var(--_spacing-md);
+  }
+}
+
+@container chat (min-width: 600px) {
+  .footer-container {
+    padding: var(--_spacing-md) var(--_spacing-lg);
+  }
+}

@@ -1,0 +1,58 @@
+@use '../../../styles/tokens';
+
+:host {
+  display: block;
+  height: 100%;
+  container-type: inline-size;
+  container-name: chat;
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  background-color: var(--_chat-bg);
+  font-family: var(--_font-family);
+  font-size: var(--_font-size-md);
+  line-height: var(--_line-height);
+  color: var(--_text-primary);
+}
+
+// ============================================
+// Message Area Section
+// ============================================
+
+.chat-message-area {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: var(--_chat-message-area-bg);
+  min-height: 0; // Important for flexbox overflow
+}
+
+.chat-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  padding: var(--_spacing-lg);
+  text-align: center;
+  color: var(--_text-muted);
+}
+
+// ============================================
+// Container Query Breakpoints for Message Area
+// ============================================
+
+@container chat (max-width: 299px) {
+  .chat-empty-state {
+    padding: var(--_spacing-md);
+  }
+}
+
+@container chat (min-width: 600px) {
+  .chat-empty-state {
+    padding: var(--_spacing-xl);
+  }
+}

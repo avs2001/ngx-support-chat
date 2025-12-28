@@ -1,0 +1,121 @@
+/**
+ * Internal CSS Custom Properties
+ *
+ * These tokens are used internally by library components.
+ * They reference public tokens (--ngx-*) with fallback defaults.
+ *
+ * Pattern: --_[token-name]: var(--ngx-[token-name], [default-value])
+ */
+
+:host {
+  // ============================================
+  // Colors
+  // ============================================
+
+  // Base backgrounds
+  --_chat-bg: var(--ngx-chat-bg, #ffffff);
+  --_chat-header-bg: var(--ngx-chat-header-bg, var(--_chat-bg));
+  --_chat-footer-bg: var(--ngx-chat-footer-bg, var(--_chat-bg));
+  --_chat-message-area-bg: var(--ngx-chat-message-area-bg, var(--_chat-bg));
+
+  // Text colors
+  --_text-primary: var(--ngx-text-primary, #1a1a1a);
+  --_text-secondary: var(--ngx-text-secondary, #666666);
+  --_text-muted: var(--ngx-text-muted, #999999);
+
+  // Border colors
+  --_border-color: var(--ngx-border-color, #e5e5e5);
+  --_border-color-light: var(--ngx-border-color-light, #f0f0f0);
+
+  // Message bubble colors
+  --_message-user-bg: var(--ngx-message-user-bg, #0066cc);
+  --_message-user-text: var(--ngx-message-user-text, #ffffff);
+  --_message-other-bg: var(--ngx-message-other-bg, #f0f0f0);
+  --_message-other-text: var(--ngx-message-other-text, var(--_text-primary));
+  --_message-system-bg: var(--ngx-message-system-bg, transparent);
+  --_message-system-text: var(--ngx-message-system-text, var(--_text-muted));
+
+  // Status colors
+  --_status-sending: var(--ngx-status-sending, #999999);
+  --_status-sent: var(--ngx-status-sent, #999999);
+  --_status-delivered: var(--ngx-status-delivered, #0066cc);
+  --_status-read: var(--ngx-status-read, #0066cc);
+  --_status-failed: var(--ngx-status-failed, #cc0000);
+
+  // Interactive colors
+  --_focus-ring-color: var(--ngx-focus-ring-color, #0066cc);
+  --_hover-bg: var(--ngx-hover-bg, rgba(0, 0, 0, 0.05));
+  --_active-bg: var(--ngx-active-bg, rgba(0, 0, 0, 0.1));
+
+  // ============================================
+  // Spacing
+  // ============================================
+
+  --_spacing-xs: var(--ngx-spacing-xs, 4px);
+  --_spacing-sm: var(--ngx-spacing-sm, 8px);
+  --_spacing-md: var(--ngx-spacing-md, 16px);
+  --_spacing-lg: var(--ngx-spacing-lg, 24px);
+  --_spacing-xl: var(--ngx-spacing-xl, 32px);
+
+  // Component-specific spacing
+  --_header-padding: var(--ngx-header-padding, var(--_spacing-md));
+  --_footer-padding: var(--ngx-footer-padding, var(--_spacing-md));
+  --_message-padding: var(--ngx-message-padding, var(--_spacing-sm) var(--_spacing-md));
+  --_message-gap: var(--ngx-message-gap, var(--_spacing-sm));
+  --_message-group-gap: var(--ngx-message-group-gap, var(--_spacing-md));
+
+  // ============================================
+  // Border Radius
+  // ============================================
+
+  --_radius-sm: var(--ngx-radius-sm, 4px);
+  --_radius-md: var(--ngx-radius-md, 12px);
+  --_radius-lg: var(--ngx-radius-lg, 16px);
+  --_radius-full: var(--ngx-radius-full, 9999px);
+
+  // Message bubble radius
+  --_message-radius: var(--ngx-message-radius, var(--_radius-md));
+  --_message-radius-connected: var(--ngx-message-radius-connected, var(--_radius-sm));
+
+  // ============================================
+  // Typography
+  // ============================================
+
+  --_font-family: var(--ngx-font-family, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
+
+  --_font-size-xs: var(--ngx-font-size-xs, 0.75rem);
+  --_font-size-sm: var(--ngx-font-size-sm, 0.875rem);
+  --_font-size-md: var(--ngx-font-size-md, 1rem);
+  --_font-size-lg: var(--ngx-font-size-lg, 1.125rem);
+
+  --_font-weight-normal: var(--ngx-font-weight-normal, 400);
+  --_font-weight-medium: var(--ngx-font-weight-medium, 500);
+  --_font-weight-bold: var(--ngx-font-weight-bold, 600);
+
+  --_line-height: var(--ngx-line-height, 1.5);
+
+  // ============================================
+  // Shadows
+  // ============================================
+
+  --_shadow-sm: var(--ngx-shadow-sm, 0 1px 2px rgba(0, 0, 0, 0.05));
+  --_shadow-md: var(--ngx-shadow-md, 0 4px 6px rgba(0, 0, 0, 0.1));
+  --_shadow-lg: var(--ngx-shadow-lg, 0 10px 15px rgba(0, 0, 0, 0.1));
+
+  // ============================================
+  // Transitions
+  // ============================================
+
+  --_transition-fast: var(--ngx-transition-fast, 150ms ease);
+  --_transition-normal: var(--ngx-transition-normal, 200ms ease);
+  --_transition-slow: var(--ngx-transition-slow, 300ms ease);
+
+  // ============================================
+  // Z-index layers
+  // ============================================
+
+  --_z-header: var(--ngx-z-header, 10);
+  --_z-footer: var(--ngx-z-footer, 10);
+  --_z-sticky-date: var(--ngx-z-sticky-date, 5);
+  --_z-overlay: var(--ngx-z-overlay, 100);
+}

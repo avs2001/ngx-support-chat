@@ -1,24 +1,23 @@
-# Handoff Notes
+# Handoff Notes - TASK-003 Complete
 
-**Last Session:** 5
+**Task:** TASK-003 - Core Container & Layout Components
+**Last Session:** 6
 **Date:** 2025-12-28
-**Task:** TASK-002 - Data Models & Configuration (COMPLETE)
+**Status:** COMPLETE
 
 ---
 
 ## Resume Point
 
-TASK-002 is complete. Ready to start TASK-003: Core Container & Layout Components.
-
-Location: Library structure ready at `projects/ngx-support-chat/src/lib/components/` (empty).
+TASK-003 is complete. Next task is TASK-004: Message Display Components.
 
 ---
 
 ## Next Three Actions
 
-1. Read `docs/project_tasks/TASK-003-plan.md` for container components scope
-2. Create ngx-chat-container component
-3. Create ngx-chat-header component with ng-content projection
+1. Read `docs/project_tasks/TASK-004-plan.md` to understand next task scope
+2. Create `docs/development/implementation_status.md` for TASK-004
+3. Start with ChatMessageAreaComponent (virtual-scrolled container)
 
 ---
 
@@ -30,22 +29,30 @@ None.
 
 ## Key Decisions This Session
 
-1. Used `export type` for interface re-exports (isolatedModules requirement)
-2. Added `moduleResolution: bundler` to tsconfig.json (Angular 21 requirement)
-3. Placed secondary entry point ng-package.json at library root for cleaner imports
-4. ChatConfigService uses signal-based computed() for reactive config access
-5. Deep merge for partial configuration instead of shallow spread
+1. Used container queries for responsive layout instead of media queries
+2. Established public/internal CSS token pattern (--ngx-* / --_*)
+3. ChatContainerComponent uses child components (ChatHeader, ChatFooter) for modularity
 
 ---
 
 ## Working State
 
-- **Branch:** main
-- **Last Commit:** Pending (session end commit)
-- **Uncommitted:** All TASK-002 work
+**Branch:** main
+**Last Commit:** Will be created with this session's changes
+**Uncommitted:** Yes - all TASK-003 changes ready to commit
+
+---
+
+## Verification Checklist
+
+- [x] Build passes: `npm run build:lib`
+- [x] Tests pass: `npm run test` (73 tests)
+- [x] Lint passes: `npm run lint`
+- [x] tokens.css exported in build
 
 ---
 
 ## Temporary Artifacts
 
-- `temp/task_002/session_005/` - Empty (no temp files needed)
+**Location:** `temp/task_003/session_006/`
+**Contents:** Empty (no temporary files needed this session)

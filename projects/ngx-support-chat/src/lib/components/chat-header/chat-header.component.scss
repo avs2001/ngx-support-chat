@@ -1,0 +1,38 @@
+@use '../../../styles/tokens';
+
+:host {
+  display: block;
+  flex-shrink: 0;
+  padding: var(--_header-padding);
+  background-color: var(--_chat-header-bg);
+  border-bottom: 1px solid var(--_border-color);
+  z-index: var(--_z-header);
+  font-family: var(--_font-family);
+  font-size: var(--_font-size-md);
+  line-height: var(--_line-height);
+  color: var(--_text-primary);
+
+  &:empty {
+    display: none;
+  }
+}
+
+// Container query responsive adjustments
+// Note: These queries respond to the parent chat container
+@container chat (max-width: 299px) {
+  :host {
+    padding: var(--_spacing-sm);
+  }
+}
+
+@container chat (min-width: 300px) and (max-width: 599px) {
+  :host {
+    padding: var(--_spacing-sm) var(--_spacing-md);
+  }
+}
+
+@container chat (min-width: 600px) {
+  :host {
+    padding: var(--_spacing-md) var(--_spacing-lg);
+  }
+}

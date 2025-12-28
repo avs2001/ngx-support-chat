@@ -1,0 +1,30 @@
+<div class="chat-container">
+  <!-- Header Section -->
+  <ngx-chat-header>
+    <ng-content select="[chatHeader]" />
+  </ngx-chat-header>
+
+  <!-- Message Area Section -->
+  <main class="chat-message-area">
+    @if (messages().length === 0) {
+      <div class="chat-empty-state">
+        <ng-content select="[chatEmptyState]" />
+      </div>
+    }
+    <!-- Message list will be rendered by ChatMessageAreaComponent in TASK-004 -->
+  </main>
+
+  <!-- Footer Section -->
+  <ngx-chat-footer
+    [pendingAttachments]="pendingAttachments()"
+    [(inputValue)]="inputValue"
+    [disabled]="disabled()"
+    [hasContent]="inputValue().length > 0"
+    (messageSend)="onFooterMessageSend()"
+    (attachmentSelect)="attachmentSelect.emit($event)"
+    (attachmentRemove)="attachmentRemove.emit($event)"
+  >
+    <ng-content select="[chatFooterPrefix]" ngProjectAs="[chatFooterPrefix]" />
+    <ng-content select="[chatFooterActions]" ngProjectAs="[chatFooterActions]" />
+  </ngx-chat-footer>
+</div>

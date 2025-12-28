@@ -1,0 +1,141 @@
+/**
+ * ngx-support-chat CSS Custom Properties
+ *
+ * These are the public theming tokens for the ngx-support-chat library.
+ * Override these in your application to customize the chat appearance.
+ *
+ * Usage:
+ *   @import 'ngx-support-chat/styles/tokens.css';
+ *
+ *   :root {
+ *     --ngx-chat-bg: #f5f5f5;
+ *     --ngx-message-user-bg: #007bff;
+ *   }
+ */
+
+:root {
+  /* ============================================
+   * Colors - Base
+   * ============================================ */
+
+  /* Background colors */
+  --ngx-chat-bg: #ffffff;
+  --ngx-chat-header-bg: #ffffff;
+  --ngx-chat-footer-bg: #ffffff;
+  --ngx-chat-message-area-bg: #ffffff;
+
+  /* Text colors */
+  --ngx-text-primary: #1a1a1a;
+  --ngx-text-secondary: #666666;
+  --ngx-text-muted: #999999;
+
+  /* Border colors */
+  --ngx-border-color: #e5e5e5;
+  --ngx-border-color-light: #f0f0f0;
+
+  /* ============================================
+   * Colors - Messages
+   * ============================================ */
+
+  /* User (current user) messages */
+  --ngx-message-user-bg: #0066cc;
+  --ngx-message-user-text: #ffffff;
+
+  /* Other participant messages */
+  --ngx-message-other-bg: #f0f0f0;
+  --ngx-message-other-text: #1a1a1a;
+
+  /* System messages */
+  --ngx-message-system-bg: transparent;
+  --ngx-message-system-text: #999999;
+
+  /* ============================================
+   * Colors - Status
+   * ============================================ */
+
+  --ngx-status-sending: #999999;
+  --ngx-status-sent: #999999;
+  --ngx-status-delivered: #0066cc;
+  --ngx-status-read: #0066cc;
+  --ngx-status-failed: #cc0000;
+
+  /* ============================================
+   * Colors - Interactive
+   * ============================================ */
+
+  --ngx-focus-ring-color: #0066cc;
+  --ngx-hover-bg: rgba(0, 0, 0, 0.05);
+  --ngx-active-bg: rgba(0, 0, 0, 0.1);
+
+  /* ============================================
+   * Spacing
+   * ============================================ */
+
+  --ngx-spacing-xs: 4px;
+  --ngx-spacing-sm: 8px;
+  --ngx-spacing-md: 16px;
+  --ngx-spacing-lg: 24px;
+  --ngx-spacing-xl: 32px;
+
+  /* Component-specific spacing */
+  --ngx-header-padding: 16px;
+  --ngx-footer-padding: 16px;
+  --ngx-message-padding: 8px 16px;
+  --ngx-message-gap: 8px;
+  --ngx-message-group-gap: 16px;
+
+  /* ============================================
+   * Border Radius
+   * ============================================ */
+
+  --ngx-radius-sm: 4px;
+  --ngx-radius-md: 12px;
+  --ngx-radius-lg: 16px;
+  --ngx-radius-full: 9999px;
+
+  /* Message bubble radius */
+  --ngx-message-radius: 12px;
+  --ngx-message-radius-connected: 4px;
+
+  /* ============================================
+   * Typography
+   * ============================================ */
+
+  --ngx-font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  --ngx-font-size-xs: 0.75rem;
+  --ngx-font-size-sm: 0.875rem;
+  --ngx-font-size-md: 1rem;
+  --ngx-font-size-lg: 1.125rem;
+
+  --ngx-font-weight-normal: 400;
+  --ngx-font-weight-medium: 500;
+  --ngx-font-weight-bold: 600;
+
+  --ngx-line-height: 1.5;
+
+  /* ============================================
+   * Shadows
+   * ============================================ */
+
+  --ngx-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --ngx-shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --ngx-shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+
+  /* ============================================
+   * Transitions
+   * ============================================ */
+
+  --ngx-transition-fast: 150ms ease;
+  --ngx-transition-normal: 200ms ease;
+  --ngx-transition-slow: 300ms ease;
+
+  /* ============================================
+   * Z-index Layers
+   * ============================================ */
+
+  --ngx-z-header: 10;
+  --ngx-z-footer: 10;
+  --ngx-z-sticky-date: 5;
+  --ngx-z-overlay: 100;
+}

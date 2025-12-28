@@ -1,0 +1,26 @@
+<div class="footer-container">
+  <!-- Prefix Slot (e.g., emoji picker button) -->
+  <div class="footer-prefix">
+    <ng-content select="[chatFooterPrefix]" />
+  </div>
+
+  <!-- Main Content Area -->
+  <div class="footer-content">
+    <!-- Attachment previews will be rendered here in TASK-005 -->
+    @if (pendingAttachments().length > 0) {
+      <div class="attachment-previews">
+        <!-- AttachmentPreviewComponent will be added in TASK-005 -->
+      </div>
+    }
+
+    <!-- Input area will be rendered here in TASK-005 -->
+    <div class="input-area">
+      <!-- TextInputComponent will be added in TASK-005 -->
+    </div>
+  </div>
+
+  <!-- Actions Slot (e.g., send button, voice button) -->
+  <div class="footer-actions">
+    <ng-content select="[chatFooterActions]" />
+  </div>
+</div>
