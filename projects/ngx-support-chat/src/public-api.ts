@@ -25,7 +25,10 @@ export { ChatFooterComponent } from './lib/components/chat-footer/chat-footer.co
 export { ChatDateSeparatorComponent } from './lib/components/chat-date-separator/chat-date-separator.component';
 export { ChatMessageComponent } from './lib/components/chat-message/chat-message.component';
 export { ChatMessageGroupComponent } from './lib/components/chat-message-group/chat-message-group.component';
-export { ChatMessageAreaComponent, type MessageAreaItem } from './lib/components/chat-message-area/chat-message-area.component';
+export {
+  ChatMessageAreaComponent,
+  type MessageAreaItem
+} from './lib/components/chat-message-area/chat-message-area.component';
 export { ChatQuickRepliesComponent } from './lib/components/chat-quick-replies/chat-quick-replies.component';
 export { ChatTypingIndicatorComponent } from './lib/components/chat-typing-indicator/chat-typing-indicator.component';
 export { ChatInputComponent } from './lib/components/chat-input/chat-input.component';

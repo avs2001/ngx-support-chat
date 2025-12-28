@@ -5,13 +5,7 @@
   </ngx-chat-header>
 
   <!-- Message Area Section -->
-  <main
-    class="chat-main"
-    role="log"
-    aria-live="polite"
-    aria-relevant="additions"
-    aria-label="Chat conversation"
-  >
+  <main class="chat-main" role="log" aria-live="polite" aria-relevant="additions" aria-label="Chat conversation">
     @if (messages().length === 0) {
       <div class="chat-empty-state">
         <ng-content select="[chatEmptyState]" />
@@ -28,18 +22,12 @@
 
     <!-- Typing Indicator (below messages) -->
     @if (typingIndicator(); as indicator) {
-      <ngx-chat-typing-indicator
-        [typingIndicator]="indicator"
-        [showText]="true"
-      />
+      <ngx-chat-typing-indicator [typingIndicator]="indicator" [showText]="true" />
     }
 
     <!-- Quick Replies (below messages/typing indicator) -->
     @if (quickReplies(); as replies) {
-      <ngx-chat-quick-replies
-        [quickReplies]="replies"
-        (quickReplySubmit)="onQuickReplySubmit($event)"
-      />
+      <ngx-chat-quick-replies [quickReplies]="replies" (quickReplySubmit)="onQuickReplySubmit($event)" />
     }
   </main>
 

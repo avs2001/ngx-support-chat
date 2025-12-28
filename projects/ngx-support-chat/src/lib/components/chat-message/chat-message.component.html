@@ -1,18 +1,9 @@
-<div
-  [ngClass]="containerClasses()"
-  role="listitem"
-  [attr.aria-label]="ariaLabel()"
-  tabindex="0"
->
+<div [ngClass]="containerClasses()" role="listitem" [attr.aria-label]="ariaLabel()" tabindex="0">
   <!-- Avatar (shown for non-user, non-system messages) -->
   @if (showAvatar() && !isCurrentUser() && !isSystem() && isLastInGroup()) {
     <div class="message-avatar">
       @if (message().senderAvatar) {
-        <img
-          [src]="message().senderAvatar"
-          [alt]="message().senderName"
-          class="message-avatar__image"
-        />
+        <img [src]="message().senderAvatar" [alt]="message().senderName" class="message-avatar__image" />
       } @else {
         <div class="message-avatar__placeholder">
           {{ message().senderName.charAt(0).toUpperCase() }}

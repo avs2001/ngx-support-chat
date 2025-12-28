@@ -8,7 +8,7 @@ import {
   MessageSendEvent,
   QuickReplySet,
   QuickReplySubmitEvent,
-  TypingIndicator,
+  TypingIndicator
 } from '../../../models/public-api';
 import { ChatFooterComponent } from '../chat-footer/chat-footer.component';
 import { ChatHeaderComponent } from '../chat-header/chat-header.component';
@@ -48,7 +48,7 @@ import { ChatTypingIndicatorComponent } from '../chat-typing-indicator/chat-typi
   ],
   templateUrl: './chat-container.component.html',
   styleUrl: './chat-container.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatContainerComponent {
   // ============================================
@@ -120,8 +120,8 @@ export class ChatContainerComponent {
   // ============================================
 
   /** Whether there is content to send (text or attachments) */
-  protected readonly hasContent = computed(() =>
-    this.inputValue().trim().length > 0 || this.pendingAttachments().length > 0
+  protected readonly hasContent = computed(
+    () => this.inputValue().trim().length > 0 || this.pendingAttachments().length > 0
   );
 
   // ============================================
@@ -140,7 +140,7 @@ export class ChatContainerComponent {
     if (text || attachments.length > 0) {
       this.messageSend.emit({
         text,
-        attachments,
+        attachments
       });
 
       // Return focus to input after send (accessibility)

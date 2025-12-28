@@ -15,10 +15,7 @@ describe('ChatAnnouncerService', () => {
     };
 
     TestBed.configureTestingModule({
-      providers: [
-        ChatAnnouncerService,
-        { provide: LiveAnnouncer, useValue: liveAnnouncerMock }
-      ]
+      providers: [ChatAnnouncerService, { provide: LiveAnnouncer, useValue: liveAnnouncerMock }]
     });
 
     service = TestBed.inject(ChatAnnouncerService);
@@ -164,10 +161,7 @@ describe('ChatAnnouncerService', () => {
 
       service.announceTyping(indicator);
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Support Agent is typing',
-        'polite'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Support Agent is typing', 'polite');
     });
 
     it('should not announce duplicate typing for the same user', () => {
@@ -228,10 +222,7 @@ describe('ChatAnnouncerService', () => {
 
       service.announceStatusChange(message, 'sent');
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Message delivered',
-        'polite'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Message delivered', 'polite');
     });
 
     it('should announce status change to read', () => {
@@ -239,10 +230,7 @@ describe('ChatAnnouncerService', () => {
 
       service.announceStatusChange(message, 'delivered');
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Message read',
-        'polite'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Message read', 'polite');
     });
 
     it('should announce failed status', () => {
@@ -250,10 +238,7 @@ describe('ChatAnnouncerService', () => {
 
       service.announceStatusChange(message, 'sending');
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Message failed to send',
-        'polite'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Message failed to send', 'polite');
     });
 
     it('should not announce when status is unchanged', () => {
@@ -274,25 +259,17 @@ describe('ChatAnnouncerService', () => {
 
       service.announceQuickReplySelection(option);
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Selected: Yes, continue',
-        'polite'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Selected: Yes, continue', 'polite');
     });
   });
 
   describe('announceQuickReplySubmit', () => {
     it('should announce single option submission', () => {
-      const options: QuickReplyOption[] = [
-        { value: 'yes', label: 'Yes' }
-      ];
+      const options: QuickReplyOption[] = [{ value: 'yes', label: 'Yes' }];
 
       service.announceQuickReplySubmit(options);
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Submitted: Yes',
-        'assertive'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Submitted: Yes', 'assertive');
     });
 
     it('should announce multiple option submission', () => {
@@ -303,10 +280,7 @@ describe('ChatAnnouncerService', () => {
 
       service.announceQuickReplySubmit(options);
 
-      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith(
-        'Submitted: Email, Phone',
-        'assertive'
-      );
+      expect(liveAnnouncerMock.announce).toHaveBeenCalledWith('Submitted: Email, Phone', 'assertive');
     });
 
     it('should not announce empty submission', () => {

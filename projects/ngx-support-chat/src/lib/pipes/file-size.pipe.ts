@@ -32,7 +32,7 @@ export class FileSizePipe implements PipeTransform {
    * @param decimals - Number of decimal places (default: 1)
    * @returns Formatted string with unit (e.g., "1.5 KB")
    */
-  transform(bytes: number | null | undefined, decimals: number = 1): string {
+  transform(bytes: number | null | undefined, decimals = 1): string {
     // Handle edge cases
     if (bytes === null || bytes === undefined || bytes === 0) {
       return '0 B';
@@ -68,6 +68,7 @@ export class FileSizePipe implements PipeTransform {
       }
     }
 
-    return `${displayValue} ${SIZE_UNITS[clampedIndex]}`;
+    const unit = SIZE_UNITS[clampedIndex] ?? 'B';
+    return `${displayValue} ${unit}`;
   }
 }

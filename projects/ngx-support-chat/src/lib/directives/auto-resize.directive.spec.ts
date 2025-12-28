@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 import { AutoResizeDirective } from './auto-resize.directive';
 
@@ -61,8 +61,6 @@ describe('AutoResizeDirective', () => {
 
   describe('auto-resize behavior', () => {
     it('should resize on input event', () => {
-      const initialHeight = textarea.offsetHeight;
-
       // Simulate typing multi-line content
       textarea.value = 'Line 1\nLine 2\nLine 3\nLine 4\nLine 5';
       textarea.dispatchEvent(new Event('input'));
@@ -83,7 +81,7 @@ describe('AutoResizeDirective', () => {
       fixture.detectChanges();
 
       expect(textarea.style.overflowY).toBe('hidden');
-    })
+    });
   });
 
   describe('small max height behavior', () => {

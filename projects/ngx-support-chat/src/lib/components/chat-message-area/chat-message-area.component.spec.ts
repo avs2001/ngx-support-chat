@@ -397,10 +397,7 @@ describe('ChatMessageAreaComponent', () => {
     });
 
     it('should set isInNavigationMode to true on ArrowDown press', () => {
-      const messages: ChatMessage[] = [
-        createTestMessage({ id: 'msg-1' }),
-        createTestMessage({ id: 'msg-2' })
-      ];
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' }), createTestMessage({ id: 'msg-2' })];
       fixture.componentRef.setInput('messages', messages);
       fixture.detectChanges();
 
@@ -410,10 +407,7 @@ describe('ChatMessageAreaComponent', () => {
     });
 
     it('should set isInNavigationMode to true on ArrowUp press', () => {
-      const messages: ChatMessage[] = [
-        createTestMessage({ id: 'msg-1' }),
-        createTestMessage({ id: 'msg-2' })
-      ];
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' }), createTestMessage({ id: 'msg-2' })];
       fixture.componentRef.setInput('messages', messages);
       fixture.detectChanges();
 
@@ -423,9 +417,7 @@ describe('ChatMessageAreaComponent', () => {
     });
 
     it('should exit navigation mode on Escape press', () => {
-      const messages: ChatMessage[] = [
-        createTestMessage({ id: 'msg-1' })
-      ];
+      const messages: ChatMessage[] = [createTestMessage({ id: 'msg-1' })];
       fixture.componentRef.setInput('messages', messages);
       fixture.detectChanges();
 
@@ -444,7 +436,7 @@ describe('ChatMessageAreaComponent', () => {
       fixture.detectChanges();
 
       // Dispatch event on the component element to trigger the HostListener
-      const event = dispatchKeydown('ArrowDown');
+      dispatchKeydown('ArrowDown');
 
       // Event should have been handled (navigation mode entered)
       expect(component.isInNavigationMode()).toBe(true);

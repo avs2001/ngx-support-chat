@@ -167,10 +167,7 @@ describe('ChatMessageComponent', () => {
 
   describe('formatted time', () => {
     it('should format timestamp according to config', () => {
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) }));
       fixture.detectChanges();
       // Default format is 'HH:mm'
       expect(component.formattedTime()).toBe('14:30');
@@ -199,10 +196,7 @@ describe('ChatMessageComponent', () => {
     });
 
     it('should apply system class for system messages', () => {
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ type: 'system', content: { text: 'System' } })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ type: 'system', content: { text: 'System' } }));
       fixture.detectChanges();
 
       const classes = component.bubbleClasses();
@@ -258,10 +252,7 @@ describe('ChatMessageComponent', () => {
     });
 
     it('should apply system class for system messages', () => {
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ type: 'system', content: { text: 'System' } })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ type: 'system', content: { text: 'System' } }));
       fixture.detectChanges();
 
       const classes = component.containerClasses();
@@ -335,10 +326,7 @@ describe('ChatMessageComponent', () => {
         thumbnailUrl: 'thumb.jpg',
         fullUrl: 'full.jpg'
       };
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ type: 'image', content: imageContent })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ type: 'image', content: imageContent }));
       fixture.detectChanges();
 
       const spy = vi.fn();
@@ -367,10 +355,7 @@ describe('ChatMessageComponent', () => {
         fileType: 'pdf',
         downloadUrl: 'url'
       };
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ type: 'file', content: fileContent })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ type: 'file', content: fileContent }));
       fixture.detectChanges();
 
       const spy = vi.fn();
@@ -443,10 +428,7 @@ describe('ChatMessageComponent', () => {
 
   describe('rendering', () => {
     it('should render text message content', () => {
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ type: 'text', content: { text: 'Hello World' } })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ type: 'text', content: { text: 'Hello World' } }));
       fixture.detectChanges();
 
       const textEl = fixture.nativeElement.querySelector('.message-text');
@@ -501,10 +483,7 @@ describe('ChatMessageComponent', () => {
     });
 
     it('should render timestamp for last message in group', () => {
-      fixture.componentRef.setInput(
-        'message',
-        createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) })
-      );
+      fixture.componentRef.setInput('message', createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) }));
       fixture.componentRef.setInput('isLastInGroup', true);
       fixture.detectChanges();
 
@@ -733,10 +712,7 @@ describe('ChatMessageComponent with custom config', () => {
     }).compileComponents();
 
     const fixture = TestBed.createComponent(ChatMessageComponent);
-    fixture.componentRef.setInput(
-      'message',
-      createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) })
-    );
+    fixture.componentRef.setInput('message', createTestMessage({ timestamp: new Date(2025, 0, 15, 14, 30) }));
     fixture.detectChanges();
 
     expect(fixture.componentInstance.formattedTime()).toBe('2:30 PM');

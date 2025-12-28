@@ -22,10 +22,7 @@ describe('SafeMarkdownPipe', () => {
       })
     };
 
-    const providers = [
-      SafeMarkdownPipe,
-      { provide: ChatConfigService, useValue: mockConfigService }
-    ];
+    const providers = [SafeMarkdownPipe, { provide: ChatConfigService, useValue: mockConfigService }];
 
     // Only provide markdown service if specified
     if (markdownService) {

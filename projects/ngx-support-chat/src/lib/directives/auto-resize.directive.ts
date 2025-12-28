@@ -58,7 +58,7 @@ export class AutoResizeDirective implements OnInit, AfterViewInit {
    * Set up initial styles for the textarea
    */
   private setupStyles(): void {
-    const textarea = this.el.nativeElement;
+    const textarea = this.el.nativeElement as HTMLTextAreaElement;
     textarea.style.resize = 'none';
     textarea.style.overflowY = 'hidden';
     textarea.style.boxSizing = 'border-box';
@@ -68,7 +68,7 @@ export class AutoResizeDirective implements OnInit, AfterViewInit {
    * Resize the textarea to fit its content
    */
   resize(): void {
-    const textarea = this.el.nativeElement;
+    const textarea = this.el.nativeElement as HTMLTextAreaElement;
     const maxHeight = this.maxHeight;
 
     // Reset height to auto to get the correct scrollHeight
@@ -76,7 +76,7 @@ export class AutoResizeDirective implements OnInit, AfterViewInit {
 
     // Calculate new height
     const newHeight = Math.min(textarea.scrollHeight, maxHeight);
-    textarea.style.height = `${newHeight}px`;
+    textarea.style.height = `${String(newHeight)}px`;
 
     // Toggle overflow based on whether content exceeds max height
     textarea.style.overflowY = textarea.scrollHeight > maxHeight ? 'auto' : 'hidden';
@@ -86,7 +86,7 @@ export class AutoResizeDirective implements OnInit, AfterViewInit {
    * Reset the textarea to its minimum height
    */
   reset(): void {
-    const textarea = this.el.nativeElement;
+    const textarea = this.el.nativeElement as HTMLTextAreaElement;
     textarea.style.height = 'auto';
     textarea.style.overflowY = 'hidden';
   }

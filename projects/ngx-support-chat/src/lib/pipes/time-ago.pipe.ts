@@ -29,10 +29,10 @@ export class TimeAgoPipe implements PipeTransform {
   private lastDate: Date | null = null;
 
   /** Cached last result */
-  private lastResult: string = '';
+  private lastResult = '';
 
   /** Cached timestamp of last calculation */
-  private lastCalculationTime: number = 0;
+  private lastCalculationTime = 0;
 
   /** Minimum time between recalculations (5 seconds) */
   private readonly UPDATE_THRESHOLD_MS = 5000;

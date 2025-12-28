@@ -127,7 +127,7 @@
     font-size: 0.875rem;
     color: #64748b;
 
-    input[type="range"] {
+    input[type='range'] {
       width: 100%;
       height: 6px;
       border-radius: 3px;
@@ -172,7 +172,7 @@
     align-items: center;
     gap: 0.5rem;
 
-    input[type="color"] {
+    input[type='color'] {
       width: 40px;
       height: 32px;
       border: 1px solid #e2e8f0;
@@ -295,7 +295,9 @@
   border-radius: 1rem;
   overflow: hidden;
   background: #fff;
-  transition: width 0.3s ease, height 0.3s ease;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease;
 }
 
 // Demo Header (projected content)

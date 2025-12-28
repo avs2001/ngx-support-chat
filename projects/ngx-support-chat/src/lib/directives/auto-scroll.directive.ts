@@ -73,7 +73,9 @@ export class AutoScrollDirective implements AfterViewInit, OnChanges {
       // Only auto-scroll if array got longer AND user was at bottom
       if (prev && curr.length > prev.length && this.wasAtBottom) {
         // Use setTimeout to allow DOM to update first
-        setTimeout(() => this.scrollToBottom());
+        setTimeout(() => {
+          this.scrollToBottom();
+        });
       }
     }
   }
@@ -90,7 +92,7 @@ export class AutoScrollDirective implements AfterViewInit, OnChanges {
    * Check if the scroll position is at or near the bottom.
    */
   isAtBottom(): boolean {
-    const elem = this.el.nativeElement;
+    const elem = this.el.nativeElement as HTMLElement;
     const threshold = this.ngxAutoScrollThreshold();
 
     // scrollTop + clientHeight should be close to scrollHeight
@@ -102,7 +104,7 @@ export class AutoScrollDirective implements AfterViewInit, OnChanges {
    * Scroll to the bottom of the container.
    */
   scrollToBottom(): void {
-    const elem = this.el.nativeElement;
+    const elem = this.el.nativeElement as HTMLElement;
     elem.scrollTop = elem.scrollHeight;
     this.wasAtBottom = true;
   }

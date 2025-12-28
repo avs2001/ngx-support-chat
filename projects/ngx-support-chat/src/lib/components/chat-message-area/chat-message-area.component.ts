@@ -1,5 +1,4 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
-import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -25,9 +24,7 @@ import { ChatAnnouncerService } from '../../services/chat-announcer.service';
 /**
  * Union type for items that can be rendered in the message area.
  */
-export type MessageAreaItem =
-  | { type: 'separator'; date: Date }
-  | { type: 'group'; group: MessageGroup };
+export type MessageAreaItem = { type: 'separator'; date: Date } | { type: 'group'; group: MessageGroup };
 
 /**
  * Component for displaying a scrollable list of chat messages.
@@ -230,7 +227,8 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
   onKeydown(event: KeyboardEvent): void {
     // Only handle navigation when the message area or a message is focused
     const target = event.target as HTMLElement;
-    const isInMessageArea = this.elementRef.nativeElement.contains(target);
+    const container = this.elementRef.nativeElement as HTMLElement;
+    const isInMessageArea = container.contains(target);
     if (!isInMessageArea) return;
 
     switch (event.key) {
@@ -336,7 +334,7 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
     // Return focus to the viewport container
     const vp = this.viewport();
     if (vp) {
-      (vp.elementRef.nativeElement as HTMLElement).focus();
+      vp.elementRef.nativeElement.focus();
     }
   }
 

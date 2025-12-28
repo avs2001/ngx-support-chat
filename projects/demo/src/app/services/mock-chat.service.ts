@@ -9,7 +9,12 @@ import {
   FileContent,
   ImageContent
 } from 'ngx-support-chat';
-import { INITIAL_MESSAGES, AGENT_RESPONSES, QUICK_REPLY_SCENARIOS, generatePerformanceMessages } from '../data/mock-messages';
+import {
+  INITIAL_MESSAGES,
+  AGENT_RESPONSES,
+  QUICK_REPLY_SCENARIOS,
+  generatePerformanceMessages
+} from '../data/mock-messages';
 
 /**
  * Mock chat service for demo application.
@@ -291,9 +296,7 @@ export class MockChatService {
   }
 
   private updateMessageStatus(messageId: string, status: ChatMessage['status']): void {
-    this._messages.update(messages =>
-      messages.map(m => (m.id === messageId ? { ...m, status } : m))
-    );
+    this._messages.update(messages => messages.map(m => (m.id === messageId ? { ...m, status } : m)));
   }
 
   private async simulateStatusUpdates(): Promise<void> {
@@ -442,7 +445,9 @@ export class MockChatService {
         senderAvatar: this.agent.avatar,
         timestamp: new Date(Date.now() - 3300000),
         status: 'read',
-        content: { text: 'Of course! I can help with:\n\n- **Order status**\n- **Returns & refunds**\n- **Shipping questions**\n\nWhat would you like to know?' }
+        content: {
+          text: 'Of course! I can help with:\n\n- **Order status**\n- **Returns & refunds**\n- **Shipping questions**\n\nWhat would you like to know?'
+        }
       },
       // User image message
       {

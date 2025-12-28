@@ -43,7 +43,7 @@ export class ChatInputComponent {
   readonly maxHeight = input<number>(120);
 
   /** Emitted when Enter is pressed (without Shift) */
-  readonly send = output<void>();
+  readonly send = output();
 
   /** Reference to the textarea element */
   @ViewChild('textarea') textarea!: ElementRef<HTMLTextAreaElement>;
@@ -71,7 +71,7 @@ export class ChatInputComponent {
    * Focus the textarea programmatically
    */
   focus(): void {
-    this.textarea?.nativeElement.focus();
+    this.textarea.nativeElement.focus();
   }
 
   /**

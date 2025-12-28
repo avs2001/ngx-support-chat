@@ -1,9 +1,6 @@
 import { Rule, SchematicContext, Tree, chain } from '@angular-devkit/schematics';
 import { NodePackageInstallTask } from '@angular-devkit/schematics/tasks';
-import {
-  addPackageJsonDependency,
-  NodeDependencyType,
-} from '@schematics/angular/utility/dependencies';
+import { addPackageJsonDependency, NodeDependencyType } from '@schematics/angular/utility/dependencies';
 import { getWorkspace } from '@schematics/angular/utility/workspace';
 import { NgAddOptions } from './schema';
 
@@ -13,7 +10,7 @@ export function ngAdd(options: NgAddOptions): Rule {
     addOptionalDependencies(options),
     addDefaultStyles(options),
     logNextSteps(options),
-    installPackages(),
+    installPackages()
   ]);
 }
 
@@ -24,7 +21,7 @@ function addPeerDependencies(): Rule {
     addPackageJsonDependency(tree, {
       type: NodeDependencyType.Default,
       name: '@angular/cdk',
-      version: '^21.0.0',
+      version: '^21.0.0'
     });
 
     return tree;
@@ -39,13 +36,13 @@ function addOptionalDependencies(options: NgAddOptions): Rule {
       addPackageJsonDependency(tree, {
         type: NodeDependencyType.Default,
         name: 'ngx-markdown',
-        version: '^18.0.0',
+        version: '^18.0.0'
       });
 
       addPackageJsonDependency(tree, {
         type: NodeDependencyType.Default,
         name: 'marked',
-        version: '^12.0.0',
+        version: '^12.0.0'
       });
     }
 
@@ -60,9 +57,7 @@ function addDefaultStyles(options: NgAddOptions): Rule {
     }
 
     const workspace = await getWorkspace(tree);
-    const projectName =
-      options.project ||
-      (workspace.extensions['defaultProject'] as string | undefined);
+    const projectName = options.project || (workspace.extensions['defaultProject'] as string | undefined);
 
     if (!projectName) {
       context.logger.warn('Could not determine project name');
@@ -88,12 +83,8 @@ function addDefaultStyles(options: NgAddOptions): Rule {
         context.logger.info('CSS tokens import already exists');
       }
     } else {
-      context.logger.warn(
-        'Could not find global styles file. Please add the following import manually:'
-      );
-      context.logger.warn(
-        "  @import 'ngx-support-chat/styles/tokens.css';"
-      );
+      context.logger.warn('Could not find global styles file. Please add the following import manually:');
+      context.logger.warn("  @import 'ngx-support-chat/styles/tokens.css';");
     }
 
     return tree;
@@ -109,8 +100,7 @@ function findStylesFile(
 
   if (styles && styles.length > 0) {
     const mainStyles = styles.find(
-      (s): s is string =>
-        typeof s === 'string' && (s.endsWith('.scss') || s.endsWith('.css'))
+      (s): s is string => typeof s === 'string' && (s.endsWith('.scss') || s.endsWith('.css'))
     );
     if (mainStyles && tree.exists(mainStyles)) {
       return mainStyles;
@@ -121,7 +111,7 @@ function findStylesFile(
     'src/styles.scss',
     'src/styles.css',
     `${project.root}/src/styles.scss`,
-    `${project.root}/src/styles.css`,
+    `${project.root}/src/styles.css`
   ];
 
   for (const path of commonPaths) {
@@ -136,15 +126,9 @@ function findStylesFile(
 function logNextSteps(options: NgAddOptions): Rule {
   return (_tree: Tree, context: SchematicContext) => {
     context.logger.info('');
-    context.logger.info(
-      '╔════════════════════════════════════════════════════════════╗'
-    );
-    context.logger.info(
-      '║           ngx-support-chat installed successfully!         ║'
-    );
-    context.logger.info(
-      '╚════════════════════════════════════════════════════════════╝'
-    );
+    context.logger.info('╔════════════════════════════════════════════════════════════╗');
+    context.logger.info('║           ngx-support-chat installed successfully!         ║');
+    context.logger.info('╚════════════════════════════════════════════════════════════╝');
     context.logger.info('');
     context.logger.info('Next steps:');
     context.logger.info('');
@@ -155,9 +139,7 @@ function logNextSteps(options: NgAddOptions): Rule {
     context.logger.info('   export const appConfig: ApplicationConfig = {');
     context.logger.info('     providers: [');
     context.logger.info('       provideChatConfig({');
-    context.logger.info(
-      '         markdown: { enabled: ' + (options.includeMarkdown || false) + ' }'
-    );
+    context.logger.info('         markdown: { enabled: ' + (options.includeMarkdown || false) + ' }');
     context.logger.info('       })');
     context.logger.info('     ]');
     context.logger.info('   };');

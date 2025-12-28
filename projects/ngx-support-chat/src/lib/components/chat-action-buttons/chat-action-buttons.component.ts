@@ -1,11 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  ElementRef,
-  input,
-  output,
-  viewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ElementRef, input, output, viewChild } from '@angular/core';
 
 /**
  * Action buttons for the chat footer: send and attach.
@@ -43,7 +36,7 @@ export class ChatActionButtonsComponent {
   readonly accept = input<string>('');
 
   /** Emitted when send button is clicked */
-  readonly send = output<void>();
+  readonly send = output();
 
   /** Emitted when files are selected via the attach button */
   readonly attachmentSelect = output<File[]>();

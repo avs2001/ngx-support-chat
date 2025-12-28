@@ -47,7 +47,7 @@ export class ChatAnnouncerService {
     const contentSummary = this.getContentSummary(message);
     const announcement = `${message.senderName} at ${time}: ${contentSummary}`;
 
-    this.liveAnnouncer.announce(announcement, 'polite');
+    void this.liveAnnouncer.announce(announcement, 'polite');
   }
 
   /**
@@ -64,7 +64,7 @@ export class ChatAnnouncerService {
 
     this.lastTypingUserId = indicator.userId;
     const announcement = `${indicator.userName} is typing`;
-    this.liveAnnouncer.announce(announcement, 'polite');
+    void this.liveAnnouncer.announce(announcement, 'polite');
   }
 
   /**
@@ -90,7 +90,7 @@ export class ChatAnnouncerService {
 
     const statusLabel = this.getStatusLabel(message.status);
     const announcement = `Message ${statusLabel}`;
-    this.liveAnnouncer.announce(announcement, 'polite');
+    void this.liveAnnouncer.announce(announcement, 'polite');
   }
 
   /**
@@ -101,7 +101,7 @@ export class ChatAnnouncerService {
    */
   announceQuickReplySelection(option: QuickReplyOption): void {
     const announcement = `Selected: ${option.label}`;
-    this.liveAnnouncer.announce(announcement, 'polite');
+    void this.liveAnnouncer.announce(announcement, 'polite');
   }
 
   /**
@@ -111,10 +111,10 @@ export class ChatAnnouncerService {
    */
   announceQuickReplySubmit(options: QuickReplyOption[]): void {
     if (options.length === 1 && options[0]) {
-      this.liveAnnouncer.announce(`Submitted: ${options[0].label}`, 'assertive');
+      void this.liveAnnouncer.announce(`Submitted: ${options[0].label}`, 'assertive');
     } else if (options.length > 1) {
       const labels = options.map(o => o.label).join(', ');
-      this.liveAnnouncer.announce(`Submitted: ${labels}`, 'assertive');
+      void this.liveAnnouncer.announce(`Submitted: ${labels}`, 'assertive');
     }
   }
 
@@ -178,7 +178,7 @@ export class ChatAnnouncerService {
    */
   private formatFileSize(bytes: number): string {
     if (bytes < 1024) {
-      return `${bytes} bytes`;
+      return `${String(bytes)} bytes`;
     }
     if (bytes < 1024 * 1024) {
       return `${(bytes / 1024).toFixed(1)} kilobytes`;

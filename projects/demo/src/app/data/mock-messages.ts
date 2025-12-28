@@ -38,7 +38,7 @@ export const INITIAL_MESSAGES: ChatMessage[] = [
     senderAvatar: DEMO_AGENT.avatar,
     timestamp: new Date(Date.now() - 7190000),
     status: 'read',
-    content: { text: 'Hello! Welcome to our support chat. I\'m here to help you with any questions you may have.' }
+    content: { text: "Hello! Welcome to our support chat. I'm here to help you with any questions you may have." }
   },
   {
     id: 'init-3',
@@ -76,7 +76,7 @@ export const INITIAL_MESSAGES: ChatMessage[] = [
     senderAvatar: DEMO_AGENT.avatar,
     timestamp: new Date(Date.now() - 6800000),
     status: 'read',
-    content: { text: 'I\'d be happy to help! Feel free to ask anything about our products, pricing, or services.' }
+    content: { text: "I'd be happy to help! Feel free to ask anything about our products, pricing, or services." }
   }
 ];
 
@@ -85,19 +85,20 @@ export const INITIAL_MESSAGES: ChatMessage[] = [
  */
 export const AGENT_RESPONSES = {
   greeting: 'Hello! How can I assist you today?',
-  help: 'I\'d be happy to help! Here are some things I can assist with:\n\n- Product information\n- Order status\n- Technical support\n- Account questions\n\nWhat would you like to know more about?',
-  pricing: 'Our pricing varies depending on the plan you choose. We offer:\n\n- **Basic**: $9/month\n- **Pro**: $29/month\n- **Enterprise**: Custom pricing\n\nWould you like more details on any of these plans?',
-  thanks: 'You\'re welcome! Is there anything else I can help you with?',
+  help: "I'd be happy to help! Here are some things I can assist with:\n\n- Product information\n- Order status\n- Technical support\n- Account questions\n\nWhat would you like to know more about?",
+  pricing:
+    'Our pricing varies depending on the plan you choose. We offer:\n\n- **Basic**: $9/month\n- **Pro**: $29/month\n- **Enterprise**: Custom pricing\n\nWould you like more details on any of these plans?',
+  thanks: "You're welcome! Is there anything else I can help you with?",
   goodbye: 'Thank you for chatting with us today! Have a great day! 👋',
   generic: [
-    'That\'s a great question! Let me look into that for you.',
+    "That's a great question! Let me look into that for you.",
     'I understand. Let me help you with that.',
-    'Thanks for the information. Here\'s what I can tell you...',
+    "Thanks for the information. Here's what I can tell you...",
     'I see what you mean. Let me explain how that works.',
-    'Good point! Here\'s some more context on that topic.',
+    "Good point! Here's some more context on that topic.",
     'I appreciate you sharing that. Let me provide some guidance.',
-    'That makes sense. Here\'s what I\'d recommend...',
-    'I\'m checking our resources now. One moment please...'
+    "That makes sense. Here's what I'd recommend...",
+    "I'm checking our resources now. One moment please..."
   ]
 };
 
@@ -216,15 +217,15 @@ function getRandomUserMessage(index: number): string {
 function getRandomAgentMessage(index: number): string {
   const messages = [
     'Let me help you with that.',
-    'Great question! Here\'s what you need to know...',
-    'I\'d be happy to explain that further.',
-    'Yes, you can definitely do that. Here\'s how...',
-    'That\'s available in our Pro plan.',
-    'I\'ll send you the details right away.',
+    "Great question! Here's what you need to know...",
+    "I'd be happy to explain that further.",
+    "Yes, you can definitely do that. Here's how...",
+    "That's available in our Pro plan.",
+    "I'll send you the details right away.",
     'Let me check on that for you.',
-    'Here\'s a step-by-step guide...',
+    "Here's a step-by-step guide...",
     'I understand your concern. Let me help.',
-    'Thanks for your patience. Here\'s the answer...'
+    "Thanks for your patience. Here's the answer..."
   ] as const;
   return messages[index % messages.length] ?? 'How can I help?';
 }

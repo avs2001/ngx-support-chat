@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { App } from './app';
 import { MockChatService } from './services/mock-chat.service';
 
+/* eslint-disable @angular-eslint/component-selector */
 // Mock the ChatContainerComponent since we're testing demo app behavior, not the library
 @Component({
   selector: 'ngx-chat-container',
@@ -11,6 +12,7 @@ import { MockChatService } from './services/mock-chat.service';
   template: '<div class="mock-chat-container"><ng-content></ng-content></div>'
 })
 class MockChatContainerComponent {}
+/* eslint-enable @angular-eslint/component-selector */
 
 describe('App', () => {
   beforeEach(async () => {

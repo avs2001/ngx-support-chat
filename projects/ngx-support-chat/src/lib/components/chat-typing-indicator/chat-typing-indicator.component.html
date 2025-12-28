@@ -1,16 +1,7 @@
-<div
-  class="typing-indicator"
-  role="status"
-  [attr.aria-label]="typingText()"
-  aria-live="polite"
->
+<div class="typing-indicator" role="status" [attr.aria-label]="typingText()" aria-live="polite">
   <!-- Avatar (if available) -->
   @if (hasAvatar()) {
-    <img
-      class="typing-indicator__avatar"
-      [src]="avatar()"
-      [alt]="userName()"
-    />
+    <img class="typing-indicator__avatar" [src]="avatar()" [alt]="userName()" />
   }
 
   <!-- Typing bubble with dots -->

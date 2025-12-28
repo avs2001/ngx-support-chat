@@ -15,11 +15,7 @@
     }
 
     <!-- Input area -->
-    <ngx-chat-input
-      [(value)]="inputValue"
-      [disabled]="disabled()"
-      (send)="messageSend.emit()"
-    />
+    <ngx-chat-input [(value)]="inputValue" [disabled]="disabled()" (send)="messageSend.emit()" />
   </div>
 
   <!-- Actions -->

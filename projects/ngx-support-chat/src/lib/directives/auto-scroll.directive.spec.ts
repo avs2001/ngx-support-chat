@@ -1,6 +1,6 @@
 import { Component, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 import { AutoScrollDirective } from './auto-scroll.directive';
 
@@ -235,8 +235,6 @@ describe('AutoScrollDirective', () => {
       container.scrollTop = 50;
       container.dispatchEvent(new Event('scroll'));
       fixture.detectChanges();
-
-      const scrollTopBefore = container.scrollTop;
 
       // Remove items (array gets shorter)
       host.items.set(['Item 1', 'Item 2']);

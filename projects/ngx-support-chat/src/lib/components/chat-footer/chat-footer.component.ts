@@ -31,7 +31,7 @@ import { ChatInputComponent } from '../chat-input/chat-input.component';
   imports: [ChatInputComponent, ChatAttachmentPreviewComponent, ChatActionButtonsComponent],
   templateUrl: './chat-footer.component.html',
   styleUrl: './chat-footer.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatFooterComponent {
   // ============================================

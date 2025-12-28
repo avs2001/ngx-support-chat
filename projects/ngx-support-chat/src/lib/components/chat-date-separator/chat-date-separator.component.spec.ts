@@ -103,7 +103,7 @@ describe('ChatDateSeparatorComponent with custom config', () => {
     const customConfig = {
       ...DEFAULT_CHAT_CONFIG,
       dateSeparatorLabels: {
-        today: 'Aujourd\'hui',
+        today: "Aujourd'hui",
         yesterday: 'Hier'
       }
     };
@@ -117,7 +117,7 @@ describe('ChatDateSeparatorComponent with custom config', () => {
     fixture.componentRef.setInput('date', new Date());
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.displayText()).toBe('Aujourd\'hui');
+    expect(fixture.componentInstance.displayText()).toBe("Aujourd'hui");
   });
 
   it('should use custom date format', async () => {

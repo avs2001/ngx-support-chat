@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, signal } from '@angular/core';
-import { describe, it, expect, beforeEach, vi } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 
 import { ChatAttachmentPreviewComponent } from './chat-attachment-preview.component';
 import { Attachment } from '../../../models/attachment.model';
@@ -9,12 +9,7 @@ import { Attachment } from '../../../models/attachment.model';
 @Component({
   standalone: true,
   imports: [ChatAttachmentPreviewComponent],
-  template: `
-    <ngx-chat-attachment-preview
-      [attachments]="attachments()"
-      (attachmentRemove)="onRemove($event)"
-    />
-  `
+  template: ` <ngx-chat-attachment-preview [attachments]="attachments()" (attachmentRemove)="onRemove($event)" /> `
 })
 class TestHostComponent {
   attachments = signal<Attachment[]>([]);

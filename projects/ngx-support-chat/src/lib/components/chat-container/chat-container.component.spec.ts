@@ -1,7 +1,14 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ChatContainerComponent } from './chat-container.component';
-import { ChatMessage, Attachment, TypingIndicator, QuickReplySet, MessageSendEvent, QuickReplySubmitEvent } from '../../../models/public-api';
+import {
+  ChatMessage,
+  Attachment,
+  TypingIndicator,
+  QuickReplySet,
+  MessageSendEvent,
+  QuickReplySubmitEvent
+} from '../../../models/public-api';
 
 describe('ChatContainerComponent', () => {
   let component: ChatContainerComponent;
@@ -15,13 +22,13 @@ describe('ChatContainerComponent', () => {
       senderName: 'Test User',
       timestamp: new Date(),
       status: 'sent',
-      content: { text: 'Hello' },
-    },
+      content: { text: 'Hello' }
+    }
   ];
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ChatContainerComponent],
+      imports: [ChatContainerComponent]
     }).compileComponents();
   });
 
@@ -74,7 +81,7 @@ describe('ChatContainerComponent', () => {
     it('should accept typingIndicator input', () => {
       const indicator: TypingIndicator = {
         userId: 'agent1',
-        userName: 'Support Agent',
+        userName: 'Support Agent'
       };
       fixture.componentRef.setInput('typingIndicator', indicator);
       fixture.detectChanges();
@@ -90,7 +97,7 @@ describe('ChatContainerComponent', () => {
         id: 'qr1',
         type: 'single-choice',
         options: [{ value: 'yes', label: 'Yes' }],
-        submitted: false,
+        submitted: false
       };
       fixture.componentRef.setInput('quickReplies', replies);
       fixture.detectChanges();
@@ -102,9 +109,7 @@ describe('ChatContainerComponent', () => {
     });
 
     it('should accept pendingAttachments input', () => {
-      const attachments: Attachment[] = [
-        { id: 'a1', file: new File([''], 'test.txt') },
-      ];
+      const attachments: Attachment[] = [{ id: 'a1', file: new File([''], 'test.txt') }];
       fixture.componentRef.setInput('pendingAttachments', attachments);
       fixture.detectChanges();
       expect(component.pendingAttachments()).toEqual(attachments);
@@ -199,7 +204,7 @@ describe('ChatContainerComponent', () => {
 
     it('should emit messageSend when inputValue has text', () => {
       let emittedEvent: MessageSendEvent | undefined;
-      component.messageSend.subscribe((event) => {
+      component.messageSend.subscribe(event => {
         emittedEvent = event;
       });
 
@@ -213,13 +218,11 @@ describe('ChatContainerComponent', () => {
 
     it('should emit messageSend when there are attachments', () => {
       let emittedEvent: MessageSendEvent | undefined;
-      component.messageSend.subscribe((event) => {
+      component.messageSend.subscribe(event => {
         emittedEvent = event;
       });
 
-      const attachments: Attachment[] = [
-        { id: 'a1', file: new File([''], 'test.txt') },
-      ];
+      const attachments: Attachment[] = [{ id: 'a1', file: new File([''], 'test.txt') }];
       fixture.componentRef.setInput('pendingAttachments', attachments);
       fixture.detectChanges();
 
@@ -232,7 +235,7 @@ describe('ChatContainerComponent', () => {
 
     it('should not emit messageSend when inputValue is empty and no attachments', () => {
       let emittedEvent: MessageSendEvent | undefined;
-      component.messageSend.subscribe((event) => {
+      component.messageSend.subscribe(event => {
         emittedEvent = event;
       });
 
@@ -243,7 +246,7 @@ describe('ChatContainerComponent', () => {
 
     it('should trim whitespace from inputValue', () => {
       let emittedEvent: MessageSendEvent | undefined;
-      component.messageSend.subscribe((event) => {
+      component.messageSend.subscribe(event => {
         emittedEvent = event;
       });
 
@@ -264,7 +267,7 @@ describe('ChatContainerComponent', () => {
           <div chatFooterActions>Action Buttons</div>
         </ngx-chat-container>
       `,
-      imports: [ChatContainerComponent],
+      imports: [ChatContainerComponent]
     })
     class TestHostComponent {
       messages: ChatMessage[] = [];
@@ -274,7 +277,7 @@ describe('ChatContainerComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [TestHostComponent],
+        imports: [TestHostComponent]
       }).compileComponents();
 
       hostFixture = TestBed.createComponent(TestHostComponent);
@@ -370,7 +373,7 @@ describe('ChatContainerComponent', () => {
         id: 'qr1',
         type: 'single-choice',
         options: [{ value: 'yes', label: 'Yes' }],
-        submitted: false,
+        submitted: false
       };
       fixture.componentRef.setInput('quickReplies', quickReplies);
       fixture.detectChanges();
@@ -385,9 +388,11 @@ describe('ChatContainerComponent', () => {
       const submitEvent: QuickReplySubmitEvent = {
         setId: 'qr1',
         type: 'single-choice',
-        selectedValues: ['yes'],
+        selectedValues: ['yes']
       };
-      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(submitEvent);
+      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(
+        submitEvent
+      );
 
       expect(quickReplySubmitted).toBe(true);
       // Focus return is handled via requestAnimationFrame internally
@@ -407,17 +412,19 @@ describe('ChatContainerComponent', () => {
 
     it('should emit quickReplySubmit with correct event data', () => {
       let emittedEvent: QuickReplySubmitEvent | undefined;
-      component.quickReplySubmit.subscribe((event) => {
+      component.quickReplySubmit.subscribe(event => {
         emittedEvent = event;
       });
 
       const submitEvent: QuickReplySubmitEvent = {
         setId: 'qr-test',
         type: 'multiple-choice',
-        selectedValues: ['option1', 'option2'],
+        selectedValues: ['option1', 'option2']
       };
 
-      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(submitEvent);
+      (component as unknown as { onQuickReplySubmit: (event: QuickReplySubmitEvent) => void }).onQuickReplySubmit(
+        submitEvent
+      );
 
       expect(emittedEvent).toBeDefined();
       expect(emittedEvent?.setId).toBe('qr-test');

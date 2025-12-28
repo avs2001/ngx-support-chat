@@ -21,6 +21,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   selector: 'ngx-chat-header',
   templateUrl: './chat-header.component.html',
   styleUrl: './chat-header.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatHeaderComponent {}

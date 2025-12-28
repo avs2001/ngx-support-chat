@@ -61,7 +61,12 @@ describe('message-grouping.util', () => {
       const baseTime = new Date(2025, 5, 15, 12, 0);
       const messages = [
         createMessage({ id: 'msg-1', senderId: 'user-1', timestamp: new Date(baseTime.getTime()) }),
-        createMessage({ id: 'msg-2', senderId: 'agent-1', senderName: 'Agent', timestamp: new Date(baseTime.getTime() + 60000) }),
+        createMessage({
+          id: 'msg-2',
+          senderId: 'agent-1',
+          senderName: 'Agent',
+          timestamp: new Date(baseTime.getTime() + 60000)
+        }),
         createMessage({ id: 'msg-3', senderId: 'user-1', timestamp: new Date(baseTime.getTime() + 120000) })
       ];
 
@@ -190,7 +195,11 @@ describe('message-grouping.util', () => {
     it('should return false for system messages', () => {
       const baseTime = new Date(2025, 5, 15, 12, 0);
       const msg1 = createMessage({ senderId: 'system', type: 'system', timestamp: baseTime });
-      const msg2 = createMessage({ senderId: 'system', type: 'system', timestamp: new Date(baseTime.getTime() + 60000) });
+      const msg2 = createMessage({
+        senderId: 'system',
+        type: 'system',
+        timestamp: new Date(baseTime.getTime() + 60000)
+      });
 
       expect(shouldGroupWithPrevious(msg2, msg1, DEFAULT_GROUP_THRESHOLD_MS)).toBe(false);
     });
@@ -198,7 +207,11 @@ describe('message-grouping.util', () => {
     it('should return false when current message is system type', () => {
       const baseTime = new Date(2025, 5, 15, 12, 0);
       const msg1 = createMessage({ senderId: 'user-1', timestamp: baseTime });
-      const msg2 = createMessage({ senderId: 'user-1', type: 'system', timestamp: new Date(baseTime.getTime() + 60000) });
+      const msg2 = createMessage({
+        senderId: 'user-1',
+        type: 'system',
+        timestamp: new Date(baseTime.getTime() + 60000)
+      });
 
       expect(shouldGroupWithPrevious(msg2, msg1, DEFAULT_GROUP_THRESHOLD_MS)).toBe(false);
     });
@@ -214,7 +227,12 @@ describe('message-grouping.util', () => {
         {
           date: new Date(2025, 5, 15),
           groups: [
-            { senderId: 'user-1', senderName: 'User', isCurrentUser: true, messages: [createMessage(), createMessage()] },
+            {
+              senderId: 'user-1',
+              senderName: 'User',
+              isCurrentUser: true,
+              messages: [createMessage(), createMessage()]
+            },
             { senderId: 'agent-1', senderName: 'Agent', isCurrentUser: false, messages: [createMessage()] }
           ]
         },
@@ -259,7 +277,9 @@ describe('message-grouping.util', () => {
       const grouped: GroupedMessages[] = [
         {
           date: new Date(2025, 5, 15),
-          groups: [{ senderId: 'user-1', senderName: 'User', isCurrentUser: true, messages: [createMessage({ id: 'msg-1' })] }]
+          groups: [
+            { senderId: 'user-1', senderName: 'User', isCurrentUser: true, messages: [createMessage({ id: 'msg-1' })] }
+          ]
         }
       ];
 

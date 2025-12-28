@@ -3,11 +3,7 @@
     @for (attachment of attachments(); track attachment.id) {
       <div class="chip">
         @if (isImage(attachment) && attachment.previewUrl) {
-          <img
-            class="chip__preview"
-            [src]="attachment.previewUrl"
-            [alt]="attachment.file.name"
-          />
+          <img class="chip__preview" [src]="attachment.previewUrl" [alt]="attachment.file.name" />
         } @else {
           <span class="chip__icon">{{ getFileIcon(attachment) }}</span>
         }
@@ -15,11 +11,7 @@
         <span class="chip__filename">{{ truncateFilename(attachment.file.name, 20) }}</span>
 
         @if (attachment.uploadProgress !== undefined && attachment.uploadProgress < 100) {
-          <progress
-            class="chip__progress"
-            [value]="attachment.uploadProgress"
-            max="100"
-          ></progress>
+          <progress class="chip__progress" [value]="attachment.uploadProgress" max="100"></progress>
         }
 
         <button

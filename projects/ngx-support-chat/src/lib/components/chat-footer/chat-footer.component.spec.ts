@@ -10,7 +10,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatFooterComponent],
+        imports: [ChatFooterComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatFooterComponent);
@@ -29,7 +29,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatFooterComponent],
+        imports: [ChatFooterComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatFooterComponent);
@@ -42,9 +42,7 @@ describe('ChatFooterComponent', () => {
     });
 
     it('should accept pendingAttachments input', () => {
-      const attachments: Attachment[] = [
-        { id: 'a1', file: new File([''], 'test.txt') },
-      ];
+      const attachments: Attachment[] = [{ id: 'a1', file: new File([''], 'test.txt') }];
       fixture.componentRef.setInput('pendingAttachments', attachments);
       fixture.detectChanges();
       expect(component.pendingAttachments()).toEqual(attachments);
@@ -92,7 +90,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatFooterComponent],
+        imports: [ChatFooterComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatFooterComponent);
@@ -121,7 +119,7 @@ describe('ChatFooterComponent', () => {
           <button chatFooterActions class="action-btn">Send</button>
         </ngx-chat-footer>
       `,
-      imports: [ChatFooterComponent],
+      imports: [ChatFooterComponent]
     })
     class TestHostComponent {}
 
@@ -129,7 +127,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [TestHostComponent],
+        imports: [TestHostComponent]
       }).compileComponents();
 
       hostFixture = TestBed.createComponent(TestHostComponent);
@@ -158,7 +156,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatFooterComponent],
+        imports: [ChatFooterComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatFooterComponent);
@@ -191,7 +189,7 @@ describe('ChatFooterComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatFooterComponent],
+        imports: [ChatFooterComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatFooterComponent);
@@ -199,9 +197,7 @@ describe('ChatFooterComponent', () => {
     });
 
     it('should show attachment-preview component when attachments exist', () => {
-      const attachments: Attachment[] = [
-        { id: 'a1', file: new File([''], 'test.txt') },
-      ];
+      const attachments: Attachment[] = [{ id: 'a1', file: new File([''], 'test.txt') }];
       fixture.componentRef.setInput('pendingAttachments', attachments);
       fixture.detectChanges();
 

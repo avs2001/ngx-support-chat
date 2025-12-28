@@ -77,9 +77,7 @@ export function groupMessagesByDate(
 
     // Check if we need a new sender group
     const shouldStartNewGroup =
-      !currentSenderGroup ||
-      !previousMessage ||
-      !shouldGroupWithPrevious(message, previousMessage, timeThreshold);
+      !currentSenderGroup || !previousMessage || !shouldGroupWithPrevious(message, previousMessage, timeThreshold);
 
     if (shouldStartNewGroup || !currentSenderGroup) {
       const newGroup: MessageGroup = {

@@ -1,14 +1,5 @@
-<cdk-virtual-scroll-viewport
-  #viewport
-  [itemSize]="itemSize()"
-  class="message-area"
-  role="list"
-  aria-label="Messages"
->
-  <div
-    *cdkVirtualFor="let item of items(); trackBy: trackByItem"
-    class="message-area__item"
-  >
+<cdk-virtual-scroll-viewport #viewport [itemSize]="itemSize()" class="message-area" role="list" aria-label="Messages">
+  <div *cdkVirtualFor="let item of items(); trackBy: trackByItem" class="message-area__item">
     @if (isSeparator(item)) {
       <ngx-chat-date-separator [date]="item.date" />
     }

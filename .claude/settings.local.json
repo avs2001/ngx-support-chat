@@ -41,7 +41,8 @@
       "Bash(npm run build:demo:*)",
       "Bash(npm run build:schematics:*)",
       "Bash(npm pack)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(git remote add:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

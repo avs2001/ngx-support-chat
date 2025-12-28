@@ -4,7 +4,8 @@
     class="panel-toggle"
     (click)="toggleConfigPanel()"
     [attr.aria-expanded]="showConfigPanel()"
-    aria-label="Toggle configuration panel">
+    aria-label="Toggle configuration panel"
+  >
     @if (showConfigPanel()) {
       <span>Hide Panel</span>
     } @else {
@@ -24,31 +25,24 @@
           <button
             type="button"
             [class.active]="activeScenario() === 'conversation'"
-            (click)="loadScenario('conversation')">
+            (click)="loadScenario('conversation')"
+          >
             Conversation
           </button>
-          <button
-            type="button"
-            [class.active]="activeScenario() === 'empty'"
-            (click)="loadScenario('empty')">
+          <button type="button" [class.active]="activeScenario() === 'empty'" (click)="loadScenario('empty')">
             Empty
           </button>
-          <button
-            type="button"
-            [class.active]="activeScenario() === 'all-types'"
-            (click)="loadScenario('all-types')">
+          <button type="button" [class.active]="activeScenario() === 'all-types'" (click)="loadScenario('all-types')">
             All Types
           </button>
           <button
             type="button"
             [class.active]="activeScenario() === 'performance'"
-            (click)="loadScenario('performance')">
+            (click)="loadScenario('performance')"
+          >
             500+ Messages
           </button>
-          <button
-            type="button"
-            [class.active]="activeScenario() === 'failed'"
-            (click)="loadScenario('failed')">
+          <button type="button" [class.active]="activeScenario() === 'failed'" (click)="loadScenario('failed')">
             Failed Messages
           </button>
         </div>
@@ -58,15 +52,9 @@
       <section class="config-section">
         <h3>Quick Replies</h3>
         <div class="button-group">
-          <button type="button" (click)="showQuickReplyDemo('confirmation')">
-            Confirmation
-          </button>
-          <button type="button" (click)="showQuickReplyDemo('singleChoice')">
-            Single Choice
-          </button>
-          <button type="button" (click)="showQuickReplyDemo('multipleChoice')">
-            Multiple Choice
-          </button>
+          <button type="button" (click)="showQuickReplyDemo('confirmation')">Confirmation</button>
+          <button type="button" (click)="showQuickReplyDemo('singleChoice')">Single Choice</button>
+          <button type="button" (click)="showQuickReplyDemo('multipleChoice')">Multiple Choice</button>
         </div>
       </section>
 
@@ -82,7 +70,8 @@
               max="800"
               step="10"
               [ngModel]="containerWidth()"
-              (ngModelChange)="containerWidth.set($event)" />
+              (ngModelChange)="containerWidth.set($event)"
+            />
           </label>
         </div>
         <div class="slider-control">
@@ -94,7 +83,8 @@
               max="800"
               step="10"
               [ngModel]="containerHeight()"
-              (ngModelChange)="containerHeight.set($event)" />
+              (ngModelChange)="containerHeight.set($event)"
+            />
           </label>
         </div>
         <p class="breakpoint-info">
@@ -118,7 +108,8 @@
               <input
                 type="color"
                 [ngModel]="userBubbleColor()"
-                (ngModelChange)="userBubbleColor.set($event); applyUserBubbleColor()" />
+                (ngModelChange)="userBubbleColor.set($event); applyUserBubbleColor()"
+              />
               <span>{{ userBubbleColor() }}</span>
             </div>
           </label>
@@ -130,23 +121,20 @@
               <input
                 type="color"
                 [ngModel]="agentBubbleColor()"
-                (ngModelChange)="agentBubbleColor.set($event); applyAgentBubbleColor()" />
+                (ngModelChange)="agentBubbleColor.set($event); applyAgentBubbleColor()"
+              />
               <span>{{ agentBubbleColor() }}</span>
             </div>
           </label>
         </div>
-        <button type="button" class="reset-btn" (click)="resetTheme()">
-          Reset Theme
-        </button>
+        <button type="button" class="reset-btn" (click)="resetTheme()">Reset Theme</button>
       </section>
 
       <!-- Actions -->
       <section class="config-section">
         <h3>Test Actions</h3>
         <div class="button-group">
-          <button type="button" (click)="triggerFailedMessage()">
-            Send Failed Message
-          </button>
+          <button type="button" (click)="triggerFailedMessage()">Send Failed Message</button>
         </div>
       </section>
 
@@ -186,8 +174,8 @@
       class="chat-wrapper"
       [style.width.px]="containerWidth()"
       [style.height.px]="containerHeight()"
-      [style]="containerStyles()">
-
+      [style]="containerStyles()"
+    >
       <ngx-chat-container
         [messages]="messages()"
         [typingIndicator]="typing()"
@@ -202,8 +190,8 @@
         (quickReplySubmit)="onQuickReplySubmit($event)"
         (imagePreview)="onImagePreview($event)"
         (fileDownload)="onFileDownload($event)"
-        (scrollTop)="onScrollTop()">
-
+        (scrollTop)="onScrollTop()"
+      >
         <!-- Custom Header -->
         <div chatHeader class="demo-header">
           <img [src]="agent().avatar" alt="Agent avatar" class="agent-avatar" />
@@ -215,7 +203,7 @@
           </div>
           <button type="button" class="close-btn" aria-label="Close chat">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M18 6L6 18M6 6l12 12"/>
+              <path d="M18 6L6 18M6 6l12 12" />
             </svg>
           </button>
         </div>
@@ -226,7 +214,6 @@
           <h3>Welcome to Support Chat</h3>
           <p>Start a conversation with our team!</p>
         </div>
-
       </ngx-chat-container>
     </div>
   </main>

@@ -9,7 +9,7 @@ describe('ChatHeaderComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [ChatHeaderComponent],
+        imports: [ChatHeaderComponent]
       }).compileComponents();
 
       fixture = TestBed.createComponent(ChatHeaderComponent);
@@ -35,7 +35,7 @@ describe('ChatHeaderComponent', () => {
           <span class="test-content">Header Title</span>
         </ngx-chat-header>
       `,
-      imports: [ChatHeaderComponent],
+      imports: [ChatHeaderComponent]
     })
     class TestHostComponent {}
 
@@ -43,7 +43,7 @@ describe('ChatHeaderComponent', () => {
 
     beforeEach(async () => {
       await TestBed.configureTestingModule({
-        imports: [TestHostComponent],
+        imports: [TestHostComponent]
       }).compileComponents();
 
       hostFixture = TestBed.createComponent(TestHostComponent);
