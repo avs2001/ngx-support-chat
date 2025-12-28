@@ -5,5 +5,12 @@
     "entryFile": "src/public-api.ts",
     "cssUrl": "inline"
   },
-  "assets": ["schematics/**/*.json", "src/styles/**/*.css"]
+  "assets": [
+    "schematics/**/*.json",
+    {
+      "input": "src/styles",
+      "glob": "**/*.css",
+      "output": "styles"
+    }
+  ]
 }

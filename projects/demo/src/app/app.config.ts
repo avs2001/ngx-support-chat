@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
       markdown: {
         enabled: true,
         displayMode: true,
-        inputMode: false
+        inputMode: true
       },
       dateFormat: 'MMM d, yyyy'
     })

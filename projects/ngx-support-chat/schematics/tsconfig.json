@@ -3,12 +3,14 @@
     "module": "commonjs",
     "target": "ES2022",
     "lib": ["ES2022"],
+    "rootDir": ".",
     "outDir": "../../../dist/ngx-support-chat/schematics",
     "declaration": true,
     "strict": true,
     "noImplicitAny": true,
     "skipLibCheck": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
   "include": ["./**/*.ts"],
   "exclude": ["node_modules"]

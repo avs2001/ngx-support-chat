@@ -38,7 +38,10 @@
       "Bash(npx tsc:*)",
       "Bash(npm run test:coverage:*)",
       "Bash(git restore:*)",
-      "Bash(npm run build:demo:*)"
+      "Bash(npm run build:demo:*)",
+      "Bash(npm run build:schematics:*)",
+      "Bash(npm pack)",
+      "Bash(npm run:*)"
     ]
   },
   "enableAllProjectMcpServers": true,

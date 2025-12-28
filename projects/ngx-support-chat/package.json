@@ -30,5 +30,10 @@
   "schematics": "./schematics/collection.json",
   "ng-add": {
     "save": "dependencies"
+  },
+  "exports": {
+    "./styles/tokens.css": {
+      "style": "./styles/tokens.css"
+    }
   }
 }

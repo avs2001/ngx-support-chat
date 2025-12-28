@@ -6,7 +6,22 @@
   "properties": {
     "project": {
       "type": "string",
-      "description": "The name of the project to add ngx-support-chat to."
+      "description": "The project to add the library to",
+      "$default": {
+        "$source": "projectName"
+      }
+    },
+    "includeMarkdown": {
+      "type": "boolean",
+      "default": false,
+      "description": "Include ngx-markdown for markdown support",
+      "x-prompt": "Do you want to enable markdown support in chat messages?"
+    },
+    "addDefaultStyles": {
+      "type": "boolean",
+      "default": true,
+      "description": "Add default CSS token variables to global styles",
+      "x-prompt": "Do you want to add default CSS tokens to your global styles?"
     }
   },
   "required": []
