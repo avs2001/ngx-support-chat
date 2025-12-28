@@ -35,6 +35,11 @@ export { ChatActionButtonsComponent } from './lib/components/chat-action-buttons
 export { AutoResizeDirective } from './lib/directives/auto-resize.directive';
 export { AutoScrollDirective } from './lib/directives/auto-scroll.directive';
 
+// Pipes
+export { FileSizePipe } from './lib/pipes/file-size.pipe';
+export { TimeAgoPipe } from './lib/pipes/time-ago.pipe';
+export { SafeMarkdownPipe, MARKDOWN_SERVICE, type MarkdownServiceLike } from './lib/pipes/safe-markdown.pipe';
+
 // Utilities
 export {
   groupMessagesByDate,
@@ -53,5 +58,6 @@ export {
   isYesterday,
   isSameDay,
   startOfDay,
-  getTimeDifferenceMs
+  getTimeDifferenceMs,
+  getRelativeTime
 } from './lib/utils/date-helpers.util';
