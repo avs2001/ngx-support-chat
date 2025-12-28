@@ -1,0 +1,388 @@
+// Demo Application Styles
+// ========================
+
+:host {
+  display: block;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+.demo-layout {
+  display: flex;
+  height: 100%;
+  background: #f8fafc;
+  position: relative;
+}
+
+// Panel Toggle Button (Mobile)
+.panel-toggle {
+  display: none;
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 100;
+  background: #1e293b;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+
+  &:hover {
+    background: #334155;
+  }
+
+  @media (max-width: 1024px) {
+    display: block;
+  }
+}
+
+// Configuration Panel
+.config-panel {
+  width: 320px;
+  min-width: 320px;
+  background: #fff;
+  border-right: 1px solid #e2e8f0;
+  padding: 1.5rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    box-shadow: 4px 0 12px rgba(0, 0, 0, 0.1);
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  h3 {
+    margin: 0 0 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #475569;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+}
+
+.config-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+// Button Groups
+.button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  button {
+    flex: 1 1 auto;
+    min-width: 100px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #e2e8f0;
+    background: #fff;
+    color: #475569;
+    border-radius: 0.375rem;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+
+    &:hover {
+      background: #f1f5f9;
+      border-color: #cbd5e1;
+    }
+
+    &.active {
+      background: #2563eb;
+      border-color: #2563eb;
+      color: #fff;
+    }
+  }
+}
+
+// Slider Controls
+.slider-control {
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: #64748b;
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e2e8f0;
+      cursor: pointer;
+      -webkit-appearance: none;
+
+      &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #2563eb;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.breakpoint-info {
+  margin: 0.5rem 0 0;
+  font-size: 0.8125rem;
+  color: #64748b;
+
+  strong {
+    color: #2563eb;
+  }
+}
+
+// Color Controls
+.color-control {
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    font-size: 0.875rem;
+    color: #64748b;
+  }
+
+  .color-input-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    input[type="color"] {
+      width: 40px;
+      height: 32px;
+      border: 1px solid #e2e8f0;
+      border-radius: 0.25rem;
+      padding: 2px;
+      cursor: pointer;
+    }
+
+    span {
+      font-family: ui-monospace, monospace;
+      font-size: 0.8125rem;
+      color: #475569;
+    }
+  }
+}
+
+// Reset Button
+.reset-btn {
+  margin-top: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: #fff;
+  color: #64748b;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #f1f5f9;
+  }
+}
+
+// Toggle Log Button
+.toggle-log-btn {
+  width: 100%;
+  padding: 0.5rem 1rem;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+  color: #64748b;
+  border-radius: 0.375rem;
+  font-size: 0.8125rem;
+  cursor: pointer;
+
+  &:hover {
+    background: #f1f5f9;
+  }
+}
+
+// Event Log
+.event-log {
+  background: #1e293b;
+  border-radius: 0.5rem;
+  padding: 1rem;
+
+  .log-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+
+    h3 {
+      margin: 0;
+      color: #94a3b8;
+    }
+  }
+
+  .clear-btn {
+    padding: 0.25rem 0.5rem;
+    border: 1px solid #475569;
+    background: transparent;
+    color: #94a3b8;
+    border-radius: 0.25rem;
+    font-size: 0.75rem;
+    cursor: pointer;
+
+    &:hover {
+      background: #334155;
+    }
+  }
+
+  .log-entries {
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: ui-monospace, monospace;
+    font-size: 0.75rem;
+  }
+
+  .log-entry {
+    padding: 0.25rem 0;
+    color: #94a3b8;
+    border-bottom: 1px solid #334155;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    &.empty {
+      color: #64748b;
+      font-style: italic;
+    }
+  }
+}
+
+// Chat Demo Area
+.chat-demo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+}
+
+.chat-wrapper {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #fff;
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+// Demo Header (projected content)
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: #fff;
+
+  .agent-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  .agent-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .agent-name {
+    font-weight: 600;
+    font-size: 0.9375rem;
+  }
+
+  .agent-status {
+    font-size: 0.75rem;
+    opacity: 0.8;
+
+    &.online::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: #22c55e;
+      border-radius: 50%;
+      margin-right: 0.375rem;
+    }
+  }
+
+  .close-btn {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+  }
+}
+
+// Demo Empty State (projected content)
+.demo-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 3rem 2rem;
+  color: #64748b;
+
+  .empty-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #1e293b;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.875rem;
+  }
+}

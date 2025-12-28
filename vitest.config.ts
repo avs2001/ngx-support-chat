@@ -11,6 +11,13 @@ export default defineConfig({
       tsconfig: `${dirname}/tsconfig.spec.json`
     })
   ],
+  resolve: {
+    alias: {
+      'ngx-support-chat/models': `${dirname}/projects/ngx-support-chat/src/models/public-api`,
+      'ngx-support-chat/tokens': `${dirname}/projects/ngx-support-chat/src/tokens/public-api`,
+      'ngx-support-chat': `${dirname}/projects/ngx-support-chat/src/public-api`
+    }
+  },
   test: {
     globals: true,
     environment: 'jsdom',

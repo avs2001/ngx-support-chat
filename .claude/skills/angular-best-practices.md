@@ -1,6 +1,6 @@
 ---
 description: |
-  This skill should be used when the user asks to "create a component", "generate component", "new component", "structure my component", "organize component", "component architecture", "container component", "presentational component", "smart/dumb pattern", "standalone component", "OnPush change detection", "signal inputs", "viewChild", or "contentChild". Provides Angular 21 component patterns with signals, control flow, decorator-free APIs, and OnPush change detection.
+  This skill should be used when the user asks to "start task", "create a component", "generate component", "new component", "structure my component", "organize component", "component architecture", "container component", "presentational component", "smart/dumb pattern", "standalone component", "OnPush change detection", "signal inputs", "viewChild", or "contentChild". Provides Angular 21 component patterns with signals, control flow, decorator-free APIs, and OnPush change detection.
 ---
 
 # Angular Best Practices
