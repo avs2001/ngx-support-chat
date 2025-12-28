@@ -31,7 +31,8 @@
       "Bash(npm run test:*)",
       "Bash(npm run lint:*)",
       "Bash(npm run format:check:*)",
-      "Bash(npm run format:*)"
+      "Bash(npm run format:*)",
+      "mcp__angular-cli__get_best_practices"
     ]
   },
   "enableAllProjectMcpServers": true,
