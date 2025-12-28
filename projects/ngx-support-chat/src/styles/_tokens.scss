@@ -111,6 +111,13 @@
   --_transition-slow: var(--ngx-transition-slow, 300ms ease);
 
   // ============================================
+  // Separator
+  // ============================================
+
+  --_separator-text: var(--ngx-separator-text, var(--_text-muted));
+  --_separator-line: var(--ngx-separator-line, var(--_border-color));
+
+  // ============================================
   // Z-index layers
   // ============================================
 

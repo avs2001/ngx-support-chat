@@ -1,23 +1,26 @@
-# Handoff Notes - TASK-003 Complete
+# Handoff Notes - TASK-004
 
-**Task:** TASK-003 - Core Container & Layout Components
-**Last Session:** 6
+**Task:** TASK-004 - Message Display Components
+**Last Session:** 7
 **Date:** 2025-12-28
-**Status:** COMPLETE
+**Status:** In Progress (~30%)
 
 ---
 
 ## Resume Point
 
-TASK-003 is complete. Next task is TASK-004: Message Display Components.
+Start ChatMessageComponent at:
+`projects/ngx-support-chat/src/lib/components/chat-message/`
+
+Directory exists but component files not created yet.
 
 ---
 
 ## Next Three Actions
 
-1. Read `docs/project_tasks/TASK-004-plan.md` to understand next task scope
-2. Create `docs/development/implementation_status.md` for TASK-004
-3. Start with ChatMessageAreaComponent (virtual-scrolled container)
+1. Create ChatMessageComponent (ts, html, scss, spec.ts) - handles all 4 message types and 5 states
+2. Create ChatMessageGroupComponent - groups messages from same sender
+3. Create ChatMessageAreaComponent - CDK virtual scroll container
 
 ---
 
@@ -29,31 +32,29 @@ None.
 
 ## Key Decisions This Session
 
-1. Used container queries for responsive layout instead of media queries
-2. Established public/internal CSS token pattern (--ngx-* / --_*)
-3. ChatContainerComponent uses child components (ChatHeader, ChatFooter) for modularity
+1. formatDate uses placeholder approach to avoid token conflicts (e.g., 'd' in 'Sunday')
+2. Message grouping uses 5-minute threshold (DEFAULT_GROUP_THRESHOLD_MS)
+3. Separator tokens added: `--_separator-text`, `--_separator-line`
 
 ---
 
 ## Working State
 
 **Branch:** main
-**Last Commit:** d27fea6 - feat(TASK-003): implement core container & layout components
-**Uncommitted:** No (working tree clean)
-**Note:** No git remote configured - push skipped
+**Last Commit:** 862aee0
+**Uncommitted:** Yes - utilities and ChatDateSeparatorComponent
 
 ---
 
-## Verification Checklist
+## What's Complete
 
-- [x] Build passes: `npm run build:lib`
-- [x] Tests pass: `npm run test` (73 tests)
-- [x] Lint passes: `npm run lint`
-- [x] tokens.css exported in build
+- `src/lib/utils/date-helpers.util.ts` + spec (44 tests)
+- `src/lib/utils/message-grouping.util.ts` + spec (21 tests)
+- `src/lib/components/chat-date-separator/` (10 tests)
+- `src/styles/_tokens.scss` updated with separator tokens
 
 ---
 
-## Temporary Artifacts
+## Test Status
 
-**Location:** `temp/task_003/session_006/`
-**Contents:** Empty (no temporary files needed this session)
+148 tests passing (verified with `npm run test`)

@@ -1,0 +1,50 @@
+@use '../../../styles/tokens' as *;
+
+:host {
+  display: block;
+  position: sticky;
+  top: 0;
+  z-index: var(--_z-sticky-date);
+  padding: var(--_spacing-sm) 0;
+  background: var(--_chat-message-area-bg);
+}
+
+.date-separator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--_spacing-sm);
+  padding: var(--_spacing-xs) var(--_spacing-md);
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--_separator-line);
+    max-width: 80px;
+  }
+
+  &__text {
+    font-size: var(--_font-size-xs);
+    font-weight: var(--_font-weight-medium);
+    color: var(--_separator-text);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+}
+
+// Container query adaptations
+@container chat (max-width: 299px) {
+  .date-separator {
+    &::before,
+    &::after {
+      max-width: 40px;
+    }
+
+    &__text {
+      font-size: calc(var(--_font-size-xs) * 0.9);
+    }
+  }
+}
