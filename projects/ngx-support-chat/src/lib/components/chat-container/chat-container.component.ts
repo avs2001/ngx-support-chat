@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+
 import {
   Attachment,
   ChatMessage,
@@ -9,8 +10,11 @@ import {
   QuickReplySubmitEvent,
   TypingIndicator,
 } from '../../../models/public-api';
-import { ChatHeaderComponent } from '../chat-header/chat-header.component';
 import { ChatFooterComponent } from '../chat-footer/chat-footer.component';
+import { ChatHeaderComponent } from '../chat-header/chat-header.component';
+import { ChatMessageAreaComponent } from '../chat-message-area/chat-message-area.component';
+import { ChatQuickRepliesComponent } from '../chat-quick-replies/chat-quick-replies.component';
+import { ChatTypingIndicatorComponent } from '../chat-typing-indicator/chat-typing-indicator.component';
 
 /**
  * Main container component for the chat interface.
@@ -34,10 +38,17 @@ import { ChatFooterComponent } from '../chat-footer/chat-footer.component';
  */
 @Component({
   selector: 'ngx-chat-container',
+  standalone: true,
+  imports: [
+    ChatHeaderComponent,
+    ChatFooterComponent,
+    ChatMessageAreaComponent,
+    ChatQuickRepliesComponent,
+    ChatTypingIndicatorComponent
+  ],
   templateUrl: './chat-container.component.html',
   styleUrl: './chat-container.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ChatHeaderComponent, ChatFooterComponent],
 })
 export class ChatContainerComponent {
   // ============================================
@@ -96,6 +107,15 @@ export class ChatContainerComponent {
 
   /** Emitted when user scrolls to top (for loading older messages) */
   readonly scrollTop = output();
+
+  // ============================================
+  // Computed Properties
+  // ============================================
+
+  /** Whether there is content to send (text or attachments) */
+  protected readonly hasContent = computed(() =>
+    this.inputValue().trim().length > 0 || this.pendingAttachments().length > 0
+  );
 
   // ============================================
   // Event Handlers

@@ -19,15 +19,29 @@
 }
 
 // ============================================
-// Message Area Section
+// Main Content Section
 // ============================================
 
-.chat-message-area {
+.chat-main {
   flex: 1;
+  display: flex;
+  flex-direction: column;
   overflow-y: auto;
   overflow-x: hidden;
   background-color: var(--_chat-message-area-bg);
   min-height: 0; // Important for flexbox overflow
+}
+
+// The message-area component should take up available space
+ngx-chat-message-area {
+  flex: 1;
+  min-height: 0;
+}
+
+// Typing indicator and quick replies should not grow
+ngx-chat-typing-indicator,
+ngx-chat-quick-replies {
+  flex-shrink: 0;
 }
 
 .chat-empty-state {

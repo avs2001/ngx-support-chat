@@ -1,5 +1,9 @@
 import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+
 import { Attachment } from '../../../models/public-api';
+import { ChatActionButtonsComponent } from '../chat-action-buttons/chat-action-buttons.component';
+import { ChatAttachmentPreviewComponent } from '../chat-attachment-preview/chat-attachment-preview.component';
+import { ChatInputComponent } from '../chat-input/chat-input.component';
 
 /**
  * Footer component for the chat interface.
@@ -23,6 +27,8 @@ import { Attachment } from '../../../models/public-api';
  */
 @Component({
   selector: 'ngx-chat-footer',
+  standalone: true,
+  imports: [ChatInputComponent, ChatAttachmentPreviewComponent, ChatActionButtonsComponent],
   templateUrl: './chat-footer.component.html',
   styleUrl: './chat-footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

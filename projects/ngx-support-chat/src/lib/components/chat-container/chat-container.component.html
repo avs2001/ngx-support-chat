@@ -5,13 +5,36 @@
   </ngx-chat-header>
 
   <!-- Message Area Section -->
-  <main class="chat-message-area">
+  <main class="chat-main">
     @if (messages().length === 0) {
       <div class="chat-empty-state">
         <ng-content select="[chatEmptyState]" />
       </div>
+    } @else {
+      <ngx-chat-message-area
+        [messages]="messages()"
+        [currentUserId]="currentUserId()"
+        (messageRetry)="messageRetry.emit($any($event))"
+        (imagePreview)="imagePreview.emit($event)"
+        (fileDownload)="fileDownload.emit($event)"
+      />
     }
-    <!-- Message list will be rendered by ChatMessageAreaComponent in TASK-004 -->
+
+    <!-- Typing Indicator (below messages) -->
+    @if (typingIndicator(); as indicator) {
+      <ngx-chat-typing-indicator
+        [typingIndicator]="indicator"
+        [showText]="true"
+      />
+    }
+
+    <!-- Quick Replies (below messages/typing indicator) -->
+    @if (quickReplies(); as replies) {
+      <ngx-chat-quick-replies
+        [quickReplies]="replies"
+        (quickReplySubmit)="quickReplySubmit.emit($event)"
+      />
+    }
   </main>
 
   <!-- Footer Section -->
@@ -19,7 +42,7 @@
     [pendingAttachments]="pendingAttachments()"
     [(inputValue)]="inputValue"
     [disabled]="disabled()"
-    [hasContent]="inputValue().length > 0"
+    [hasContent]="hasContent()"
     (messageSend)="onFooterMessageSend()"
     (attachmentSelect)="attachmentSelect.emit($event)"
     (attachmentRemove)="attachmentRemove.emit($event)"

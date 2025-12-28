@@ -297,8 +297,10 @@ describe('ChatContainerComponent', () => {
     });
 
     it('should project chatFooterActions content', () => {
-      const footerElement = hostFixture.nativeElement.querySelector('ngx-chat-footer');
-      expect(footerElement.textContent).toContain('Action Buttons');
+      // chatFooterActions is projected inside action-buttons component
+      const actionButtons = hostFixture.nativeElement.querySelector('ngx-chat-action-buttons');
+      expect(actionButtons).toBeTruthy();
+      expect(actionButtons.textContent).toContain('Action Buttons');
     });
   });
 
@@ -320,8 +322,8 @@ describe('ChatContainerComponent', () => {
       expect(header).toBeTruthy();
     });
 
-    it('should have chat-message-area section', () => {
-      const messageArea = fixture.nativeElement.querySelector('.chat-message-area');
+    it('should have chat-main section', () => {
+      const messageArea = fixture.nativeElement.querySelector('.chat-main');
       expect(messageArea).toBeTruthy();
     });
 

@@ -143,7 +143,11 @@ describe('ChatFooterComponent', () => {
     });
 
     it('should project chatFooterActions content', () => {
-      const actionBtn = hostFixture.nativeElement.querySelector('.action-btn');
+      // chatFooterActions now goes into the action-buttons component
+      const actionButtons = hostFixture.nativeElement.querySelector('ngx-chat-action-buttons');
+      expect(actionButtons).toBeTruthy();
+      // The projected button should be inside the action buttons component
+      const actionBtn = actionButtons.querySelector('.action-btn');
       expect(actionBtn).toBeTruthy();
       expect(actionBtn.textContent).toBe('Send');
     });
@@ -176,8 +180,8 @@ describe('ChatFooterComponent', () => {
       expect(content).toBeTruthy();
     });
 
-    it('should have footer-actions element', () => {
-      const actions = fixture.nativeElement.querySelector('.footer-actions');
+    it('should have action-buttons component', () => {
+      const actions = fixture.nativeElement.querySelector('ngx-chat-action-buttons');
       expect(actions).toBeTruthy();
     });
   });
@@ -194,22 +198,22 @@ describe('ChatFooterComponent', () => {
       fixture.detectChanges();
     });
 
-    it('should show attachment-previews when attachments exist', () => {
+    it('should show attachment-preview component when attachments exist', () => {
       const attachments: Attachment[] = [
         { id: 'a1', file: new File([''], 'test.txt') },
       ];
       fixture.componentRef.setInput('pendingAttachments', attachments);
       fixture.detectChanges();
 
-      const previews = fixture.nativeElement.querySelector('.attachment-previews');
+      const previews = fixture.nativeElement.querySelector('ngx-chat-attachment-preview');
       expect(previews).toBeTruthy();
     });
 
-    it('should not show attachment-previews when no attachments', () => {
+    it('should not show attachment-preview component when no attachments', () => {
       fixture.componentRef.setInput('pendingAttachments', []);
       fixture.detectChanges();
 
-      const previews = fixture.nativeElement.querySelector('.attachment-previews');
+      const previews = fixture.nativeElement.querySelector('ngx-chat-attachment-preview');
       expect(previews).toBeFalsy();
     });
   });

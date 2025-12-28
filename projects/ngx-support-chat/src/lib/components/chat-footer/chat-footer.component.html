@@ -6,21 +6,29 @@
 
   <!-- Main Content Area -->
   <div class="footer-content">
-    <!-- Attachment previews will be rendered here in TASK-005 -->
+    <!-- Attachment previews -->
     @if (pendingAttachments().length > 0) {
-      <div class="attachment-previews">
-        <!-- AttachmentPreviewComponent will be added in TASK-005 -->
-      </div>
+      <ngx-chat-attachment-preview
+        [attachments]="pendingAttachments()"
+        (attachmentRemove)="attachmentRemove.emit($event)"
+      />
     }
 
-    <!-- Input area will be rendered here in TASK-005 -->
-    <div class="input-area">
-      <!-- TextInputComponent will be added in TASK-005 -->
-    </div>
+    <!-- Input area -->
+    <ngx-chat-input
+      [(value)]="inputValue"
+      [disabled]="disabled()"
+      (send)="messageSend.emit()"
+    />
   </div>
 
-  <!-- Actions Slot (e.g., send button, voice button) -->
-  <div class="footer-actions">
+  <!-- Actions -->
+  <ngx-chat-action-buttons
+    [hasContent]="hasContent()"
+    [disabled]="disabled()"
+    (send)="messageSend.emit()"
+    (attachmentSelect)="attachmentSelect.emit($event)"
+  >
     <ng-content select="[chatFooterActions]" />
-  </div>
+  </ngx-chat-action-buttons>
 </div>

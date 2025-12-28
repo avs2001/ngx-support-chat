@@ -25,6 +25,15 @@ export { ChatDateSeparatorComponent } from './lib/components/chat-date-separator
 export { ChatMessageComponent } from './lib/components/chat-message/chat-message.component';
 export { ChatMessageGroupComponent } from './lib/components/chat-message-group/chat-message-group.component';
 export { ChatMessageAreaComponent, type MessageAreaItem } from './lib/components/chat-message-area/chat-message-area.component';
+export { ChatQuickRepliesComponent } from './lib/components/chat-quick-replies/chat-quick-replies.component';
+export { ChatTypingIndicatorComponent } from './lib/components/chat-typing-indicator/chat-typing-indicator.component';
+export { ChatInputComponent } from './lib/components/chat-input/chat-input.component';
+export { ChatAttachmentPreviewComponent } from './lib/components/chat-attachment-preview/chat-attachment-preview.component';
+export { ChatActionButtonsComponent } from './lib/components/chat-action-buttons/chat-action-buttons.component';
+
+// Directives
+export { AutoResizeDirective } from './lib/directives/auto-resize.directive';
+export { AutoScrollDirective } from './lib/directives/auto-scroll.directive';
 
 // Utilities
 export {

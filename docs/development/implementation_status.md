@@ -12,10 +12,10 @@
 |-----------|----------|--------|
 | M1: Quick Replies & Typing | 100% | ✅ Complete |
 | M2: Input Components | 100% | ✅ Complete |
-| M3: Integration & Scroll | 50% | 🔵 In Progress |
+| M3: Integration & Scroll | 100% | ✅ Complete |
 | M4: Testing & Completion | 0% | ⬜ Pending |
 
-**Overall Progress:** 75%
+**Overall Progress:** 90%
 
 ---
 
@@ -65,8 +65,8 @@
 - [x] AutoScrollDirective preserves position when user scrolled up
 
 ### Integration
-- [ ] Components integrated into chat-container
-- [ ] All outputs wired correctly
+- [x] Components integrated into chat-container
+- [x] All outputs wired correctly
 - [x] Build completes without errors
 - [x] Tests pass with adequate coverage
 
@@ -74,12 +74,23 @@
 
 ## Right Now
 
-**Currently:** M2 complete, M3 AutoScrollDirective done
-**Next:** Integrate new components into chat-container and wire outputs
+**Currently:** M3 Integration complete
+**Next:** M4 - Final testing, documentation polish, and task completion
 
 ---
 
 ## Session History
+
+### Session 11 (2025-12-28)
+- Integrated components into chat-footer:
+  - ChatInputComponent, ChatAttachmentPreviewComponent, ChatActionButtonsComponent
+- Integrated components into chat-container:
+  - ChatMessageAreaComponent, ChatQuickRepliesComponent, ChatTypingIndicatorComponent
+- Updated public API exports for all new components and directives
+- Fixed content projection in action-buttons component
+- Updated tests to match new component structure
+- All tests passing: 402
+- Build successful
 
 ### Session 10 (2025-12-28)
 - Fixed AutoResizeDirective tests (TestBed.resetTestingModule)
