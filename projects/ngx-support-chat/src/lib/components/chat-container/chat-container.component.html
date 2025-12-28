@@ -5,7 +5,13 @@
   </ngx-chat-header>
 
   <!-- Message Area Section -->
-  <main class="chat-main">
+  <main
+    class="chat-main"
+    role="log"
+    aria-live="polite"
+    aria-relevant="additions"
+    aria-label="Chat conversation"
+  >
     @if (messages().length === 0) {
       <div class="chat-empty-state">
         <ng-content select="[chatEmptyState]" />
@@ -32,7 +38,7 @@
     @if (quickReplies(); as replies) {
       <ngx-chat-quick-replies
         [quickReplies]="replies"
-        (quickReplySubmit)="quickReplySubmit.emit($event)"
+        (quickReplySubmit)="onQuickReplySubmit($event)"
       />
     }
   </main>

@@ -197,4 +197,36 @@ export class ChatMessageComponent {
     }
     return 280;
   });
+
+  /** Aria label for screen readers */
+  readonly ariaLabel = computed(() => {
+    const msg = this.message();
+    const time = this.formattedTime();
+    const contentSummary = this.getContentSummary();
+    return `${msg.senderName} at ${time}: ${contentSummary}`;
+  });
+
+  /** Get a summary of the message content for accessibility */
+  private getContentSummary(): string {
+    const msg = this.message();
+
+    if (isTextMessage(msg)) {
+      const text = msg.content.text;
+      return text.length > 100 ? text.substring(0, 100) + '...' : text;
+    }
+
+    if (isImageMessage(msg)) {
+      return msg.content.altText ? `Image: ${msg.content.altText}` : 'Image';
+    }
+
+    if (isFileMessage(msg)) {
+      return `File: ${msg.content.fileName}`;
+    }
+
+    if (isSystemMessage(msg)) {
+      return msg.content.text;
+    }
+
+    return 'Message';
+  }
 }

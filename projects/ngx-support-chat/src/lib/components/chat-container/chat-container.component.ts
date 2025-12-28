@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, model, output, viewChild } from '@angular/core';
 
 import {
   Attachment,
@@ -109,6 +109,13 @@ export class ChatContainerComponent {
   readonly scrollTop = output();
 
   // ============================================
+  // View Children
+  // ============================================
+
+  /** Reference to the footer component */
+  private readonly footerComponent = viewChild(ChatFooterComponent);
+
+  // ============================================
   // Computed Properties
   // ============================================
 
@@ -124,6 +131,7 @@ export class ChatContainerComponent {
   /**
    * Handles message send from the footer component.
    * Builds the MessageSendEvent and emits it through the messageSend output.
+   * Returns focus to the input for accessibility.
    */
   protected onFooterMessageSend(): void {
     const text = this.inputValue().trim();
@@ -134,6 +142,31 @@ export class ChatContainerComponent {
         text,
         attachments,
       });
+
+      // Return focus to input after send (accessibility)
+      this.focusInput();
     }
+  }
+
+  /**
+   * Handles quick reply submission.
+   * Returns focus to input for accessibility.
+   */
+  protected onQuickReplySubmit(event: QuickReplySubmitEvent): void {
+    this.quickReplySubmit.emit(event);
+
+    // Return focus to input after quick reply (accessibility)
+    this.focusInput();
+  }
+
+  /**
+   * Focus the input textarea.
+   * Used for accessibility after message send or quick reply submit.
+   */
+  private focusInput(): void {
+    // Use requestAnimationFrame to ensure DOM is updated
+    requestAnimationFrame(() => {
+      this.footerComponent()?.focusInput();
+    });
   }
 }

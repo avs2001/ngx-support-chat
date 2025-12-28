@@ -16,6 +16,7 @@ export * from './tokens/public-api';
 
 // Services
 export { ChatConfigService } from './lib/services/chat-config.service';
+export { ChatAnnouncerService } from './lib/services/chat-announcer.service';
 
 // Components
 export { ChatContainerComponent } from './lib/components/chat-container/chat-container.component';

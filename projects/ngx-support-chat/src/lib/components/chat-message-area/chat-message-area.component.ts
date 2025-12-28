@@ -1,10 +1,12 @@
 import { CdkVirtualScrollViewport, ScrollingModule } from '@angular/cdk/scrolling';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   computed,
   ElementRef,
+  HostListener,
   inject,
   input,
   OnDestroy,
@@ -18,6 +20,7 @@ import { FileContent, ImageContent } from '../../../models/content-types.model';
 import { ChatDateSeparatorComponent } from '../chat-date-separator/chat-date-separator.component';
 import { ChatMessageGroupComponent } from '../chat-message-group/chat-message-group.component';
 import { groupMessagesByDate, GroupedMessages, MessageGroup } from '../../utils/message-grouping.util';
+import { ChatAnnouncerService } from '../../services/chat-announcer.service';
 
 /**
  * Union type for items that can be rendered in the message area.
@@ -74,8 +77,15 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
   readonly viewport = viewChild<CdkVirtualScrollViewport>('viewport');
 
   private readonly elementRef = inject(ElementRef);
+  private readonly announcer = inject(ChatAnnouncerService);
   private resizeObserver: ResizeObserver | null = null;
   private lastMessageCount = signal(0);
+
+  /** Index of currently focused message in the flat message list */
+  private readonly focusedMessageIndex = signal<number>(-1);
+
+  /** Whether keyboard navigation mode is active */
+  readonly isInNavigationMode = signal(false);
 
   /**
    * Groups messages by date and then by sender.
@@ -204,5 +214,137 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
    */
   isGroup(item: MessageAreaItem): item is { type: 'group'; group: MessageGroup } {
     return item.type === 'group';
+  }
+
+  /**
+   * Flat list of all messages for keyboard navigation.
+   */
+  private readonly flatMessages = computed((): ChatMessage[] => {
+    return this.messages();
+  });
+
+  /**
+   * Handle keyboard events for message navigation.
+   */
+  @HostListener('keydown', ['$event'])
+  onKeydown(event: KeyboardEvent): void {
+    // Only handle navigation when the message area or a message is focused
+    const target = event.target as HTMLElement;
+    const isInMessageArea = this.elementRef.nativeElement.contains(target);
+    if (!isInMessageArea) return;
+
+    switch (event.key) {
+      case 'ArrowUp':
+        this.focusPreviousMessage();
+        event.preventDefault();
+        break;
+      case 'ArrowDown':
+        this.focusNextMessage();
+        event.preventDefault();
+        break;
+      case 'Enter':
+        this.announceCurrentMessage();
+        event.preventDefault();
+        break;
+      case 'Escape':
+        this.exitNavigationMode();
+        event.preventDefault();
+        break;
+    }
+  }
+
+  /**
+   * Enter navigation mode when a message receives focus.
+   */
+  @HostListener('focusin', ['$event'])
+  onFocusIn(event: FocusEvent): void {
+    const target = event.target as HTMLElement;
+    if (target.getAttribute('role') === 'listitem') {
+      this.isInNavigationMode.set(true);
+      // Find the message index based on the focused element
+      const messageElements = this.getMessageElements();
+      const index = messageElements.indexOf(target);
+      if (index >= 0) {
+        this.focusedMessageIndex.set(index);
+      }
+    }
+  }
+
+  /**
+   * Focus the previous message in the list.
+   */
+  private focusPreviousMessage(): void {
+    const currentIndex = this.focusedMessageIndex();
+    const messageElements = this.getMessageElements();
+
+    if (currentIndex > 0) {
+      const newIndex = currentIndex - 1;
+      this.focusedMessageIndex.set(newIndex);
+      messageElements[newIndex]?.focus();
+    } else if (currentIndex === -1 && messageElements.length > 0) {
+      // First navigation - start at the last message
+      const lastIndex = messageElements.length - 1;
+      this.focusedMessageIndex.set(lastIndex);
+      messageElements[lastIndex]?.focus();
+    }
+
+    this.isInNavigationMode.set(true);
+  }
+
+  /**
+   * Focus the next message in the list.
+   */
+  private focusNextMessage(): void {
+    const currentIndex = this.focusedMessageIndex();
+    const messageElements = this.getMessageElements();
+
+    if (currentIndex < messageElements.length - 1) {
+      const newIndex = currentIndex + 1;
+      this.focusedMessageIndex.set(newIndex);
+      messageElements[newIndex]?.focus();
+    } else if (currentIndex === -1 && messageElements.length > 0) {
+      // First navigation - start at the first message
+      this.focusedMessageIndex.set(0);
+      messageElements[0]?.focus();
+    }
+
+    this.isInNavigationMode.set(true);
+  }
+
+  /**
+   * Announce the currently focused message using the screen reader.
+   */
+  private announceCurrentMessage(): void {
+    const index = this.focusedMessageIndex();
+    const messages = this.flatMessages();
+
+    if (index >= 0 && index < messages.length) {
+      const message = messages[index];
+      if (message) {
+        this.announcer.announceMessage(message);
+      }
+    }
+  }
+
+  /**
+   * Exit keyboard navigation mode and return focus to the container.
+   */
+  private exitNavigationMode(): void {
+    this.isInNavigationMode.set(false);
+    this.focusedMessageIndex.set(-1);
+
+    // Return focus to the viewport container
+    const vp = this.viewport();
+    if (vp) {
+      (vp.elementRef.nativeElement as HTMLElement).focus();
+    }
+  }
+
+  /**
+   * Get all message elements currently rendered in the DOM.
+   */
+  private getMessageElements(): HTMLElement[] {
+    const container = this.elementRef.nativeElement as HTMLElement;
+    return Array.from(container.querySelectorAll('[role="listitem"]'));
   }
 }

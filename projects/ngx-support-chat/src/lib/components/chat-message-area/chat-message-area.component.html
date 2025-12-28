@@ -2,6 +2,8 @@
   #viewport
   [itemSize]="itemSize()"
   class="message-area"
+  role="list"
+  aria-label="Messages"
 >
   <div
     *cdkVirtualFor="let item of items(); trackBy: trackByItem"

@@ -1,4 +1,9 @@
-<div [ngClass]="containerClasses()">
+<div
+  [ngClass]="containerClasses()"
+  role="listitem"
+  [attr.aria-label]="ariaLabel()"
+  tabindex="0"
+>
   <!-- Avatar (shown for non-user, non-system messages) -->
   @if (showAvatar() && !isCurrentUser() && !isSystem() && isLastInGroup()) {
     <div class="message-avatar">

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, model, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, model, output, viewChild } from '@angular/core';
 
 import { Attachment } from '../../../models/public-api';
 import { ChatActionButtonsComponent } from '../chat-action-buttons/chat-action-buttons.component';
@@ -62,4 +62,23 @@ export class ChatFooterComponent {
 
   /** Emitted when user removes a pending attachment */
   readonly attachmentRemove = output<Attachment>();
+
+  // ============================================
+  // View Children
+  // ============================================
+
+  /** Reference to the input component */
+  private readonly inputComponent = viewChild(ChatInputComponent);
+
+  // ============================================
+  // Public Methods
+  // ============================================
+
+  /**
+   * Focus the input textarea.
+   * Used for accessibility - returning focus after message send or quick reply.
+   */
+  focusInput(): void {
+    this.inputComponent()?.focus();
+  }
 }
