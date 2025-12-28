@@ -1,0 +1,34 @@
+{
+  "name": "ngx-support-chat",
+  "version": "0.0.1",
+  "description": "Pure presentational Angular component library for customer support chat",
+  "license": "MIT",
+  "keywords": [
+    "angular",
+    "chat",
+    "support",
+    "component",
+    "library"
+  ],
+  "peerDependencies": {
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@angular/cdk": "^21.0.0"
+  },
+  "peerDependenciesMeta": {
+    "ngx-markdown": {
+      "optional": true
+    }
+  },
+  "optionalDependencies": {
+    "ngx-markdown": "^18.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false,
+  "schematics": "./schematics/collection.json",
+  "ng-add": {
+    "save": "dependencies"
+  }
+}

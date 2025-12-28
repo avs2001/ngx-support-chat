@@ -5,7 +5,37 @@
       "Bash(git init:*)",
       "Bash(git add:*)",
       "Bash(git commit -m \"$\\(cat <<''EOF''\ndocs\\(EPIC-001\\): create ngx-support-chat epic with 11 tasks\n\n- Analyzed ngx-support-chat-specification.md \\(1659 lines\\)\n- Created EPIC-001 with 11 tasks across 6 phases\n- Established task dependencies and milestones\n- Set up SDP tracking documents\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(ng version:*)",
+      "Bash(ng new:*)",
+      "Bash(ng generate:*)",
+      "Bash(npm install:*)",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/directives )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/pipes )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/services )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/utils )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/models )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/tokens )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/styles )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/schematics/ng-add)",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/directives/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/pipes/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/services/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/lib/utils/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/models/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/tokens/.gitkeep )",
+      "Bash(/Users/ciprianiuga/AI/chat-v3/projects/ngx-support-chat/src/styles/.gitkeep)",
+      "Bash(tree:*)",
+      "Bash(npm run build:lib:*)",
+      "Bash(npm run test:*)",
+      "Bash(npm run lint:*)",
+      "Bash(npm run format:check:*)",
+      "Bash(npm run format:*)"
     ]
-  }
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "angular-cli"
+  ]
 }

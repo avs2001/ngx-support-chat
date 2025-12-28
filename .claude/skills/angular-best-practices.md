@@ -231,6 +231,20 @@ export class DialogComponent {
 }
 ```
 
+## Angular CLI MCP Server
+
+This project has the Angular CLI MCP server configured (`.mcp.json`). Use this tool for Angular-specific operations:
+
+- `ng generate component` - Generate components with proper configuration
+- `ng generate service` - Generate services
+- `ng generate directive` - Generate directives
+- `ng generate pipe` - Generate pipes
+- `ng build` - Build the project
+- `ng test` - Run tests
+- `ng lint` - Run linting
+
+The MCP server provides direct access to Angular CLI commands through the Model Context Protocol.
+
 ## Project-Specific Patterns (ngx-support-chat)
 
 ### Component Selectors

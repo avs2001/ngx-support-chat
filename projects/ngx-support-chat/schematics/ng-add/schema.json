@@ -1,0 +1,13 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "ngx-support-chat-ng-add",
+  "title": "ngx-support-chat ng-add schematic",
+  "type": "object",
+  "properties": {
+    "project": {
+      "type": "string",
+      "description": "The name of the project to add ngx-support-chat to."
+    }
+  },
+  "required": []
+}
