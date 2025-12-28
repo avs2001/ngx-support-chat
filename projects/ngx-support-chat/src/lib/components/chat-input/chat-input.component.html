@@ -1,0 +1,15 @@
+<div class="chat-input">
+  <textarea
+    #textarea
+    class="chat-input__textarea"
+    [value]="value()"
+    [placeholder]="placeholder()"
+    [disabled]="disabled()"
+    [ngxAutoResize]="maxHeight()"
+    (input)="onInput($event)"
+    (keydown)="onKeydown($event)"
+    rows="1"
+    aria-label="Message input"
+    aria-multiline="true"
+  ></textarea>
+</div>

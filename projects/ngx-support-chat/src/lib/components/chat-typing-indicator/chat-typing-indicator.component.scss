@@ -1,0 +1,104 @@
+:host {
+  display: block;
+
+  // Internal tokens with fallbacks
+  --_typing-dot-color: var(--ngx-typing-indicator-dot, #666666);
+  --_typing-dot-size: var(--ngx-typing-dot-size, 8px);
+  --_typing-bubble-bg: var(--ngx-bubble-agent-bg, #f0f0f0);
+  --_typing-text-color: var(--ngx-bubble-agent-text, #1a1a1a);
+
+  --_avatar-size: var(--ngx-avatar-size, 32px);
+  --_avatar-radius: var(--ngx-avatar-radius, 50%);
+
+  --_spacing-xs: var(--ngx-spacing-xs, 4px);
+  --_spacing-sm: var(--ngx-spacing-sm, 8px);
+  --_spacing-md: var(--ngx-spacing-md, 16px);
+
+  --_radius-md: var(--ngx-radius-md, 12px);
+
+  --_font-size-sm: var(--ngx-font-size-sm, 0.875rem);
+
+  --_typing-animation-duration: var(--ngx-typing-animation-duration, 1.4s);
+}
+
+.typing-indicator {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--_spacing-sm);
+
+  &__avatar {
+    width: var(--_avatar-size);
+    height: var(--_avatar-size);
+    border-radius: var(--_avatar-radius);
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__bubble {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--_spacing-sm);
+    padding: var(--_spacing-sm) var(--_spacing-md);
+    background-color: var(--_typing-bubble-bg);
+    border-radius: var(--_radius-md);
+    border-bottom-left-radius: var(--_spacing-xs);
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    gap: var(--_spacing-xs);
+    height: calc(var(--_typing-dot-size) + 4px);
+  }
+
+  &__dot {
+    width: var(--_typing-dot-size);
+    height: var(--_typing-dot-size);
+    background-color: var(--_typing-dot-color);
+    border-radius: 50%;
+    animation: typing-bounce var(--_typing-animation-duration) ease-in-out infinite;
+
+    &:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+  }
+
+  &__text {
+    font-size: var(--_font-size-sm);
+    color: var(--_typing-text-color);
+    opacity: 0.8;
+    white-space: nowrap;
+  }
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+// Container query adaptations
+@container chat (max-width: 299px) {
+  .typing-indicator {
+    &__avatar {
+      width: 24px;
+      height: 24px;
+    }
+
+    &__text {
+      display: none;
+    }
+  }
+}

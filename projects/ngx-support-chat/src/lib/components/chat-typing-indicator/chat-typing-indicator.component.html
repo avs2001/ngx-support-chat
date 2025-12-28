@@ -1,0 +1,29 @@
+<div
+  class="typing-indicator"
+  role="status"
+  [attr.aria-label]="typingText()"
+  aria-live="polite"
+>
+  <!-- Avatar (if available) -->
+  @if (hasAvatar()) {
+    <img
+      class="typing-indicator__avatar"
+      [src]="avatar()"
+      [alt]="userName()"
+    />
+  }
+
+  <!-- Typing bubble with dots -->
+  <div class="typing-indicator__bubble">
+    <div class="typing-indicator__dots" aria-hidden="true">
+      <span class="typing-indicator__dot"></span>
+      <span class="typing-indicator__dot"></span>
+      <span class="typing-indicator__dot"></span>
+    </div>
+
+    <!-- Optional text -->
+    @if (showText()) {
+      <span class="typing-indicator__text">{{ typingText() }}</span>
+    }
+  </div>
+</div>
