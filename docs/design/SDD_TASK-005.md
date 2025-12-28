@@ -1,10 +1,10 @@
 # SDD: TASK-005 - Interactive Input Components
 
 **Task:** TASK-005
-**Status:** Draft
+**Status:** Implemented
 **Created:** 2025-12-28
 **Last Updated:** 2025-12-28
-**Revision:** 1
+**Revision:** 2
 
 ---
 
@@ -65,7 +65,7 @@ Components integrate into existing container structure:
 ### 3.1 ChatQuickRepliesComponent
 
 **File:** `components/chat-quick-replies/`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Required | Description |
@@ -124,7 +124,7 @@ Components integrate into existing container structure:
 ### 3.2 ChatTypingIndicatorComponent
 
 **File:** `components/chat-typing-indicator/`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Required | Default | Description |
@@ -168,7 +168,7 @@ Components integrate into existing container structure:
 ### 3.3 ChatInputComponent
 
 **File:** `components/chat-input/`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Required | Default | Description |
@@ -200,7 +200,7 @@ Components integrate into existing container structure:
 ### 3.4 ChatAttachmentPreviewComponent
 
 **File:** `components/chat-attachment-preview/`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Required | Description |
@@ -235,7 +235,7 @@ Components integrate into existing container structure:
 ### 3.5 ChatActionButtonsComponent
 
 **File:** `components/chat-action-buttons/`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Required | Default | Description |
@@ -273,7 +273,7 @@ Components integrate into existing container structure:
 ### 3.6 AutoResizeDirective
 
 **File:** `directives/auto-resize.directive.ts`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Default | Description |
@@ -315,7 +315,7 @@ export class AutoResizeDirective {
 ### 3.7 AutoScrollDirective
 
 **File:** `directives/auto-scroll.directive.ts`
-**Status:** Pending
+**Status:** Implemented
 
 **Inputs:**
 | Name | Type | Default | Description |
@@ -425,4 +425,5 @@ Component re-renders with disabled state
 
 | Rev | Date | Changes | Author |
 |-----|------|---------|--------|
+| 2 | 2025-12-28 | Marked all units as Implemented | Claude |
 | 1 | 2025-12-28 | Initial draft | Claude |
