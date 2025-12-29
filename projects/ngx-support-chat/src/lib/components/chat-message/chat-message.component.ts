@@ -1,4 +1,4 @@
-import { NgClass } from '@angular/common';
+import { AsyncPipe, NgClass } from '@angular/common';
 import { ChangeDetectionStrategy, Component, computed, inject, input, output } from '@angular/core';
 
 import { ChatConfigService } from '../../services/chat-config.service';
@@ -22,7 +22,7 @@ import { FileContent, ImageContent } from '../../../models/content-types.model';
 @Component({
   selector: 'ngx-chat-message',
   standalone: true,
-  imports: [NgClass, SafeMarkdownPipe],
+  imports: [AsyncPipe, NgClass, SafeMarkdownPipe],
   templateUrl: './chat-message.component.html',
   styleUrl: './chat-message.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush

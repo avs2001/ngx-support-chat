@@ -29,7 +29,7 @@
 
       <!-- Text message -->
       @if (isText()) {
-        <span class="message-text" [innerHTML]="textContent() | safeMarkdown"></span>
+        <span class="message-text" [innerHTML]="textContent() | safeMarkdown | async"></span>
       }
 
       <!-- Image message -->
