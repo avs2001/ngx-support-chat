@@ -36,7 +36,7 @@ function addOptionalDependencies(options: NgAddOptions): Rule {
       addPackageJsonDependency(tree, {
         type: NodeDependencyType.Default,
         name: 'ngx-markdown',
-        version: '^18.0.0'
+        version: '^21.0.0'
       });
 
       addPackageJsonDependency(tree, {
@@ -132,17 +132,36 @@ function logNextSteps(options: NgAddOptions): Rule {
     context.logger.info('');
     context.logger.info('Next steps:');
     context.logger.info('');
-    context.logger.info('1. Add provideChatConfig() to your app.config.ts:');
-    context.logger.info('');
-    context.logger.info('   import { provideChatConfig } from "ngx-support-chat";');
-    context.logger.info('');
-    context.logger.info('   export const appConfig: ApplicationConfig = {');
-    context.logger.info('     providers: [');
-    context.logger.info('       provideChatConfig({');
-    context.logger.info('         markdown: { enabled: ' + (options.includeMarkdown || false) + ' }');
-    context.logger.info('       })');
-    context.logger.info('     ]');
-    context.logger.info('   };');
+
+    if (options.includeMarkdown) {
+      context.logger.info('1. Add providers to your app.config.ts:');
+      context.logger.info('');
+      context.logger.info('   import { provideMarkdown, MarkdownService } from "ngx-markdown";');
+      context.logger.info('   import { provideChatConfig, MARKDOWN_SERVICE } from "ngx-support-chat";');
+      context.logger.info('');
+      context.logger.info('   export const appConfig: ApplicationConfig = {');
+      context.logger.info('     providers: [');
+      context.logger.info('       provideMarkdown(),');
+      context.logger.info('       { provide: MARKDOWN_SERVICE, useExisting: MarkdownService },');
+      context.logger.info('       provideChatConfig({');
+      context.logger.info('         markdown: { enabled: true, displayMode: true }');
+      context.logger.info('       })');
+      context.logger.info('     ]');
+      context.logger.info('   };');
+    } else {
+      context.logger.info('1. Add provideChatConfig() to your app.config.ts:');
+      context.logger.info('');
+      context.logger.info('   import { provideChatConfig } from "ngx-support-chat";');
+      context.logger.info('');
+      context.logger.info('   export const appConfig: ApplicationConfig = {');
+      context.logger.info('     providers: [');
+      context.logger.info('       provideChatConfig({');
+      context.logger.info('         markdown: { enabled: false }');
+      context.logger.info('       })');
+      context.logger.info('     ]');
+      context.logger.info('   };');
+    }
+
     context.logger.info('');
     context.logger.info('2. Use the component in your template:');
     context.logger.info('');

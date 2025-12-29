@@ -77,6 +77,26 @@ export const INITIAL_MESSAGES: ChatMessage[] = [
     timestamp: new Date(Date.now() - 6800000),
     status: 'read',
     content: { text: "I'd be happy to help! Feel free to ask anything about our products, pricing, or services." }
+  },
+  {
+    id: 'init-7',
+    type: 'text',
+    senderId: DEMO_AGENT.id,
+    senderName: DEMO_AGENT.name,
+    senderAvatar: DEMO_AGENT.avatar,
+    timestamp: new Date(Date.now() - 6700000),
+    status: 'read',
+    content: {
+      text: `Here's a quick overview of our **main features**:
+
+- *Responsive design* for all devices
+- Support for \`code snippets\` and **bold text**
+- Easy integration with your existing tools
+
+> We're here to help you succeed!
+
+Feel free to explore and ask questions.`
+    }
   }
 ];
 

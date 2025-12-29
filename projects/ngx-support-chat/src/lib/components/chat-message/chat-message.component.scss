@@ -141,6 +141,129 @@
   font-size: var(--_font-size-sm);
 }
 
+// Markdown rendered content styles
+.message-text {
+  // Paragraphs - remove default margin for inline display
+  p {
+    margin: 0;
+
+    & + p {
+      margin-top: var(--_spacing-sm);
+    }
+  }
+
+  // Strong/bold text
+  strong,
+  b {
+    font-weight: var(--_font-weight-bold);
+  }
+
+  // Emphasis/italic text
+  em,
+  i {
+    font-style: italic;
+  }
+
+  // Links
+  a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+    transition: opacity var(--_transition-duration) var(--_transition-easing);
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--_focus-ring-color);
+      outline-offset: 2px;
+      border-radius: 2px;
+    }
+
+    // User bubble links - slightly different styling
+    .message-bubble--user & {
+      color: inherit;
+      text-decoration-color: currentColor;
+    }
+  }
+
+  // Inline code
+  code {
+    font-family: ui-monospace, SFMono-Regular, 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    padding: 0.1em 0.3em;
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: 3px;
+
+    .message-bubble--user & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+  }
+
+  // Code blocks
+  pre {
+    margin: var(--_spacing-sm) 0;
+    padding: var(--_spacing-sm);
+    background: rgba(0, 0, 0, 0.08);
+    border-radius: var(--_radius-sm);
+    overflow-x: auto;
+
+    .message-bubble--user & {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    code {
+      padding: 0;
+      background: none;
+      font-size: var(--_font-size-xs);
+    }
+  }
+
+  // Unordered lists
+  ul {
+    margin: var(--_spacing-sm) 0;
+    padding-left: 1.5em;
+    list-style-type: disc;
+
+    li {
+      margin: var(--_spacing-xs) 0;
+    }
+  }
+
+  // Ordered lists
+  ol {
+    margin: var(--_spacing-sm) 0;
+    padding-left: 1.5em;
+    list-style-type: decimal;
+
+    li {
+      margin: var(--_spacing-xs) 0;
+    }
+  }
+
+  // Blockquotes
+  blockquote {
+    margin: var(--_spacing-sm) 0;
+    padding-left: var(--_spacing-sm);
+    border-left: 3px solid currentColor;
+    opacity: 0.85;
+    font-style: italic;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // Horizontal rules
+  hr {
+    margin: var(--_spacing-sm) 0;
+    border: none;
+    border-top: 1px solid currentColor;
+    opacity: 0.3;
+  }
+}
+
 // Image message
 .message-image {
   display: block;
