@@ -92,7 +92,7 @@ jobs:
         run: npm run build:schematics
 
       - name: Build demo
-        run: npm run build:demo
+        run: ng build demo --base-href=/ngx-support-chat/
 
       - name: Upload library artifact
         uses: actions/upload-artifact@v6
