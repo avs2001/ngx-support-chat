@@ -1,8 +1,16 @@
 {
   "name": "ngx-support-chat",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Pure presentational Angular component library for customer support chat",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/avs2001/ngx-support-chat"
+  },
+  "homepage": "https://github.com/avs2001/ngx-support-chat#readme",
+  "bugs": {
+    "url": "https://github.com/avs2001/ngx-support-chat/issues"
+  },
   "keywords": [
     "angular",
     "chat",
