@@ -4,6 +4,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
+  effect,
   ElementRef,
   HostListener,
   inject,
@@ -83,6 +84,14 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
 
   /** Whether keyboard navigation mode is active */
   readonly isInNavigationMode = signal(false);
+
+  constructor() {
+    // Watch for message changes and auto-scroll when new messages arrive
+    effect(() => {
+      this.messages(); // Establish signal dependency
+      this.scrollToBottomIfNeeded();
+    });
+  }
 
   /**
    * Groups messages by date and then by sender.
