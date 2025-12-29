@@ -108,9 +108,7 @@ export class SafeMarkdownPipe implements PipeTransform {
       const rendered = this.markdownService.parse(text);
 
       // Handle both sync (string) and async (Promise<string>) results
-      const rendered$: Observable<string> = this.isPromise(rendered)
-        ? from(rendered)
-        : of(rendered);
+      const rendered$: Observable<string> = this.isPromise(rendered) ? from(rendered) : of(rendered);
 
       // Sanitize and return as SafeHtml
       this.cachedResult$ = rendered$.pipe(

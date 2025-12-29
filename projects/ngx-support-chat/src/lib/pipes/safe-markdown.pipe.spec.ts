@@ -151,11 +151,7 @@ describe('SafeMarkdownPipe', () => {
     it('should handle async parsing with multiple elements', async () => {
       const mockMarkdownService: MarkdownServiceLike = {
         parse: (text: string) =>
-          Promise.resolve(
-            text
-              .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-              .replace(/\*(.*?)\*/g, '<em>$1</em>')
-          )
+          Promise.resolve(text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>').replace(/\*(.*?)\*/g, '<em>$1</em>'))
       };
 
       const pipe = createPipe({

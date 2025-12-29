@@ -753,10 +753,7 @@ describe('ChatMessageComponent with markdown', () => {
   });
 
   it('should render bold markdown as strong elements', () => {
-    fixture.componentRef.setInput(
-      'message',
-      createTestMessage({ type: 'text', content: { text: '**bold text**' } })
-    );
+    fixture.componentRef.setInput('message', createTestMessage({ type: 'text', content: { text: '**bold text**' } }));
     fixture.detectChanges();
 
     const textEl = fixture.nativeElement.querySelector('.message-text');
@@ -765,10 +762,7 @@ describe('ChatMessageComponent with markdown', () => {
   });
 
   it('should render italic markdown as em elements', () => {
-    fixture.componentRef.setInput(
-      'message',
-      createTestMessage({ type: 'text', content: { text: '*italic text*' } })
-    );
+    fixture.componentRef.setInput('message', createTestMessage({ type: 'text', content: { text: '*italic text*' } }));
     fixture.detectChanges();
 
     const textEl = fixture.nativeElement.querySelector('.message-text');
@@ -825,10 +819,7 @@ describe('ChatMessageComponent without markdown service', () => {
   });
 
   it('should render plain text when markdown service is not available', () => {
-    fixture.componentRef.setInput(
-      'message',
-      createTestMessage({ type: 'text', content: { text: '**bold text**' } })
-    );
+    fixture.componentRef.setInput('message', createTestMessage({ type: 'text', content: { text: '**bold text**' } }));
     fixture.detectChanges();
 
     const textEl = fixture.nativeElement.querySelector('.message-text');
@@ -861,10 +852,7 @@ describe('ChatMessageComponent with markdown disabled', () => {
   });
 
   it('should render plain text when markdown is disabled', () => {
-    fixture.componentRef.setInput(
-      'message',
-      createTestMessage({ type: 'text', content: { text: '**not bold**' } })
-    );
+    fixture.componentRef.setInput('message', createTestMessage({ type: 'text', content: { text: '**not bold**' } }));
     fixture.detectChanges();
 
     const textEl = fixture.nativeElement.querySelector('.message-text');
