@@ -3,7 +3,8 @@ import { describe, it, expect, beforeEach, vi } from 'vitest';
 
 import { ChatMessage, MessageStatus, MessageType } from '../../../models/chat-message.model';
 import { FileContent, ImageContent, TextContent, SystemContent } from '../../../models/content-types.model';
-import { CHAT_CONFIG, DEFAULT_CHAT_CONFIG } from '../../../tokens/chat-config.token';
+import { CHAT_CONFIG, DEFAULT_CHAT_CONFIG, ChatConfig } from '../../../tokens/chat-config.token';
+import { MARKDOWN_SERVICE, MarkdownServiceLike } from '../../pipes/safe-markdown.pipe';
 
 import { ChatMessageComponent } from './chat-message.component';
 
@@ -716,5 +717,158 @@ describe('ChatMessageComponent with custom config', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.formattedTime()).toBe('2:30 PM');
+  });
+});
+
+describe('ChatMessageComponent with markdown', () => {
+  let fixture: ComponentFixture<ChatMessageComponent>;
+
+  const markdownConfig: ChatConfig = {
+    ...DEFAULT_CHAT_CONFIG,
+    markdown: {
+      enabled: true,
+      displayMode: true,
+      inputMode: false
+    }
+  };
+
+  const mockMarkdownService: MarkdownServiceLike = {
+    parse: (text: string) =>
+      text
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/`(.*?)`/g, '<code>$1</code>')
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ChatMessageComponent],
+      providers: [
+        { provide: CHAT_CONFIG, useValue: markdownConfig },
+        { provide: MARKDOWN_SERVICE, useValue: mockMarkdownService }
+      ]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ChatMessageComponent);
+  });
+
+  it('should render bold markdown as strong elements', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: '**bold text**' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl).toBeTruthy();
+    expect(textEl.innerHTML).toContain('<strong>bold text</strong>');
+  });
+
+  it('should render italic markdown as em elements', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: '*italic text*' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl.innerHTML).toContain('<em>italic text</em>');
+  });
+
+  it('should render inline code markdown as code elements', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: 'Use `npm install`' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl.innerHTML).toContain('<code>npm install</code>');
+  });
+
+  it('should render mixed markdown elements', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: '**bold** and *italic* and `code`' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl.innerHTML).toContain('<strong>bold</strong>');
+    expect(textEl.innerHTML).toContain('<em>italic</em>');
+    expect(textEl.innerHTML).toContain('<code>code</code>');
+  });
+});
+
+describe('ChatMessageComponent without markdown service', () => {
+  let fixture: ComponentFixture<ChatMessageComponent>;
+
+  const markdownConfig: ChatConfig = {
+    ...DEFAULT_CHAT_CONFIG,
+    markdown: {
+      enabled: true,
+      displayMode: true,
+      inputMode: false
+    }
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ChatMessageComponent],
+      providers: [
+        { provide: CHAT_CONFIG, useValue: markdownConfig }
+        // Note: MARKDOWN_SERVICE not provided
+      ]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ChatMessageComponent);
+  });
+
+  it('should render plain text when markdown service is not available', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: '**bold text**' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl).toBeTruthy();
+    // Without markdown service, should show raw text
+    expect(textEl.textContent).toContain('**bold text**');
+    expect(textEl.innerHTML).not.toContain('<strong>');
+  });
+});
+
+describe('ChatMessageComponent with markdown disabled', () => {
+  let fixture: ComponentFixture<ChatMessageComponent>;
+
+  const noMarkdownConfig: ChatConfig = {
+    ...DEFAULT_CHAT_CONFIG,
+    markdown: {
+      enabled: false,
+      displayMode: false,
+      inputMode: false
+    }
+  };
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [ChatMessageComponent],
+      providers: [{ provide: CHAT_CONFIG, useValue: noMarkdownConfig }]
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(ChatMessageComponent);
+  });
+
+  it('should render plain text when markdown is disabled', () => {
+    fixture.componentRef.setInput(
+      'message',
+      createTestMessage({ type: 'text', content: { text: '**not bold**' } })
+    );
+    fixture.detectChanges();
+
+    const textEl = fixture.nativeElement.querySelector('.message-text');
+    expect(textEl.textContent).toContain('**not bold**');
+    expect(textEl.innerHTML).not.toContain('<strong>');
   });
 });

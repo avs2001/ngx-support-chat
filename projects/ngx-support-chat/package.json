@@ -29,7 +29,7 @@
     }
   },
   "optionalDependencies": {
-    "ngx-markdown": "^18.0.0"
+    "ngx-markdown": "^21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
