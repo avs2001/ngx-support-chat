@@ -5,7 +5,7 @@
 
 import { inject, InjectionToken, Pipe, PipeTransform } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { from, isObservable, Observable, of } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
 import { ChatConfigService } from '../services/chat-config.service';
