@@ -44,6 +44,8 @@ Thumbs.db
 
 # SDP documentation (local only)
 /docs/
+/SDP 2/
+CLAUDE.md
 
 # Claude Code
 .claude/
