@@ -14,6 +14,7 @@ import {
   signal,
   viewChild
 } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { ChatMessage } from '../../../models/chat-message.model';
 import { FileContent, ImageContent } from '../../../models/content-types.model';
@@ -77,6 +78,7 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
   private readonly elementRef = inject(ElementRef);
   private readonly announcer = inject(ChatAnnouncerService);
   private resizeObserver: ResizeObserver | null = null;
+  private scrollSubscription: Subscription | null = null;
   private lastMessageCount = signal(0);
 
   /** Index of currently focused message in the flat message list */
@@ -140,6 +142,7 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.scrollSubscription?.unsubscribe();
     this.resizeObserver?.disconnect();
   }
 
@@ -173,7 +176,7 @@ export class ChatMessageAreaComponent implements AfterViewInit, OnDestroy {
     const vp = this.viewport();
     if (!vp) return;
 
-    vp.elementScrolled().subscribe(() => {
+    this.scrollSubscription = vp.elementScrolled().subscribe(() => {
       const offset = vp.measureScrollOffset('top');
       const isAtBottom = this.isScrolledToBottom();
       this.scrolled.emit({ offset, isAtBottom });

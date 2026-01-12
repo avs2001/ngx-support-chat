@@ -325,6 +325,26 @@ describe('ChatMessageAreaComponent', () => {
       // Empty viewport should be considered at bottom
       expect(component.isScrolledToBottom()).toBe(true);
     });
+
+    it('should clean up scroll subscription on destroy', async () => {
+      await fixture.whenStable();
+
+      // Access private scrollSubscription via type assertion
+      const componentAny = component as unknown as { scrollSubscription: { unsubscribe: () => void } | null };
+      const subscription = componentAny.scrollSubscription;
+
+      // Verify subscription exists after view init
+      expect(subscription).toBeTruthy();
+
+      // Spy on unsubscribe
+      const unsubscribeSpy = vi.spyOn(subscription!, 'unsubscribe');
+
+      // Destroy the component
+      fixture.destroy();
+
+      // Verify unsubscribe was called
+      expect(unsubscribeSpy).toHaveBeenCalled();
+    });
   });
 
   describe('rendering', () => {
