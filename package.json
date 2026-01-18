@@ -44,14 +44,14 @@
     "@angular/cli": "^21.0.1",
     "@angular/compiler-cli": "^21.0.0",
     "@types/node": "^25.0.3",
-    "@typescript-eslint/eslint-plugin": "^8.50.1",
-    "@typescript-eslint/parser": "^8.50.1",
+    "@typescript-eslint/eslint-plugin": "^8.53.0",
+    "@typescript-eslint/parser": "^8.53.0",
     "@vitest/coverage-v8": "^4.0.16",
     "angular-eslint": "^21.1.0",
     "eslint": "^9.39.2",
     "jsdom": "^27.1.0",
     "ng-packagr": "^21.0.0",
-    "prettier": "^3.7.4",
+    "prettier": "^3.8.0",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
   }
