@@ -61,7 +61,7 @@ jobs:
           verbose: true
 
       - name: Upload test results
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: test-results
@@ -95,14 +95,14 @@ jobs:
         run: npx ng build demo --base-href=/ngx-support-chat/
 
       - name: Upload library artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ngx-support-chat
           path: dist/ngx-support-chat/
           retention-days: 30
 
       - name: Upload demo artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: demo
           path: dist/demo/browser/
