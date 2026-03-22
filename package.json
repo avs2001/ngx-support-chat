@@ -38,7 +38,7 @@
     "@analogjs/vite-plugin-angular": "^2.2.0",
     "@angular-devkit/schematics": "^21.0.4",
     "@angular-eslint/eslint-plugin": "^21.1.0",
-    "@angular-eslint/eslint-plugin-template": "^21.1.0",
+    "@angular-eslint/eslint-plugin-template": "^21.3.1",
     "@angular-eslint/template-parser": "^21.1.0",
     "@angular/build": "^21.0.4",
     "@angular/cli": "^21.0.1",
